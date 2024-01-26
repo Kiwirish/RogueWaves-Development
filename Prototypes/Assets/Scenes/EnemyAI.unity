@@ -882,7 +882,7 @@ MonoBehaviour:
   target: {fileID: 2014277286}
   cannonballPrefab: {fileID: 8975203605835212929, guid: 336178ead08d846b8920fb7d30379cf8, type: 3}
   arcSmoothness: 100
-  randomise: 0
+  xOffset: 5
 --- !u!1 &1783074089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 2071628753}
   - component: {fileID: 2071628752}
   - component: {fileID: 2071628751}
+  - component: {fileID: 2071628755}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1258,6 +1259,18 @@ Transform:
   - {fileID: 1107610371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2071628755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071628749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f336caccec192b54a9b081bae0110000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

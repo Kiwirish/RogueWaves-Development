@@ -11,14 +11,18 @@ public class EnemyShooting : MonoBehaviour
 
     public int arcSmoothness;
     private Vector3[] trajectoryPoints;
-    public bool randomise = false;
 
     private float v_vertex;
     private float y_vertex = 5f; // default value
 
+    public float xOffset = 5f;
+    bool randomise = false;
+
     void Start()
     {
         trajectoryPoints = new Vector3[arcSmoothness];
+        Debug.Log("Not randomised");
+
     }
 
     // Update is called once per frame
@@ -28,14 +32,17 @@ public class EnemyShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Fire a bullet along the parabola
+            DrawArc();
             StartCoroutine(Shoot());
         }
-        if(Input.GetKeyDown(KeyCode.R) && !randomise){
+        if(Input.GetKeyDown(KeyCode.R)){
             randomise = true;
-            Debug.Log("X & Y randomisation active");
+            Debug.Log("Randomised");
         }
-
-        DrawArc();
+        if(Input.GetKeyDown(KeyCode.T)){
+            randomise = false;
+            Debug.Log("Not randomised");
+        }
     }
 
     IEnumerator Shoot()
@@ -54,20 +61,19 @@ public class EnemyShooting : MonoBehaviour
     }
 
     private void DrawArc()
-    {
+    {   
+
         // Create vectors of the two x-axis positions
         Vector3 startPos = start.transform.position; // start is the enemy ship
         Vector3 targetPos = target.transform.position; // target is the player ship
 
         // Adjust the range of random values based on your requirements
         if(randomise){
-            float randomXOffset = Random.Range(-5f, 5f);
+            float randomXOffset = Random.Range(-xOffset, xOffset);
             targetPos.x += randomXOffset;
 
             int random = Random.Range(3, 10);
             y_vertex = (float)random;
-            Debug.Log("TargetPos & Y randomisation completed");
-            randomise = false;
         }
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
