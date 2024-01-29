@@ -14,8 +14,11 @@ public class Launcher : MonoBehaviour
 
     Vector2 velocity, startMousePosition, currentMousePosition;
 
-    
-
+    // Added mouse aiming
+    public Rigidbody2D rb;
+    public GameObject cannon;
+    public Camera cam;
+    Vector2 mousePos;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,13 @@ public class Launcher : MonoBehaviour
             ShootProjectile();
             ClearTrajectory();
         }
+
+        // Added mouse aiming 
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 lookDir = mousePos - rb.position; 
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f;
+        cannon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
     }
 
     void DrawTrajectory()
