@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class EnemyShooting : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class EnemyShooting : MonoBehaviour
     public GameObject start;
     public GameObject target;
     public GameObject cannonballPrefab; // Reference to the bullet prefab
+    public CinemachineVirtualCamera cam;
+    public GameObject player;
 
     public int arcSmoothness;
     private Vector3[] trajectoryPoints;
@@ -19,10 +22,9 @@ public class EnemyShooting : MonoBehaviour
     bool randomise = false;
 
     void Start()
-    {
+    {   
         trajectoryPoints = new Vector3[arcSmoothness];
         Debug.Log("Not randomised");
-
     }
 
     // Update is called once per frame
@@ -46,18 +48,34 @@ public class EnemyShooting : MonoBehaviour
     }
 
     IEnumerator Shoot()
-    {
-        // Instantiate a cannonball at the start position
+    {   
+
+        cam.Follow = start.transform;
+        yield return new WaitForSeconds(2f);
+
         GameObject cannonball = Instantiate(cannonballPrefab, start.transform.position, Quaternion.identity);
 
-        // Get the Rigidbody2D component of the cannonball
-        Rigidbody2D rb = cannonball.GetComponent<Rigidbody2D>();
+        // Assign the Transform of the cannonball to the Follow property
+        cam.Follow = cannonball.transform;
 
-        for(int i = 0; i < trajectoryPoints.Length; i++){
-            rb.position = trajectoryPoints[i];
-            yield return null; 
+        Rigidbody2D rb = cannonball.GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+
+        for (int i = 0; i < trajectoryPoints.Length; i++)
+        {
+            if(rb != null){
+                rb.position = trajectoryPoints[i];
+            }
+            yield return null;
         }
+
         Destroy(cannonball);
+
+        yield return new WaitForSeconds(2f);
+
+
+        // Reset the camera to the main camera when the cannonball is destroyed
+        cam.Follow = player.transform;
     }
 
     private void DrawArc()

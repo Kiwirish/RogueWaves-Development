@@ -71,4 +71,8 @@ public class Waves : MonoBehaviour {
       // Set the edge point to the poisitions from edge point array
       ec.points = edgePoints;
    }
+
+   void OnTriggerEnter2D(Collider2D other){
+      Destroy(other.gameObject);
+   }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Launcher : MonoBehaviour
 {
@@ -16,9 +17,13 @@ public class Launcher : MonoBehaviour
 
     // Added mouse aiming
     public Rigidbody2D rb;
+    public GameObject player;
     public GameObject cannon;
     public Camera cam;
     Vector2 mousePos;
+
+    // Added camera
+    [SerializeField] CinemachineVirtualCamera cinemachine;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +47,7 @@ public class Launcher : MonoBehaviour
         }
 
         if (Input.GetMouseButtonUp(0)){
-            ShootProjectile();
+            StartCoroutine(ShootProjectile());
             ClearTrajectory();
         }
 
@@ -74,12 +79,28 @@ public class Launcher : MonoBehaviour
     }
    
 
-    void ShootProjectile()
-    {
+    IEnumerator ShootProjectile()
+    {   
+        
         // create projectile prefab at spawnpoint 
         Transform projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+        
         // give it a velocity
-        projectile.GetComponent<Rigidbody2D>().velocity = velocity;
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        rb.gravityScale = 1;
+        rb.velocity = velocity;
+
+        // Make the camera follow the projectile
+        cinemachine.Follow = projectile.transform;
+
+        // Wait for a certain duration (you can adjust this duration)
+        yield return new WaitForSeconds(3f);
+
+        // Reset the camera to the player after a certain duration
+        if(projectile == null){
+            cinemachine.Follow = player.transform;
+        }
+
     }
 
 
