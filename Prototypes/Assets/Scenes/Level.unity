@@ -1559,6 +1559,7 @@ GameObject:
   - component: {fileID: 1573576964}
   - component: {fileID: 1573576963}
   - component: {fileID: 1573576967}
+  - component: {fileID: 1573576969}
   - component: {fileID: 1573576968}
   m_Layer: 0
   m_Name: Player
@@ -1576,7 +1577,7 @@ Transform:
   m_GameObject: {fileID: 1573576961}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: -2, z: 0}
+  m_LocalPosition: {x: -5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1727,7 +1728,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573576961}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5d02cec81ddc4aad95855d90e9f0283, type: 3}
   m_Name: 
@@ -1738,6 +1739,11 @@ MonoBehaviour:
   launchForce: 2
   trajectoryTimeStep: 0.05
   trajectoryStepCount: 15
+  rb: {fileID: 1573576964}
+  player: {fileID: 1573576961}
+  cannon: {fileID: 656889396}
+  cam: {fileID: 519420031}
+  cinemachine: {fileID: 0}
 --- !u!114 &1573576968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1753,6 +1759,30 @@ MonoBehaviour:
   damage: 1
   maxHP: 3
   currentHP: 3
+--- !u!114 &1573576969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573576961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1d83b00d7b544fd82187410478ac95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5788174032126193820, guid: 336178ead08d846b8920fb7d30379cf8, type: 3}
+  spawnPoint: {fileID: 656889397}
+  lineRenderer: {fileID: 656889398}
+  launchForce: 2
+  trajectoryTimeStep: 0.05
+  trajectoryStepCount: 15
+  rb: {fileID: 1573576964}
+  player: {fileID: 1573576961}
+  cannon: {fileID: 656889396}
+  cam: {fileID: 519420031}
+  cinemachine: {fileID: 0}
+  battleSystem: {fileID: 868000272}
 --- !u!1 &1626960425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,6 +1970,8 @@ MonoBehaviour:
   start: {fileID: 661065047}
   target: {fileID: 2054763368}
   cannonballPrefab: {fileID: 8975203605835212929, guid: 336178ead08d846b8920fb7d30379cf8, type: 3}
+  cam: {fileID: 0}
+  player: {fileID: 0}
   arcSmoothness: 200
   xOffset: 5
 --- !u!114 &2054167784
