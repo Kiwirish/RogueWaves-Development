@@ -51,6 +51,7 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator endPlayerTurn()
     {
         state = BattleState.IDLE;
+        dialogueText.text = "Player Fires";
 
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
         yield return new WaitForSeconds(2f);
