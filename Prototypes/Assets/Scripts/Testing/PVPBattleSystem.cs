@@ -47,33 +47,37 @@ public class PVPBattleSystem : MonoBehaviour
     {
         dialogueText.text = "Player 1s Turn";
         state = PVPState.PLAYER1TURN;
+        player1.GetComponent<PVPMovement>().yourTurn = true;
     }
 
     void player2Turn()
     {
         dialogueText.text = "Player 2s Turn";
         state = PVPState.PLAYER2TURN;
+        player2.GetComponent<PVPMovement>().yourTurn = true;
     }
 
     public void player1Attacks(){
         dialogueText.text = "Player 1 Fires";
+        player1.GetComponent<PVPMovement>().yourTurn = false;
     }
 
     public void player2Attacks(){
         dialogueText.text = "Player 2 Fires";
+        player2.GetComponent<PVPMovement>().yourTurn = false;
     }
 
 
     public IEnumerator endPlayer1Turn()
     {
         bool isDead = player2Unit.TakeDamage(player1Unit.damage);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (isDead)
         {
             //win
             state = PVPState.WIN;
-            EndBattle();
+            StartCoroutine(EndBattle());
         }
         else
         {
@@ -89,13 +93,13 @@ public class PVPBattleSystem : MonoBehaviour
 
         bool isDead = player1Unit.TakeDamage(player2Unit.damage);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (isDead)
         {
             //lose
             state = PVPState.LOSE;
-            EndBattle();
+            StartCoroutine(EndBattle());
         }
         else
         {
@@ -106,15 +110,16 @@ public class PVPBattleSystem : MonoBehaviour
 
     }
 
-    void EndBattle()
+    public IEnumerator EndBattle()
     {
         if (state == PVPState.WIN){
             dialogueText.text = "Player 1 Wins";
         }else if(state == PVPState.LOSE){
             dialogueText.text = "Player 2 Wins";
-        }else{
-            Debug.Log("Something went wrong");
         }
+
+        yield return new WaitForSeconds(5f);
+
         SceneManager.LoadScene("MainMenu");
     }
 

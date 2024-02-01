@@ -10,7 +10,7 @@ public class Waves : MonoBehaviour {
    public float waveIntensity;
 
    // Reference to line renderer component
-   private LineRenderer   lr;
+   private LineRenderer lr;
 
    //Array of point positions
    private Vector3[] linePoints;

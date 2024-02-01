@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class PlayerLauncher : MonoBehaviour
 {
-    [SerializeField]Transform projectilePrefab;
+    [SerializeField] Transform projectilePrefab;
     [SerializeField] Transform spawnPoint;
     [SerializeField] LineRenderer lineRenderer;
 
@@ -13,45 +13,42 @@ public class PlayerLauncher : MonoBehaviour
     [SerializeField] float trajectoryTimeStep = 0.05f;
     [SerializeField] int trajectoryStepCount = 15;
 
-    Vector2 velocity, startMousePosition, currentMousePosition;
+    // Mouse controls
+    Vector2 velocity, startMousePosition, currentMousePosition, mousePos;
 
-    // Added mouse aiming
-    public Rigidbody2D rb;
-    public GameObject player;
-    public GameObject cannon;
-    public Camera cam;
-    Vector2 mousePos;
-
-    // Added camera
+    // Cameras
     [SerializeField] CinemachineVirtualCamera cinemachine;
+    [SerializeField] Camera cam;
 
-    // Added PVP
-    public bool pvp;
-    public int playerNumber;
-    
-    public PVPBattleSystem system;
-
+    // PVP player variables
+    [SerializeField] GameObject[] players;
+    [SerializeField] public int playerNumber;
+    GameObject player;
     bool yourTurn;
-    
-    public GameObject player1;
-    public GameObject player2;
+    Rigidbody2D rb;
+
+    // Scripts
+    [SerializeField] public PVPBattleSystem system;
+    [SerializeField] public PVPMovement move;
 
     // Start is called before the first frame update
     void Start()
     {
         if(playerNumber == 1){
             yourTurn = true;
+            player = players[0];
+            rb = players[0].GetComponent<Rigidbody2D>();
         }else if(playerNumber == 2){
             yourTurn = false;
-        }else{
-            Debug.Log("Something went wrong");
+            player = players[1];
+            rb = players[1].GetComponent<Rigidbody2D>();
         }
-        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+
         if(yourTurn){
 
             if (Input.GetMouseButtonDown(0)){
@@ -72,7 +69,7 @@ public class PlayerLauncher : MonoBehaviour
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             Vector2 lookDir = mousePos - rb.position; 
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f;
-            cannon.transform.rotation = Quaternion.Euler(0f, 0f, angle);  
+            spawnPoint.rotation = Quaternion.Euler(0f, 0f, angle);  
         }
         
     }
@@ -99,12 +96,10 @@ public class PlayerLauncher : MonoBehaviour
     IEnumerator ShootProjectile()
     {   
         
-        if(pvp && playerNumber == 1){
+        if(playerNumber == 1){
             system.player1Attacks();
-        }else if(pvp && playerNumber == 2){
+        }else if(playerNumber == 2){
             system.player2Attacks();
-        }else{
-
         }
 
         // create projectile prefab at spawnpoint 
@@ -118,25 +113,30 @@ public class PlayerLauncher : MonoBehaviour
         // Make the camera follow the projectile
         cinemachine.Follow = projectile.transform;
 
-        yield return new WaitForSeconds(3f);
-
-        if (pvp){
-            if (playerNumber == 1 && yourTurn){
-                //Debug.Log("Changed turn to Player 2"); 
-                yourTurn = false;
-                player2.GetComponent<PlayerLauncher>().yourTurn = true;
-                cinemachine.Follow = player2.GetComponent<PlayerLauncher>().player2.transform;
-                StartCoroutine(system.endPlayer1Turn());
-            }else if (playerNumber == 2 && yourTurn){
-                //Debug.Log("Changed turn to Player 1"); 
-                yourTurn = false;
-                player1.GetComponent<PlayerLauncher>().yourTurn = true;
-                cinemachine.Follow = player1.GetComponent<PlayerLauncher>().player1.transform;
-                StartCoroutine(system.endPlayer2Turn());
-            }
+        while (projectile != null && projectile.gameObject != null){
+            //Debug.Log("Looping"); // loop
+            yield return null;  // This is important for the coroutine to yield to the next frame
         }
-        yield break;
+        yield return new WaitForSeconds(2f);
+
+        //Debug.Log("Object destroyed");
+
+        if (playerNumber == 1 && yourTurn){
+            // Change turn to Player 2
+            yourTurn = false;
+            players[1].GetComponent<PlayerLauncher>().yourTurn = true;
+            cinemachine.Follow = players[1].GetComponent<PlayerLauncher>().players[1].transform;
+            StartCoroutine(system.endPlayer1Turn());
+        }else if (playerNumber == 2 && yourTurn){
+             // Change turn to Player 1
+            yourTurn = false;
+            players[0].GetComponent<PlayerLauncher>().yourTurn = true;
+            cinemachine.Follow = players[0].GetComponent<PlayerLauncher>().players[0].transform;
+            StartCoroutine(system.endPlayer2Turn());
+        }
+        //Debug.Log("Player turn passed");
     }
 }
+
 
 

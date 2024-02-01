@@ -10,6 +10,8 @@ public class Unit : MonoBehaviour
 
     public bool triggered = false;
 
+    public GameObject player;
+
     void OnTriggerEnter2D(Collider2D other){
 
         if (other != GetComponent<Collider2D>()){
@@ -23,6 +25,7 @@ public class Unit : MonoBehaviour
         if(triggered){
             currentHP -= dmg;
             if(currentHP <= 0){
+                Destroy(player);
                 return true;
             }
             Debug.Log("HP REMAINING: " + currentHP);
