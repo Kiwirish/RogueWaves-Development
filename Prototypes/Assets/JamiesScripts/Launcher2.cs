@@ -100,27 +100,24 @@ public class Launcher2 : MonoBehaviour
     IEnumerator ShootProjectile()
     {
 
-        StartCoroutine(battleSystem.endPlayerTurn());
-
         // create projectile prefab at spawnpoint 
         Transform projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
-
+        
         // give it a velocity
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.gravityScale = 1;
         rb.velocity = velocity;
 
         // Make the camera follow the projectile
-        //cinemachine.Follow = projectile.transform;
+        cinemachine.Follow = projectile.transform;
 
-        // Wait for a certain duration (you can adjust this duration)
-        yield return new WaitForSeconds(3f);
-
-        // Reset the camera to the player after a certain duration
-        if (projectile == null)
-        {
-            // cinemachine.Follow = player.transform;
+        while (projectile != null && projectile.gameObject != null){
+            //Debug.Log("Looping"); // loop
+            yield return null;  // This is important for the coroutine to yield to the next frame
         }
+        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(battleSystem.endPlayerTurn());
 
     }
 

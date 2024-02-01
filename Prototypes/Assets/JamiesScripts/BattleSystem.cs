@@ -19,6 +19,9 @@ public class BattleSystem : MonoBehaviour
     Unit playerUnit;
     Unit enemyUnit;
 
+    [SerializeField] public EnemyMovement enemyMove;
+    [SerializeField] public EnemyShooting enemyShoot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,10 +54,10 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator endPlayerTurn()
     {
         state = BattleState.IDLE;
-        dialogueText.text = "Player Fires";
+        //dialogueText.text = "Player Fires";
 
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (isDead)
         {
@@ -65,9 +68,9 @@ public class BattleSystem : MonoBehaviour
         else
         {
             //enemyTurn
+            state = BattleState.ENEMYTURN;
             enemyTurn();
         }
-
     }
 
     void enemyTurn()
@@ -102,13 +105,22 @@ public class BattleSystem : MonoBehaviour
     }
 
     IEnumerator EnemyAttack()
-    {
+    {   
+
+        // enemyMove = enemy.GetComponent<EnemyMovement>();
+        // enemyShoot = enemy.GetComponent<EnemyShooting>();
+
+        enemyMove.EnemyMove();
+
         yield return new WaitForSeconds(2f);
 
         dialogueText.text = "Enemy Fires";
-        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+
+        enemyShoot.EnemyShoot();
 
         yield return new WaitForSeconds(2f);
+
+        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
         if (isDead)
         {

@@ -19,7 +19,7 @@ public class EnemyShooting : MonoBehaviour
     private float y_vertex = 5f; // default value
 
     public float xOffset = 5f;
-    bool randomise = false;
+    bool randomise = true;
 
     void Start()
     {   
@@ -31,12 +31,12 @@ public class EnemyShooting : MonoBehaviour
     void Update()
     {   
         // Check if the space button is pressed
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Fire a bullet along the parabola
-            DrawArc();
-            StartCoroutine(Shoot());
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     // Fire a bullet along the parabola
+        //     DrawArc();
+        //     StartCoroutine(Shoot());
+        // }
         if(Input.GetKeyDown(KeyCode.R)){
             randomise = true;
             Debug.Log("Randomised");
@@ -45,6 +45,11 @@ public class EnemyShooting : MonoBehaviour
             randomise = false;
             Debug.Log("Not randomised");
         }
+    }
+
+    public void EnemyShoot(){
+        DrawArc();
+        StartCoroutine(Shoot());
     }
 
     IEnumerator Shoot()
