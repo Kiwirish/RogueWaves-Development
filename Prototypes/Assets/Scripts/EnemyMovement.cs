@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Cinemachine;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -7,7 +8,9 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private bool moving = false;
+    //private bool moving = false;
+
+    public CinemachineVirtualCamera cam;
 
     void Start()
     {
@@ -16,19 +19,25 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !moving)
-        {
-            moving = true;
-            StartCoroutine(EnemyMovementPhase());
-        }
+        // if (Input.GetKeyDown(KeyCode.UpArrow) && !moving)
+        // {
+        //     moving = true;
+        //     StartCoroutine(EnemyMovementPhase());
+        // }
+    }
+
+    public void EnemyMove(){
+        StartCoroutine(EnemyMovementPhase()); 
     }
 
     IEnumerator EnemyMovementPhase()
     {   
         
+        cam.Follow = rb.transform;
+
         float random = Random.Range(-movementValue, movementValue);
 
-        while(-movementValue/6f < random && random < movementValue/6f){
+        while(-movementValue/4f < random && random < movementValue/4f){
             Debug.Log("Retry: " + random);
             random = Random.Range(-movementValue, movementValue);
         }
@@ -49,6 +58,6 @@ public class EnemyMovement : MonoBehaviour
         rb.position = new Vector3(newPos, rb.position.y, 0);
         yield return new WaitForSeconds(1f);
 
-        moving = false;
+        //moving = false;
     }
 }
