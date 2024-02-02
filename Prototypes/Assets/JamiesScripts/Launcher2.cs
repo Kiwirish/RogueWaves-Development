@@ -100,6 +100,8 @@ public class Launcher2 : MonoBehaviour
     IEnumerator ShootProjectile()
     {
 
+        battleSystem.gameIdle();
+
         // create projectile prefab at spawnpoint 
         Transform projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
         
@@ -116,7 +118,6 @@ public class Launcher2 : MonoBehaviour
             yield return null;  // This is important for the coroutine to yield to the next frame
         }
         yield return new WaitForSeconds(2f);
-
         StartCoroutine(battleSystem.endPlayerTurn());
 
     }

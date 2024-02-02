@@ -47,6 +47,10 @@ public class BattleSystem : MonoBehaviour
         playerTurn();
     }
 
+    public void gameIdle(){
+        state = BattleState.IDLE;
+    }
+
     void playerTurn()
     {
         dialogueText.text = "Player Turn";
@@ -55,7 +59,7 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator endPlayerTurn()
     {
-        state = BattleState.IDLE;
+        
         //dialogueText.text = "Player Fires";
 
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
