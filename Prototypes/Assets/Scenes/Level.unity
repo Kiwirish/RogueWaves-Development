@@ -1813,6 +1813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f336caccec192b54a9b081bae0110000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallaxObj: {fileID: 0}
 --- !u!50 &1573576964
 Rigidbody2D:
   serializedVersion: 4
@@ -1975,6 +1976,7 @@ MonoBehaviour:
   damage: 1
   maxHP: 3
   currentHP: 3
+  triggered: 0
 --- !u!114 &1573576969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2426,6 +2428,7 @@ MonoBehaviour:
   damage: 1
   maxHP: 3
   currentHP: 3
+  triggered: 0
 --- !u!1 &2054763368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,9 +2551,9 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 993252413}
   - {fileID: 868000273}
   - {fileID: 519420032}
+  - {fileID: 993252413}
   - {fileID: 809103961}
   - {fileID: 1329798552}
   - {fileID: 2136451885}
