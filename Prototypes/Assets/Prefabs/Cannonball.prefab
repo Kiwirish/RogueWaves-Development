@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6838849745023166970}
   - component: {fileID: 5782617285609619054}
   m_Layer: 0
-  m_Name: Cannonball
-  m_TagString: Untagged
+  m_Name: CannonBall
+  m_TagString: Cannonball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!58 &5782617285609619054
 CircleCollider2D:
