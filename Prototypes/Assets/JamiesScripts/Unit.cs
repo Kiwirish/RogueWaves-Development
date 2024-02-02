@@ -13,11 +13,8 @@ public class Unit : MonoBehaviour
     public GameObject player;
 
     void OnTriggerEnter2D(Collider2D other){
-
-        if (other != GetComponent<Collider2D>()){
-            triggered = true;
-            Debug.Log("HIT TAKEN");
-        }
+        triggered = true;
+        Debug.Log("HIT TAKEN");
     } 
 
     public bool TakeDamage(int dmg){
