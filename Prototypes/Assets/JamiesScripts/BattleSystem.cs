@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, IDLE }
 
@@ -63,7 +65,7 @@ public class BattleSystem : MonoBehaviour
         {
             //win
             state = BattleState.WIN;
-            EndBattle();
+            StartCoroutine(EndBattle());
         }
         else
         {
@@ -93,7 +95,7 @@ public class BattleSystem : MonoBehaviour
         {
             //win
             state = BattleState.WIN;
-            EndBattle();
+            StartCoroutine(EndBattle());
         }
         else
         {
@@ -126,7 +128,7 @@ public class BattleSystem : MonoBehaviour
         {
             //lose
             state = BattleState.LOSE;
-            EndBattle();
+            StartCoroutine(EndBattle());
         }
         else
         {
@@ -139,12 +141,17 @@ public class BattleSystem : MonoBehaviour
 
 
 
-    void EndBattle()
+    public IEnumerator EndBattle()
     {
-        if (state == BattleState.WIN)
-        {
-            dialogueText.text = "Player Wins";
+        if (state == BattleState.WIN){
+            dialogueText.text = "You Win";
+        }else if(state == BattleState.LOSE){
+            dialogueText.text = "You Lose";
         }
+
+        yield return new WaitForSeconds(5f);
+
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
