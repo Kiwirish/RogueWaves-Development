@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     // game object
     private Parallax parallaxComp;
 
+    public BattleSystem battleSystem;
+
 
     private void Start()
     {
@@ -27,6 +29,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // Check if it's the player's turn before moving
+        if (battleSystem.state == BattleState.PlAYERMOVE)
+        {
+            HandleMovementInput();
+        }
+
+    }
+
+    void HandleMovementInput(){
+
         // Player movement from input (it's a variable between -1 and 1) for
         // degree of left or right movement
         float movementInput = Input.GetAxis("Horizontal");
@@ -38,5 +51,6 @@ public class Player : MonoBehaviour
         {
             parallaxComp.Move(new Vector3(Time.deltaTime * speed * movementInput, 0, 0));
         }
+
     }
 }

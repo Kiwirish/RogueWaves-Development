@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, IDLE }
+public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYTURN, WIN, LOSE, IDLE }
 
 
 public class BattleSystem : MonoBehaviour
@@ -43,24 +43,23 @@ public class BattleSystem : MonoBehaviour
 
         dialogueText.text = "Battle Begins!";
 
-        yield return new WaitForSeconds(3f);
-        playerTurn();
+        yield return new WaitForSeconds(1f);
+        playerShoot();
     }
 
-    public void gameIdle(){
+    public void gameIdle()
+    {
         state = BattleState.IDLE;
     }
 
-    void playerTurn()
+    void playerShoot()
     {
-        dialogueText.text = "Player Turn";
-        state = BattleState.PLAYERTURN;
+        dialogueText.text = "Player Shoot";
+        state = BattleState.PLAYERSHOOT;
     }
 
-    public IEnumerator endPlayerTurn()
+    public IEnumerator endPlayerShoot()
     {
-        
-        //dialogueText.text = "Player Fires";
 
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
         yield return new WaitForSeconds(1f);
@@ -73,10 +72,19 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            //enemyTurn
-            state = BattleState.ENEMYTURN;
-            enemyTurn();
+            //PlayerMove
+            StartCoroutine(playerMove());
         }
+    }
+
+    IEnumerator playerMove()
+    {
+        dialogueText.text = "Player Move";
+        state = BattleState.PlAYERMOVE;
+
+        yield return new WaitForSeconds(4f);
+
+        enemyTurn();
     }
 
     void enemyTurn()
@@ -87,31 +95,9 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(EnemyAttack());
     }
 
-    IEnumerator PlayerAttack()
-    {
-
-        dialogueText.text = "Player Fires";
-
-        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
-        yield return new WaitForSeconds(2f);
-
-        if (isDead)
-        {
-            //win
-            state = BattleState.WIN;
-            StartCoroutine(EndBattle());
-        }
-        else
-        {
-            //enemyTurn
-            state = BattleState.ENEMYTURN;
-            enemyTurn();
-        }
-
-    }
 
     IEnumerator EnemyAttack()
-    {   
+    {
 
         // enemyMove = enemy.GetComponent<EnemyMovement>();
         // enemyShoot = enemy.GetComponent<EnemyShooting>();
@@ -120,9 +106,9 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        dialogueText.text = "Enemy Fires";
-
         enemyShoot.EnemyShoot();
+
+        dialogueText.text = "Enemy Fires";
 
         yield return new WaitForSeconds(2f);
 
@@ -136,20 +122,21 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            //enemyTurn
-            state = BattleState.PLAYERTURN;
-            playerTurn();
+            //playerTurn
+            state = BattleState.PLAYERSHOOT;
+            playerShoot();
         }
 
     }
 
-
-
     public IEnumerator EndBattle()
     {
-        if (state == BattleState.WIN){
+        if (state == BattleState.WIN)
+        {
             dialogueText.text = "You Win";
-        }else if(state == BattleState.LOSE){
+        }
+        else if (state == BattleState.LOSE)
+        {
             dialogueText.text = "You Lose";
         }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class Launcher2 : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Launcher2 : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera cinemachine;
 
     public BattleSystem battleSystem;
+    public Text dialogueText;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,7 @@ public class Launcher2 : MonoBehaviour
     {
 
         // Check if it's the player's turn before allowing the launcher to be used
-        if (battleSystem.state == BattleState.PLAYERTURN)
+        if (battleSystem.state == BattleState.PLAYERSHOOT)
         {
             HandleLauncherInput();
         }
@@ -101,6 +103,7 @@ public class Launcher2 : MonoBehaviour
     {
 
         battleSystem.gameIdle();
+        dialogueText.text = "Player Fires";
 
         // create projectile prefab at spawnpoint 
         Transform projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
@@ -118,7 +121,7 @@ public class Launcher2 : MonoBehaviour
             yield return null;  // This is important for the coroutine to yield to the next frame
         }
         yield return new WaitForSeconds(2f);
-        StartCoroutine(battleSystem.endPlayerTurn());
+        StartCoroutine(battleSystem.endPlayerShoot());
 
     }
 
