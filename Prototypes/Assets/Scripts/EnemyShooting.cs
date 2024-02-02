@@ -101,13 +101,15 @@ public class EnemyShooting : MonoBehaviour
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        lr.positionCount = arcSmoothness; // number of points displaying the arc
-        for (int i = 0; i < lr.positionCount; i++)
+        // commented out elements are to remove enemy arc showing
+
+        //lr.positionCount = arcSmoothness; // number of points displaying the arc
+        for (int i = 0; i < arcSmoothness; i++)
         {
-            float t = i / (float)(lr.positionCount - 1);
+            float t = i / (float)(arcSmoothness - 1);
             Vector3 point = CalculateArc(startPos, targetPos, x_vertex, y_vertex, t);
             trajectoryPoints[i] = point; // list a set of points for the projectile to follow through
-            lr.SetPosition(i, point); // sets the point of the arc
+            //lr.SetPosition(i, point); // sets the point of the arc
         }
     }
 
