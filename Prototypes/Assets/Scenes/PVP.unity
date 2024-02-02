@@ -1066,6 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   dialogueText: {fileID: 1750491667}
+  customFont: {fileID: 12800000, guid: b3173b2ae0905e644a8758b6a19e400c, type: 3}
   player1: {fileID: 991948969}
   player2: {fileID: 1758581878}
 --- !u!4 &837636292
@@ -2384,7 +2385,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 157.38}
-  m_SizeDelta: {x: 300, y: 57.67}
+  m_SizeDelta: {x: 500, y: 57.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1758581878
 GameObject:
