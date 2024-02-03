@@ -13,7 +13,7 @@ public class PVPBattleSystem : MonoBehaviour
     public PVPState state;
 
     public Text dialogueText;
-
+    public Font customFont;
     public GameObject player1;
     public GameObject player2;
 
@@ -23,6 +23,10 @@ public class PVPBattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (customFont != null)
+        {
+            dialogueText.font = customFont;
+        }
 
         state = PVPState.START;
         StartCoroutine(SetupBattle());

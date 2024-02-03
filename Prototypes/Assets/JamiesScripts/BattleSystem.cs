@@ -14,6 +14,7 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
 
     public Text dialogueText;
+    public Font customFont; 
 
     public GameObject player;
     public GameObject enemy;
@@ -27,6 +28,12 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // checking if the font is assigned &
+        // if so, set future text pop ups to that font 
+        if(customFont != null)
+        {
+            dialogueText.font = customFont;
+        }
 
         state = BattleState.START;
         StartCoroutine(SetupBattle());
@@ -40,7 +47,7 @@ public class BattleSystem : MonoBehaviour
 
         GameObject enemyGO = enemy;
         enemyUnit = enemyGO.GetComponent<Unit>();
-
+        dialogueText.font = customFont;
         dialogueText.text = "Battle Begins!";
 
         yield return new WaitForSeconds(1f);

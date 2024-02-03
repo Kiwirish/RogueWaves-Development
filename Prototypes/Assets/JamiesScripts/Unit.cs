@@ -11,12 +11,23 @@ public class Unit : MonoBehaviour
     public bool triggered = false;
 
     public GameObject player;
+    public GameObject target;
+
+    Collider2D playerCollider;
+    Collider2D targetCollider;
+
+
+    void Start(){
+        playerCollider = player.GetComponent<Collider2D>();
+        targetCollider = target.GetComponent<Collider2D>();
+    }
+
 
     void OnTriggerEnter2D(Collider2D other){
-
-        if (other != GetComponent<Collider2D>()){
+        if(other.CompareTag("Cannonball")){
             triggered = true;
-            Debug.Log("HIT TAKEN");
+            Destroy(other.gameObject);
+            Debug.Log(player + " WAS HIT BY: CANNONBALL");
         }
     } 
 
@@ -28,7 +39,7 @@ public class Unit : MonoBehaviour
                 Destroy(player);
                 return true;
             }
-            Debug.Log("HP REMAINING: " + currentHP);
+            Debug.Log(player + " HP REMAINING: " + currentHP);
             triggered = false;
         }
         return false;

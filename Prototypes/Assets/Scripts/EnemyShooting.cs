@@ -80,7 +80,10 @@ public class EnemyShooting : MonoBehaviour
 
 
         // Reset the camera to the main camera when the cannonball is destroyed
-        cam.Follow = player.transform;
+        if(player != null){
+            cam.Follow = player.transform;
+        }
+    
     }
 
     private void DrawArc()
