@@ -15,6 +15,8 @@ public class EnemyShooting : MonoBehaviour
     public Text dialogueText;
 
     public float speed;
+
+
     private Vector3[] trajectoryPoints;
 
     private float v_vertex;
@@ -22,6 +24,8 @@ public class EnemyShooting : MonoBehaviour
 
     public float xOffset = 5f;
     bool randomise = true;
+
+    
 
     // Update is called once per frame
     void Update()
@@ -43,7 +47,7 @@ public class EnemyShooting : MonoBehaviour
         }
     }
 
-    public IEnumerator  EnemyShoot(){
+    public IEnumerator EnemyShoot(){
         DrawArc();
         yield return StartCoroutine(Shoot());
     }
@@ -101,7 +105,7 @@ public class EnemyShooting : MonoBehaviour
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        Debug.Log(Mathf.RoundToInt(Mathf.Abs(startPos.x - targetPos.x)) * (Mathf.RoundToInt(y_vertex) * 30));
+        Debug.Log(Mathf.RoundToInt(Mathf.Abs(startPos.x - targetPos.x)) * (Mathf.RoundToInt(y_vertex) * 50));
         int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x)) * (y_vertex * speed));
 
         trajectoryPoints = new Vector3[arcSmoothness];

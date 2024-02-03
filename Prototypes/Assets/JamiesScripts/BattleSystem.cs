@@ -120,7 +120,7 @@ public class BattleSystem : MonoBehaviour
         {
             //lose
             state = BattleState.LOSE;
-            StartCoroutine(EndBattle());
+            yield return StartCoroutine(EndBattle());
         }
     }
 

@@ -1150,7 +1150,7 @@ Transform:
   m_GameObject: {fileID: 470084985}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: -0.55, y: -6.49, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3068,7 +3068,7 @@ MonoBehaviour:
   cam: {fileID: 321254472}
   player: {fileID: 1501772649}
   dialogueText: {fileID: 0}
-  arcSmoothness: 100
+  speed: 0
   xOffset: 5
 --- !u!50 &851303442
 Rigidbody2D:
@@ -5279,7 +5279,7 @@ MonoBehaviour:
   cam: {fileID: 321254472}
   player: {fileID: 1573576961}
   dialogueText: {fileID: 462766666}
-  arcSmoothness: 100
+  speed: 1.2
   xOffset: 5
 --- !u!50 &2054167785
 Rigidbody2D:
@@ -5436,7 +5436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementValue: 2
-  player: {fileID: 0}
+  player: {fileID: 1573576961}
   cam: {fileID: 321254472}
 --- !u!1 &2054763368
 GameObject:
