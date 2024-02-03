@@ -10,7 +10,8 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - the rum is gone
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0e4db35bfcb834c80a4f9bcb82b5aa15, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

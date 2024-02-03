@@ -105,7 +105,7 @@ public class EnemyShooting : MonoBehaviour
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x)) * (y_vertex * speed));
+        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x) * speed) * (y_vertex));
         //Debug.Log(arcSmoothness);
 
         trajectoryPoints = new Vector3[arcSmoothness];
