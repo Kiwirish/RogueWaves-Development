@@ -24,8 +24,8 @@ public class Unit : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Cannonball")){
-            triggered = true;
+        if(other.CompareTag("Cannonball") ){
+            //triggered = true;
             Destroy(other.gameObject);
             Debug.Log(player + " WAS HIT BY: CANNONBALL");
         }

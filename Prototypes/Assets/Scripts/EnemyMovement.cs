@@ -38,12 +38,12 @@ public class EnemyMovement : MonoBehaviour
         float random = Random.Range(-movementValue, movementValue);
 
         while(-movementValue/4f < random && random < movementValue/4f){
-            Debug.Log("Retry: " + random);
+            //Debug.Log("Retry: " + random);
             random = Random.Range(-movementValue, movementValue);
         }
 
         float newPos = rb.position.x + random;
-        Debug.Log("Random: " + newPos);
+        //Debug.Log("Random: " + newPos);
 
         while (Mathf.Abs(rb.position.x - newPos) > 0.01f)
         {   
