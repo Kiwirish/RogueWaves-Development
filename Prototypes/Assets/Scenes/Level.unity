@@ -3029,6 +3029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementValue: 2
+  player: {fileID: 0}
   cam: {fileID: 321254472}
 --- !u!114 &851303440
 MonoBehaviour:
@@ -3066,6 +3067,7 @@ MonoBehaviour:
   cannonballPrefab: {fileID: 4986913319016615003, guid: 1c1136c7b58d34777a2a06f7cdbbe375, type: 3}
   cam: {fileID: 321254472}
   player: {fileID: 1501772649}
+  dialogueText: {fileID: 0}
   arcSmoothness: 100
   xOffset: 5
 --- !u!50 &851303442
@@ -5276,6 +5278,7 @@ MonoBehaviour:
   cannonballPrefab: {fileID: 4986913319016615003, guid: 1c1136c7b58d34777a2a06f7cdbbe375, type: 3}
   cam: {fileID: 321254472}
   player: {fileID: 1573576961}
+  dialogueText: {fileID: 462766666}
   arcSmoothness: 100
   xOffset: 5
 --- !u!50 &2054167785
@@ -5433,6 +5436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementValue: 2
+  player: {fileID: 0}
   cam: {fileID: 321254472}
 --- !u!1 &2054763368
 GameObject:

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class EnemyShooting : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EnemyShooting : MonoBehaviour
     public GameObject cannonballPrefab; // Reference to the bullet prefab
     public CinemachineVirtualCamera cam;
     public GameObject player;
+    public Text dialogueText;
 
     public int arcSmoothness;
     private Vector3[] trajectoryPoints;
@@ -47,9 +49,9 @@ public class EnemyShooting : MonoBehaviour
         }
     }
 
-    public void EnemyShoot(){
+    public IEnumerator  EnemyShoot(){
         DrawArc();
-        StartCoroutine(Shoot());
+        yield return StartCoroutine(Shoot());
     }
 
     IEnumerator Shoot()
@@ -57,6 +59,7 @@ public class EnemyShooting : MonoBehaviour
 
         cam.Follow = start.transform;
         yield return new WaitForSeconds(2f);
+        dialogueText.text = "Enemy Fires";
 
         GameObject cannonball = Instantiate(cannonballPrefab, start.transform.position, Quaternion.identity);
 

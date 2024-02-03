@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYTURN, WIN, LOSE, IDLE }
+public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYSHOOT, ENEMYMOVE,  WIN, LOSE, IDLE }
 
 
 public class BattleSystem : MonoBehaviour
@@ -47,7 +47,7 @@ public class BattleSystem : MonoBehaviour
 
         GameObject enemyGO = enemy;
         enemyUnit = enemyGO.GetComponent<Unit>();
-        dialogueText.font = customFont;
+        //dialogueText.font = customFont;
         dialogueText.text = "Battle Begins!";
 
         yield return new WaitForSeconds(1f);
@@ -91,23 +91,28 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        StartCoroutine(EnemyTurn());
+        StartCoroutine(enemyTurn());
+    }
+
+     IEnumerator enemyTurn(){
+
+        yield return StartCoroutine(EnemyShoot());
+        yield return StartCoroutine(EnemyMove());
+        playerShoot();
     }
 
  
 
 
-    IEnumerator EnemyTurn()
+    IEnumerator EnemyShoot()
     {
       
         // enemyMove = enemy.GetComponent<EnemyMovement>();
         // enemyShoot = enemy.GetComponent<EnemyShooting>();
 
-        state = BattleState.ENEMYTURN;
-        dialogueText.text = "Enemy Turn";
-        enemyShoot.EnemyShoot();
-        //yield return new WaitForSeconds(2f);
-        dialogueText.text = "Enemy Fires";
+        state = BattleState.ENEMYSHOOT;
+        dialogueText.text = "Enemy Shoot";
+        yield return StartCoroutine(enemyShoot.EnemyShoot());
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
@@ -117,18 +122,11 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.LOSE;
             StartCoroutine(EndBattle());
         }
-        else
-        {
+    }
+
+    IEnumerator EnemyMove(){
             dialogueText.text = "Enemy Moves";
-            enemyMove.EnemyMove();
-
-            yield return new WaitForSeconds(4f);
-
-            //playerTurn
-            state = BattleState.PLAYERSHOOT;
-            playerShoot();
-        }
-
+            yield return StartCoroutine(enemyMove.EnemyMove());
     }
 
     public IEnumerator EndBattle()
