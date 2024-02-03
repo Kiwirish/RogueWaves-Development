@@ -82,35 +82,25 @@ public class BattleSystem : MonoBehaviour
         dialogueText.text = "Player Move";
         state = BattleState.PlAYERMOVE;
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
-        enemyTurn();
+        StartCoroutine(EnemyTurn());
     }
 
-    void enemyTurn()
+ 
+
+
+    IEnumerator EnemyTurn()
     {
-        dialogueText.text = "Enemy Turn";
-        state = BattleState.ENEMYTURN;
-
-        StartCoroutine(EnemyAttack());
-    }
-
-
-    IEnumerator EnemyAttack()
-    {
-
+      
         // enemyMove = enemy.GetComponent<EnemyMovement>();
         // enemyShoot = enemy.GetComponent<EnemyShooting>();
 
-        enemyMove.EnemyMove();
-
-        yield return new WaitForSeconds(2f);
-
+        state = BattleState.ENEMYTURN;
+        dialogueText.text = "Enemy Turn";
         enemyShoot.EnemyShoot();
-
+        //yield return new WaitForSeconds(2f);
         dialogueText.text = "Enemy Fires";
-
-        yield return new WaitForSeconds(2f);
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
@@ -122,6 +112,11 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
+            dialogueText.text = "Enemy Moves";
+            enemyMove.EnemyMove();
+
+            yield return new WaitForSeconds(4f);
+
             //playerTurn
             state = BattleState.PLAYERSHOOT;
             playerShoot();

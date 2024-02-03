@@ -121,12 +121,9 @@ public class Launcher2 : MonoBehaviour
             yield return null;  // This is important for the coroutine to yield to the next frame
         }
 
-        
-     
         StartCoroutine(battleSystem.endPlayerShoot());
         yield return new WaitForSeconds(1f);
         cinemachine.Follow = player.transform;
-
     }
 
 
