@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class EnemyShooting : MonoBehaviour
 {
@@ -11,21 +12,21 @@ public class EnemyShooting : MonoBehaviour
     public GameObject cannonballPrefab; // Reference to the bullet prefab
     public CinemachineVirtualCamera cam;
     public GameObject player;
+    public Text dialogueText;
+    public Text statText;
 
-    public int arcSmoothness;
+    public float speed;
+
+
     private Vector3[] trajectoryPoints;
 
     private float v_vertex;
     private float y_vertex = 5f; // default value
 
-    public float xOffset = 5f;
+    public float xOffset = 8f;
     bool randomise = true;
 
-    void Start()
-    {   
-        trajectoryPoints = new Vector3[arcSmoothness];
-        Debug.Log("Not randomised");
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -47,9 +48,10 @@ public class EnemyShooting : MonoBehaviour
         }
     }
 
-    public void EnemyShoot(){
+    public IEnumerator EnemyShoot(){
+        statText.enabled = false;
         DrawArc();
-        StartCoroutine(Shoot());
+        yield return StartCoroutine(Shoot());
     }
 
     IEnumerator Shoot()
@@ -57,6 +59,7 @@ public class EnemyShooting : MonoBehaviour
 
         cam.Follow = start.transform;
         yield return new WaitForSeconds(2f);
+        dialogueText.text = "Enemy Fires";
 
         GameObject cannonball = Instantiate(cannonballPrefab, start.transform.position, Quaternion.identity);
 
@@ -104,7 +107,10 @@ public class EnemyShooting : MonoBehaviour
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        // commented out elements are to remove enemy arc showing
+        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x) * speed) * (y_vertex));
+        //Debug.Log(arcSmoothness);
+
+        trajectoryPoints = new Vector3[arcSmoothness];
 
         //lr.positionCount = arcSmoothness; // number of points displaying the arc
         for (int i = 0; i < arcSmoothness; i++)

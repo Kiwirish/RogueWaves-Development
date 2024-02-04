@@ -8,6 +8,8 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public GameObject player;
+
     //private bool moving = false;
 
     public CinemachineVirtualCamera cam;
@@ -26,8 +28,8 @@ public class EnemyMovement : MonoBehaviour
         // }
     }
 
-    public void EnemyMove(){
-        StartCoroutine(EnemyMovementPhase()); 
+    public IEnumerator EnemyMove(){
+        yield return StartCoroutine(EnemyMovementPhase()); 
     }
 
     IEnumerator EnemyMovementPhase()
@@ -38,12 +40,12 @@ public class EnemyMovement : MonoBehaviour
         float random = Random.Range(-movementValue, movementValue);
 
         while(-movementValue/4f < random && random < movementValue/4f){
-            Debug.Log("Retry: " + random);
+            //Debug.Log("Retry: " + random);
             random = Random.Range(-movementValue, movementValue);
         }
 
         float newPos = rb.position.x + random;
-        Debug.Log("Random: " + newPos);
+        //Debug.Log("Random: " + newPos);
 
         while (Mathf.Abs(rb.position.x - newPos) > 0.01f)
         {   
@@ -57,6 +59,11 @@ public class EnemyMovement : MonoBehaviour
         }
         rb.position = new Vector3(newPos, rb.position.y, 0);
         yield return new WaitForSeconds(1f);
+
+        // Reset the camera to the main camera when the cannonball is destroyed
+        if(player != null){
+            cam.Follow = player.transform;
+        }
 
         //moving = false;
     }

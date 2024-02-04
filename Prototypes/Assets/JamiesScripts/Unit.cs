@@ -24,11 +24,11 @@ public class Unit : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Cannonball")){
+        //if(other.CompareTag("Cannonball") ){
             triggered = true;
             Destroy(other.gameObject);
-            Debug.Log(player + " WAS HIT BY: CANNONBALL");
-        }
+            Debug.Log(player + " WAS HIT BY A CANNONBALL");
+        //}
     } 
 
     public bool TakeDamage(int dmg){
