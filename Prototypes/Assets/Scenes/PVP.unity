@@ -1211,6 +1211,7 @@ MonoBehaviour:
   currentHP: 3
   triggered: 0
   player: {fileID: 991948969}
+  target: {fileID: 0}
 --- !u!50 &991948972
 Rigidbody2D:
   serializedVersion: 4
@@ -2443,6 +2444,7 @@ MonoBehaviour:
   currentHP: 3
   triggered: 0
   player: {fileID: 1758581878}
+  target: {fileID: 0}
 --- !u!50 &1758581882
 Rigidbody2D:
   serializedVersion: 4
@@ -2620,6 +2622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780726540}
   - component: {fileID: 1780726541}
+  - component: {fileID: 1780726542}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -2683,6 +2686,14 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 919290676}
+--- !u!81 &1780726542
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780726539}
+  m_Enabled: 1
 --- !u!1 &2043220325
 GameObject:
   m_ObjectHideFlags: 0

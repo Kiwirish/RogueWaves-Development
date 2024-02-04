@@ -13,6 +13,7 @@ public class EnemyShooting : MonoBehaviour
     public CinemachineVirtualCamera cam;
     public GameObject player;
     public Text dialogueText;
+    public Text statText;
 
     public float speed;
 
@@ -22,9 +23,10 @@ public class EnemyShooting : MonoBehaviour
     private float v_vertex;
     private float y_vertex = 5f; // default value
 
-    public float xOffset = 5f;
+    public float xOffset = 8f;
     bool randomise = true;
 
+    [SerializeField] private AudioSource shootSoundEffect; 
     
 
     // Update is called once per frame
@@ -48,6 +50,7 @@ public class EnemyShooting : MonoBehaviour
     }
 
     public IEnumerator EnemyShoot(){
+        statText.enabled = false;
         DrawArc();
         yield return StartCoroutine(Shoot());
     }
@@ -58,6 +61,7 @@ public class EnemyShooting : MonoBehaviour
         cam.Follow = start.transform;
         yield return new WaitForSeconds(2f);
         dialogueText.text = "Enemy Fires";
+        shootSoundEffect.Play();
 
         GameObject cannonball = Instantiate(cannonballPrefab, start.transform.position, Quaternion.identity);
 
@@ -105,8 +109,8 @@ public class EnemyShooting : MonoBehaviour
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        Debug.Log(Mathf.RoundToInt(Mathf.Abs(startPos.x - targetPos.x)) * (Mathf.RoundToInt(y_vertex) * 50));
-        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x)) * (y_vertex * speed));
+        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x) * speed) * (y_vertex));
+        //Debug.Log(arcSmoothness);
 
         trajectoryPoints = new Vector3[arcSmoothness];
 

@@ -7,6 +7,11 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] public GameObject main_menu;
     [SerializeField] public GameObject start_menu;
+    [SerializeField] public GameObject help_menu;
+
+    void Start(){
+        ActivateMain();
+    }
 
     public void StartGame(){
         ActivateStart();    
@@ -31,7 +36,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void Help(){
-        // Add help here
+        ActivateHelp();
     }
 
     public void QuitGame()
@@ -43,10 +48,20 @@ public class MainMenuManager : MonoBehaviour
     void ActivateMain(){
         main_menu.SetActive(true);
         start_menu.SetActive(false);
+        help_menu.SetActive(false);
+
     }
 
     void ActivateStart(){
         main_menu.SetActive(false);
         start_menu.SetActive(true);
+        help_menu.SetActive(false);
+
+    }
+
+    void ActivateHelp(){
+        main_menu.SetActive(false);
+        start_menu.SetActive(false);
+        help_menu.SetActive(true);
     }
 }
