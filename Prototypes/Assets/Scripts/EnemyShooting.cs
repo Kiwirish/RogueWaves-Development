@@ -13,6 +13,7 @@ public class EnemyShooting : MonoBehaviour
     public CinemachineVirtualCamera cam;
     public GameObject player;
     public Text dialogueText;
+    public Text statText;
 
     public float speed;
 
@@ -48,6 +49,7 @@ public class EnemyShooting : MonoBehaviour
     }
 
     public IEnumerator EnemyShoot(){
+        statText.enabled = false;
         DrawArc();
         yield return StartCoroutine(Shoot());
     }
