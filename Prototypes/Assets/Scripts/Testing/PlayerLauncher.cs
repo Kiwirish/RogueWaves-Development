@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class PlayerLauncher : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerLauncher : MonoBehaviour
     [SerializeField] float trajectoryTimeStep = 0.05f;
     [SerializeField] int trajectoryStepCount = 15;
 
+    [SerializeField] private AudioSource shootSoundEffect;
+
     // Mouse controls
     Vector2 velocity, startMousePosition, currentMousePosition, mousePos;
 
@@ -23,13 +26,19 @@ public class PlayerLauncher : MonoBehaviour
     // PVP player variables
     [SerializeField] GameObject[] players;
     [SerializeField] public int playerNumber;
+    public GameObject cannon;
     GameObject player;
     bool yourTurn;
     Rigidbody2D rb;
 
+    public float power;
+    public float angle;
+
     // Scripts
     [SerializeField] public PVPBattleSystem system;
     [SerializeField] public PVPMovement move;
+
+    [SerializeField] public Text statText;
 
     // Start is called before the first frame update
     void Start()
@@ -47,31 +56,40 @@ public class PlayerLauncher : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
 
         if(yourTurn){
 
-            if (Input.GetMouseButtonDown(0)){
+            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 lookDir = mousePos - rb.position;
+            angle = (Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f + 180f) % 360f;
+
+            cannon.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f);
+
+            if (Input.GetMouseButtonDown(0))
+            {
                 startMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
-            if (Input.GetMouseButton(0)){
+            if (Input.GetMouseButton(0))
+            {   
                 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                velocity = (startMousePosition - currentMousePosition) * launchForce;
+                 velocity = (startMousePosition - currentMousePosition) * launchForce;
+                power = Mathf.Round(velocity.magnitude * 10f) / 10f; 
                 DrawTrajectory();
-            }
-            if (Input.GetMouseButtonUp(0)){
+                //Debug.Log(Mathf.RoundToInt(angle) + " " + power);
+
+                statText.text = "[ " + Mathf.RoundToInt(angle) + "° , " + power + "ₘₛ⁻¹ ]";
+            }   
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                shootSoundEffect.Play();
                 StartCoroutine(ShootProjectile());
+                //shootSoundEffect.Play();
                 ClearTrajectory();
             }
-
-            // Added mouse aiming 
-            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 lookDir = mousePos - rb.position; 
-            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f;
-            spawnPoint.rotation = Quaternion.Euler(0f, 0f, angle);  
         }
-        
     }
 
     void DrawTrajectory()
@@ -94,8 +112,8 @@ public class PlayerLauncher : MonoBehaviour
     }
 
     IEnumerator ShootProjectile()
-    {   
-        
+    {
+
         if(playerNumber == 1){
             system.player1Attacks();
         }else if(playerNumber == 2){
@@ -104,7 +122,7 @@ public class PlayerLauncher : MonoBehaviour
 
         // create projectile prefab at spawnpoint 
         Transform projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
-        
+
         // give it a velocity
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.gravityScale = 1;
@@ -137,6 +155,3 @@ public class PlayerLauncher : MonoBehaviour
         //Debug.Log("Player turn passed");
     }
 }
-
-
-
