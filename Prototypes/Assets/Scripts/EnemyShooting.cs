@@ -26,6 +26,7 @@ public class EnemyShooting : MonoBehaviour
     public float xOffset = 8f;
     bool randomise = true;
 
+    [SerializeField] private AudioSource shootSoundEffect; 
     
 
     // Update is called once per frame
@@ -60,6 +61,7 @@ public class EnemyShooting : MonoBehaviour
         cam.Follow = start.transform;
         yield return new WaitForSeconds(2f);
         dialogueText.text = "Enemy Fires";
+        shootSoundEffect.Play();
 
         GameObject cannonball = Instantiate(cannonballPrefab, start.transform.position, Quaternion.identity);
 

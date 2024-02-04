@@ -14,6 +14,8 @@ public class Launcher2 : MonoBehaviour
     [SerializeField] float trajectoryTimeStep = 0.05f;
     [SerializeField] int trajectoryStepCount = 15;
 
+    [SerializeField] private AudioSource shootSoundEffect;
+
     Vector2 velocity, startMousePosition, currentMousePosition;
 
     // Added mouse aiming
@@ -87,7 +89,9 @@ public class Launcher2 : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
+                shootSoundEffect.Play();
                 StartCoroutine(ShootProjectile());
+                //shootSoundEffect.Play();
                 ClearTrajectory();
             }
         }else{
