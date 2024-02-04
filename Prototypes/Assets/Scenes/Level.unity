@@ -5279,7 +5279,7 @@ MonoBehaviour:
   cam: {fileID: 321254472}
   player: {fileID: 1573576961}
   dialogueText: {fileID: 462766666}
-  speed: 1.2
+  speed: 0.8
   xOffset: 5
 --- !u!50 &2054167785
 Rigidbody2D:
