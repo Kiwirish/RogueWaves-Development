@@ -551,8 +551,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 83
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 17
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -5911,10 +5911,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5693529c223a74d9094af2ba5f4d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowCamera: {fileID: 0}
-  MainCamera: {fileID: 0}
+  FollowCamera: {fileID: 519420028}
+  MainCamera: {fileID: 306519051}
   ZoomView: 1
-  cam: {fileID: 0}
+  cam: {fileID: 321254472}
 --- !u!1 &2136451884
 GameObject:
   m_ObjectHideFlags: 0
