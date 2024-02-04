@@ -101,7 +101,7 @@ public class Launcher2 : MonoBehaviour
     }
 }
 
-    void DrawTrajectory(Vector3[] positions)
+    void DrawTrajectory()
     {   
         Vector3[] positions = new Vector3[trajectoryStepCount];
         for (int i = 0; i < trajectoryStepCount; i++)

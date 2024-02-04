@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
     // Private variables (not visible in the Inspector panel)
     // The speed of player movement
-    float speed = 1;
+    float speed = 3;
 
     // Reference to parallax game object
     public GameObject parallaxObj;
