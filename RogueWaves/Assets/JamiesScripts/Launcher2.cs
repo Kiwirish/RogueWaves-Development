@@ -38,6 +38,8 @@ public class Launcher2 : MonoBehaviour
     
     public bool zoom;
 
+    LineRenderer lastLineRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,8 +96,10 @@ public class Launcher2 : MonoBehaviour
                 shootSoundEffect.Play();
                 StartCoroutine(ShootProjectile());
                 //shootSoundEffect.Play();
+                NewLineRenderer();
                 ClearTrajectory();
             }
+            
         }else{
             ClearTrajectory();
         }
@@ -123,6 +127,33 @@ public class Launcher2 : MonoBehaviour
     void ClearTrajectory()
     {
         lineRenderer.positionCount = 0;
+    }
+
+    void NewLineRenderer(){
+        if(lineRenderer != null){
+    
+            if(lastLineRenderer != null){
+                Destroy(lastLineRenderer.gameObject);
+            }
+
+            // Create a new GameObject to hold the LineRenderer
+        GameObject newLineObject = new GameObject("LastLineRenderer");
+        lastLineRenderer = newLineObject.AddComponent<LineRenderer>();
+
+        // Copy positions from the original lineRenderer to the new one
+        Vector3[] positions = new Vector3[lineRenderer.positionCount];
+        lineRenderer.GetPositions(positions);
+        lastLineRenderer.positionCount = positions.Length;
+        lastLineRenderer.SetPositions(positions);
+
+        lastLineRenderer.startWidth = 0.2f;
+        lastLineRenderer.endWidth = 0.1f;
+
+        lastLineRenderer.startColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        lastLineRenderer.endColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        lastLineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+
+        }
     }
 
 

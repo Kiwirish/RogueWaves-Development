@@ -52,9 +52,9 @@ public class Builder : MonoBehaviour
     }
 
     void ApplyMap(){
-        if(map != null){
+        //if(map != null){
             backgrounds[map].SetActive(true);
-        }
+        //}
     }
 
     void ResetMaps(){
