@@ -41,6 +41,7 @@ public class Launcher2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startMousePosition = cannon.transform.position;
     }
 
     // Update is called once per frame
@@ -73,16 +74,16 @@ public class Launcher2 : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                startMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
             if (Input.GetMouseButton(0))
             {   
                 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+                
                 velocity = (startMousePosition - currentMousePosition) * launchForce;
                 power = Mathf.Round(velocity.magnitude * 10f) / 10f; 
                 DrawTrajectory();
-                Debug.Log(Mathf.RoundToInt(angle) + " " + power);
+                //Debug.Log(Mathf.RoundToInt(angle) + " " + power);
 
                 statText.text = "[ " + Mathf.RoundToInt(angle) + "° , " + power + "ₘₛ⁻¹ ]";
             }
@@ -120,9 +121,7 @@ public class Launcher2 : MonoBehaviour
 
     void ClearTrajectory()
     {
-
         lineRenderer.positionCount = 0;
-
     }
 
 
@@ -144,14 +143,13 @@ public class Launcher2 : MonoBehaviour
         cinemachine.Follow = projectile.transform;
 
         while (projectile != null && projectile.gameObject != null){
-            //Debug.Log("Looping"); // loop
             yield return null;  // This is important for the coroutine to yield to the next frame
         }
 
+        
         StartCoroutine(battleSystem.endPlayerShoot());
         yield return new WaitForSeconds(1f);
         cinemachine.Follow = player.transform;
     }
-
 
 }
