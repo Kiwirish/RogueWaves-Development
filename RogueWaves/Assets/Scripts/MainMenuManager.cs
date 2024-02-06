@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] public GameObject main_menu;
     [SerializeField] public GameObject start_menu;
     [SerializeField] public GameObject help_menu;
+
+    [SerializeField] public Dropdown map;
+    [SerializeField] public Dropdown difficulty;
+    [SerializeField] public Dropdown powerups;
 
     void Start(){
         ActivateMain();
@@ -63,5 +68,16 @@ public class MainMenuManager : MonoBehaviour
         main_menu.SetActive(false);
         start_menu.SetActive(false);
         help_menu.SetActive(true);
+    }
+
+    public void PVCSettings(){
+        PlayerPrefs.SetInt("Map", map.value);
+        PlayerPrefs.SetInt("Difficulty", difficulty.value);
+        PlayerPrefs.SetInt("Powerups", powerups.value);
+        PlayerPrefs.Save();
+
+        Debug.Log(map.value);
+        Debug.Log(difficulty.value);
+        Debug.Log(powerups.value);
     }
 }

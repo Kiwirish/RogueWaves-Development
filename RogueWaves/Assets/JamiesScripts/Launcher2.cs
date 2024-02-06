@@ -74,6 +74,7 @@ public class Launcher2 : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                startMousePosition = cannon.transform.position;
             }
             if (Input.GetMouseButton(0))
             {   
@@ -85,7 +86,7 @@ public class Launcher2 : MonoBehaviour
                 DrawTrajectory();
                 //Debug.Log(Mathf.RoundToInt(angle) + " " + power);
 
-                statText.text = "[ " + Mathf.RoundToInt(angle) + "° , " + power + "ₘₛ⁻¹ ]";
+                statText.text = "[ " + Mathf.RoundToInt(angle) + "° , " + power + "m/s ]";
             }
 
             if (Input.GetMouseButtonUp(0))
