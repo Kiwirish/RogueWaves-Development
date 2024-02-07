@@ -11,13 +11,26 @@ public class Unit : MonoBehaviour
 
     public bool triggered = false;
 
-    public GameObject player;
     public Slider playerHealth;
 
+    public GameObject player;
+
+    public GameObject cannonball;
+
     void OnTriggerEnter2D(Collider2D other){
-        triggered = true;
-        Destroy(other.gameObject);
-        Debug.Log(player + " WAS HIT BY A CANNONBALL");
+
+        bool isPlayerProjectile = other.CompareTag("PlayerProjectile");
+        bool isPlayer = player.CompareTag("Player");
+
+        if(isPlayerProjectile && !(isPlayer)){
+            triggered = true;
+            Destroy(other.gameObject);
+            Debug.Log("ENEMY WAS HIT BY A PLAYER CANNONBALL");   
+        }else if(!(isPlayerProjectile) && isPlayer){
+            triggered = true;
+            Destroy(other.gameObject); 
+            Debug.Log("PLAYER WAS HIT BY A ENEMY CANNONBALL");  
+        }
     } 
 
     public bool TakeDamage(int dmg){

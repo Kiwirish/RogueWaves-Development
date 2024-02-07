@@ -136,26 +136,23 @@ public class Launcher2 : MonoBehaviour
                 Destroy(lastLineRenderer.gameObject);
             }
 
-            // Create a new GameObject to hold the LineRenderer
-        GameObject newLineObject = new GameObject("LastLineRenderer");
-        lastLineRenderer = newLineObject.AddComponent<LineRenderer>();
+            GameObject newLineObject = new GameObject("LastLineRenderer");
+            lastLineRenderer = newLineObject.AddComponent<LineRenderer>();
 
-        // Copy positions from the original lineRenderer to the new one
-        Vector3[] positions = new Vector3[lineRenderer.positionCount];
-        lineRenderer.GetPositions(positions);
-        lastLineRenderer.positionCount = positions.Length;
-        lastLineRenderer.SetPositions(positions);
+            Vector3[] positions = new Vector3[lineRenderer.positionCount];
+            lineRenderer.GetPositions(positions);
+            lastLineRenderer.positionCount = positions.Length;
+            lastLineRenderer.SetPositions(positions);
 
-        lastLineRenderer.startWidth = 0.2f;
-        lastLineRenderer.endWidth = 0.1f;
+            lastLineRenderer.startWidth = 0.2f;
+            lastLineRenderer.endWidth = 0.1f;
 
-        lastLineRenderer.startColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-        lastLineRenderer.endColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-        lastLineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            lastLineRenderer.startColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            lastLineRenderer.endColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            lastLineRenderer.material = new Material(Shader.Find("Sprites/Default"));
 
         }
     }
-
 
     IEnumerator ShootProjectile()
     {
@@ -165,6 +162,7 @@ public class Launcher2 : MonoBehaviour
 
         // create projectile prefab at spawnpoint 
         Transform projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+        projectile.tag = "PlayerProjectile";
         
         // give it a velocity
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();

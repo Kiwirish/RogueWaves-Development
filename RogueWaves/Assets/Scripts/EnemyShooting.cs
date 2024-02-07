@@ -56,6 +56,7 @@ public class EnemyShooting : MonoBehaviour
         shootSoundEffect.Play();
 
         GameObject cannonball = Instantiate(cannonballPrefab, start.transform.position, Quaternion.identity);
+        cannonball.tag = "EnemyProjectile";
 
         // Assign the Transform of the cannonball to the Follow property
         cam.Follow = cannonball.transform;
@@ -78,9 +79,8 @@ public class EnemyShooting : MonoBehaviour
             yield return null;  // This is important for the coroutine to yield to the next frame
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
-        // Reset the camera to the main camera when the cannonball is destroyed
         if(player != null){
             cam.Follow = player.transform;
         }
@@ -99,19 +99,17 @@ public class EnemyShooting : MonoBehaviour
             float randomXOffset = Random.Range(-xOffset, xOffset);
             targetPos.x += randomXOffset;
 
-            int random = 10;
+            int random = Random.Range(3, 10);
             y_vertex = (float)random;
+            Debug.Log(y_vertex);
         }
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x)) * (1f + (y_vertex*20f)/100f) * drag);
-
+        int arcSmoothness = Mathf.RoundToInt(Mathf.Max((Mathf.Abs(startPos.x - targetPos.x)), y_vertex) * drag);
         trajectoryPoints = new Vector3[arcSmoothness];
 
-        //lr.positionCount = arcSmoothness; // number of points displaying the arc
-        for (int i = 0; i < arcSmoothness; i++)
-        {
+        for (int i = 0; i < arcSmoothness; i++){
             float t = i / (float)(arcSmoothness - 1);
             Vector3 point = CalculateArc(startPos, targetPos, x_vertex, y_vertex, t);
             trajectoryPoints[i] = point; // list a set of points for the projectile to follow through
