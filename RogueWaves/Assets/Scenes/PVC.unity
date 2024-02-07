@@ -2040,7 +2040,7 @@ MonoBehaviour:
   player: {fileID: 1505222327}
   dialogueText: {fileID: 1438694872}
   statText: {fileID: 27060697}
-  speed: 1
+  drag: 1.2
   xOffset: 8
   shootSoundEffect: {fileID: 349366476}
 --- !u!50 &349366480
@@ -2197,7 +2197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfMaps: 8
-  map: 6
+  map: 0
   difficulty: 1
 --- !u!4 &360036838
 Transform:

@@ -15,8 +15,7 @@ public class EnemyShooting : MonoBehaviour
     public Text dialogueText;
     public Text statText;
 
-    public float speed;
-
+    public float drag;
 
     private Vector3[] trajectoryPoints;
 
@@ -32,13 +31,6 @@ public class EnemyShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        // Check if the space button is pressed
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     // Fire a bullet along the parabola
-        //     DrawArc();
-        //     StartCoroutine(Shoot());
-        // }
         if(Input.GetKeyDown(KeyCode.R)){
             randomise = true;
             Debug.Log("Randomised");
@@ -78,11 +70,15 @@ public class EnemyShooting : MonoBehaviour
             }
             yield return null;
         }
+        if(rb != null){
+            rb.gravityScale = 10;
+        }
 
-        Destroy(cannonball);
+        while (cannonball != null && cannonball.gameObject != null){
+            yield return null;  // This is important for the coroutine to yield to the next frame
+        }
 
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(1f);
 
         // Reset the camera to the main camera when the cannonball is destroyed
         if(player != null){
@@ -103,14 +99,13 @@ public class EnemyShooting : MonoBehaviour
             float randomXOffset = Random.Range(-xOffset, xOffset);
             targetPos.x += randomXOffset;
 
-            int random = Random.Range(3, 10);
+            int random = 10;
             y_vertex = (float)random;
         }
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x) * speed) * (y_vertex));
-        //Debug.Log(arcSmoothness);
+        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x)) * (1f + (y_vertex*20f)/100f) * drag);
 
         trajectoryPoints = new Vector3[arcSmoothness];
 
@@ -122,6 +117,7 @@ public class EnemyShooting : MonoBehaviour
             trajectoryPoints[i] = point; // list a set of points for the projectile to follow through
             //lr.SetPosition(i, point); // sets the point of the arc
         }
+        
     }
 
     // Calculates the arc of each point
