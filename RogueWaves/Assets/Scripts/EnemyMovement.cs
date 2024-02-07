@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     public GameObject player;
-    
+
     public CinemachineVirtualCamera cam;
 
     void Start()
@@ -34,16 +34,19 @@ public class EnemyMovement : MonoBehaviour
 
         float newPos = rb.position.x + random;
 
-        while (Mathf.Abs(rb.position.x - newPos) > 0.01f)
-        {   
+        float timer = 0.0f;
+        while (Mathf.Abs(rb.position.x - newPos) > 0.01f && timer < 3.0f){   
             float pos = rb.position.x;
             if(random < 0){
                 rb.position = new Vector3(pos -= 0.01f, rb.position.y, 0);
             }else{
                 rb.position = new Vector3(pos += 0.01f, rb.position.y, 0);
             }
+    
+            timer += Time.deltaTime; 
             yield return null;
         }
+
         rb.position = new Vector3(newPos, rb.position.y, 0);
         yield return new WaitForSeconds(1f);
 

@@ -101,7 +101,6 @@ public class EnemyShooting : MonoBehaviour
 
             int random = Random.Range(3, 10);
             y_vertex = (float)random;
-            Debug.Log(y_vertex);
         }
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
