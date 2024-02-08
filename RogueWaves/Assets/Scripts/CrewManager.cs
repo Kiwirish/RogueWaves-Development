@@ -5,12 +5,12 @@ using UnityEngine;
 public class CrewManager : MonoBehaviour
 {
     public static CrewManager Instance { get; private set; }
-    public GameObject crewmate1;
-    public GameObject crewmate2;
-    public GameObject crewmate3;
-    public GameObject crewmate4;
+    //public GameObject crewmate1;
+    //public GameObject crewmate2;
+    //public GameObject crewmate3;
+    //public GameObject crewmate4;
 
-    private List<GameObject> crewmatesGained = new List<GameObject>();
+    public HashSet<string> crewmatesGained = new HashSet<string>();
 
     void Awake()
     {
@@ -25,17 +25,19 @@ public class CrewManager : MonoBehaviour
         }
     }
 
-    public void GainCrewmate(GameObject crewmate)
+    public void GainCrewmate(string crewmateID)
     {
-        if (!crewmatesGained.Contains(crewmate))
+        if (!crewmatesGained.Contains(crewmateID))
         {
-            crewmatesGained.Add(crewmate);
-            crewmate.SetActive(true);
+            crewmatesGained.Add(crewmateID);
+            Debug.Log($"Crewmate gained: {crewmateID}");
+
+            //crewmate.SetActive(true);
         }
     }
 
-    public bool HasCrewmate(GameObject crewmate)
+    public bool HasCrewmate(string crewmateID)
     {
-        return crewmatesGained.Contains(crewmate);
+        return crewmatesGained.Contains(crewmateID);
     }
 }

@@ -19,7 +19,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
 
-    public GameObject gainedCrewmate;
+    //public GameObject gainedCrewmate;
 
 
     Unit playerUnit;
@@ -134,18 +134,29 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator EndBattle()
     {
+
         if (state == BattleState.WIN)
         {
             dialogueText.text = "You Win";
 
-            if (gainedCrewmate != null && !gainedCrewmate.activeSelf)
-            {
-                Debug.Log("crewmate added");
-                gainedCrewmate.SetActive(true);
-                CrewManager.Instance.GainCrewmate(gainedCrewmate);
+            string sceneName = SceneManager.GetActiveScene().name;
 
+            if (sceneName == "Level"){
+
+                CrewManager.Instance.GainCrewmate("Crewmate1");
+
+            }else if (sceneName == "Level2") {
+
+                CrewManager.Instance.GainCrewmate("Crewmate2");
+
+            }else if (sceneName == "Level3"){
+
+                CrewManager.Instance.GainCrewmate("crewmate3");
+
+            }else if (sceneName == "Level4"){
+
+                CrewManager.Instance.GainCrewmate("crewmate4");
             }
-
 
 
         }
