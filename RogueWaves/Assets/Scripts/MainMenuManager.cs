@@ -9,6 +9,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] public GameObject main_menu;
     [SerializeField] public GameObject start_menu;
     [SerializeField] public GameObject help_menu;
+    [SerializeField] public GameObject settings_menu;
 
     [SerializeField] public Dropdown map;
     [SerializeField] public Dropdown difficulty;
@@ -44,6 +45,10 @@ public class MainMenuManager : MonoBehaviour
         ActivateHelp();
     }
 
+    public void Settings(){
+        ActivateSettings();
+    }
+
     public void QuitGame()
     {
         // Quit the application
@@ -54,20 +59,28 @@ public class MainMenuManager : MonoBehaviour
         main_menu.SetActive(true);
         start_menu.SetActive(false);
         help_menu.SetActive(false);
-
+        settings_menu.SetActive(false);
     }
 
     void ActivateStart(){
         main_menu.SetActive(false);
         start_menu.SetActive(true);
         help_menu.SetActive(false);
-
+        settings_menu.SetActive(false);
     }
 
     void ActivateHelp(){
         main_menu.SetActive(false);
         start_menu.SetActive(false);
         help_menu.SetActive(true);
+        settings_menu.SetActive(false);
+    }
+
+    void ActivateSettings(){
+        main_menu.SetActive(false);
+        start_menu.SetActive(false);
+        help_menu.SetActive(false);
+        settings_menu.SetActive(true);
     }
 
     public void PVCSettings(){
