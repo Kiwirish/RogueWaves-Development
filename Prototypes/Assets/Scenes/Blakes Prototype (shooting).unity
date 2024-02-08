@@ -190,7 +190,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 699961030}
   launchForce: 1.5
   trajectoryTimeStep: 0.05
-  trajectoryStepCount: 15
+  trajectoryStepCount: 30
 --- !u!120 &699961030
 LineRenderer:
   serializedVersion: 2

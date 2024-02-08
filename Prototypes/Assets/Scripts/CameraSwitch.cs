@@ -7,8 +7,7 @@ public class CameraSwitch : MonoBehaviour
     
     public GameObject FollowCamera;
     public GameObject MainCamera;
-    public GameObject Default;
-    public bool ZoomView;
+    public bool ZoomView = true;
 
     public CinemachineVirtualCamera cam;
 
@@ -17,16 +16,15 @@ public class CameraSwitch : MonoBehaviour
     }
 
     void ManageCamera(){
-
-        if(Input.GetKeyDown(KeyCode.Z)){
-            if(ZoomView){
-                ActivateFollowCamera();
-                ZoomView = false;
-            }else{
-                ActivateMainCamera();
-                ZoomView = true;
-            }
+        if (Input.GetKeyDown(KeyCode.Z)){
+            ActivateMainCamera();
+            ZoomView = false;
         }
+        if (Input.GetKeyUp(KeyCode.Z)){
+            ActivateFollowCamera();
+            ZoomView = true;
+        }
+
     }
 
     void ActivateMainCamera(){
@@ -37,13 +35,5 @@ public class CameraSwitch : MonoBehaviour
     void ActivateFollowCamera(){
         FollowCamera.SetActive(true);
         MainCamera.SetActive(false);
-    }
-
-    // Reset followTarget when the cannonball is destroyed
-    public void Reset()
-    {
-        cam.Follow = Default.transform;
-        ActivateFollowCamera();
-        ZoomView = false;
     }
 }

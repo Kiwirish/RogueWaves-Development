@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class EnemyShooting : MonoBehaviour
 {
@@ -11,32 +12,33 @@ public class EnemyShooting : MonoBehaviour
     public GameObject cannonballPrefab; // Reference to the bullet prefab
     public CinemachineVirtualCamera cam;
     public GameObject player;
+    public Text dialogueText;
+    public Text statText;
 
-    public int arcSmoothness;
+    public float speed;
+
+
     private Vector3[] trajectoryPoints;
 
     private float v_vertex;
     private float y_vertex = 5f; // default value
 
-    public float xOffset = 5f;
-    bool randomise = false;
+    public float xOffset = 8f;
+    bool randomise = true;
 
-    void Start()
-    {   
-        trajectoryPoints = new Vector3[arcSmoothness];
-        Debug.Log("Not randomised");
-    }
+    [SerializeField] private AudioSource shootSoundEffect; 
+    
 
     // Update is called once per frame
     void Update()
     {   
         // Check if the space button is pressed
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Fire a bullet along the parabola
-            DrawArc();
-            StartCoroutine(Shoot());
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     // Fire a bullet along the parabola
+        //     DrawArc();
+        //     StartCoroutine(Shoot());
+        // }
         if(Input.GetKeyDown(KeyCode.R)){
             randomise = true;
             Debug.Log("Randomised");
@@ -47,11 +49,19 @@ public class EnemyShooting : MonoBehaviour
         }
     }
 
+    public IEnumerator EnemyShoot(){
+        statText.enabled = false;
+        DrawArc();
+        yield return StartCoroutine(Shoot());
+    }
+
     IEnumerator Shoot()
     {   
 
         cam.Follow = start.transform;
         yield return new WaitForSeconds(2f);
+        dialogueText.text = "Enemy Fires";
+        shootSoundEffect.Play();
 
         GameObject cannonball = Instantiate(cannonballPrefab, start.transform.position, Quaternion.identity);
 
@@ -75,7 +85,10 @@ public class EnemyShooting : MonoBehaviour
 
 
         // Reset the camera to the main camera when the cannonball is destroyed
-        cam.Follow = player.transform;
+        if(player != null){
+            cam.Follow = player.transform;
+        }
+    
     }
 
     private void DrawArc()
@@ -96,13 +109,18 @@ public class EnemyShooting : MonoBehaviour
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        lr.positionCount = arcSmoothness; // number of points displaying the arc
-        for (int i = 0; i < lr.positionCount; i++)
+        int arcSmoothness = Mathf.RoundToInt((Mathf.Abs(startPos.x - targetPos.x) * speed) * (y_vertex));
+        //Debug.Log(arcSmoothness);
+
+        trajectoryPoints = new Vector3[arcSmoothness];
+
+        //lr.positionCount = arcSmoothness; // number of points displaying the arc
+        for (int i = 0; i < arcSmoothness; i++)
         {
-            float t = i / (float)(lr.positionCount - 1);
+            float t = i / (float)(arcSmoothness - 1);
             Vector3 point = CalculateArc(startPos, targetPos, x_vertex, y_vertex, t);
             trajectoryPoints[i] = point; // list a set of points for the projectile to follow through
-            lr.SetPosition(i, point); // sets the point of the arc
+            //lr.SetPosition(i, point); // sets the point of the arc
         }
     }
 
