@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYSHOOT, ENEMYMOVE,  WIN, LOSE, IDLE }
+public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYTURN,  WIN, LOSE, IDLE }
 
 
 public class BattleSystem : MonoBehaviour
@@ -94,26 +94,18 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        StartCoroutine(enemyTurn());
+        StartCoroutine(EnemyTurn());
     }
 
-     IEnumerator enemyTurn(){
-
-        yield return StartCoroutine(EnemyShoot());
-        yield return StartCoroutine(EnemyMove());
-        playerShoot();
-    }
-
- 
 
 
-    IEnumerator EnemyShoot()
+    IEnumerator EnemyTurn()
     {
       
         // enemyMove = enemy.GetComponent<EnemyMovement>();
         // enemyShoot = enemy.GetComponent<EnemyShooting>();
 
-        state = BattleState.ENEMYSHOOT;
+        state = BattleState.ENEMYTURN;
         dialogueText.text = "Enemy Shoot";
         yield return StartCoroutine(enemyShoot.EnemyShoot());
 
@@ -124,13 +116,14 @@ public class BattleSystem : MonoBehaviour
             //lose
             state = BattleState.LOSE;
             yield return StartCoroutine(EndBattle());
+        }else{
+            dialogueText.text = "Enemy Moves";
+            yield return StartCoroutine(enemyMove.EnemyMove());
+            playerShoot();
         }
     }
 
-    IEnumerator EnemyMove(){
-            dialogueText.text = "Enemy Moves";
-            yield return StartCoroutine(enemyMove.EnemyMove());
-    }
+ 
 
     public IEnumerator EndBattle()
     {
