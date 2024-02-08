@@ -19,6 +19,9 @@ public class BattleSystem : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
 
+    public GameObject gainedCrewmate;
+
+
     Unit playerUnit;
     Unit enemyUnit;
 
@@ -134,6 +137,17 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WIN)
         {
             dialogueText.text = "You Win";
+
+            if (gainedCrewmate != null && !gainedCrewmate.activeSelf)
+            {
+
+                gainedCrewmate.SetActive(true);
+                CrewManager.Instance.GainCrewmate(gainedCrewmate);
+
+            }
+
+
+
         }
         else if (state == BattleState.LOSE)
         {
@@ -142,7 +156,7 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("LevelSelect");
     }
 
 }
