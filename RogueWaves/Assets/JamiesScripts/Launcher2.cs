@@ -54,7 +54,7 @@ public class Launcher2 : MonoBehaviour
         zoom = camswitch.ZoomView;
         //inFrame = check.inFrame;
 
-        Debug.Log("Zoomed In: " + zoom + " , Deactivated shooting: " );
+        //Debug.Log("Zoomed In: " + zoom + " , Deactivated shooting: " );
         // Check if it's the player's turn before allowing the launcher to be used
         if (battleSystem.state == BattleState.PLAYERSHOOT)
         {   
