@@ -33,10 +33,12 @@ public class Launcher2 : MonoBehaviour
 
     public BattleSystem battleSystem;
     public CameraSwitch camswitch;
+    public ButtonFrameCheck check;
+
     public Text dialogueText;
     public Text statText;
     
-    public bool zoom;
+    bool zoom, inFrame;
 
     LineRenderer lastLineRenderer;
 
@@ -50,13 +52,15 @@ public class Launcher2 : MonoBehaviour
     void Update()
     {
         zoom = camswitch.ZoomView;
+        inFrame = check.inFrame;
+
+        Debug.Log("Zoomed In: " + zoom + " , Deactivated shooting: " + inFrame);
         // Check if it's the player's turn before allowing the launcher to be used
         if (battleSystem.state == BattleState.PLAYERSHOOT)
         {   
             statText.enabled = true;
             HandleLauncherInput();
         }
-
 
     }
 
@@ -68,11 +72,11 @@ public class Launcher2 : MonoBehaviour
         // Added mouse aiming 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 lookDir = mousePos - rb.position;
-        angle = (Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f + 180f) % 360f;
+        angle = (Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f + 90f) % 360f;
 
         cannon.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f);
 
-        if (zoom)
+        if (zoom && !(inFrame))
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -82,7 +86,6 @@ public class Launcher2 : MonoBehaviour
             {   
                 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                
                 velocity = (startMousePosition - currentMousePosition) * launchForce;
                 power = Mathf.Round(velocity.magnitude * 10f) / 10f; 
                 DrawTrajectory();
