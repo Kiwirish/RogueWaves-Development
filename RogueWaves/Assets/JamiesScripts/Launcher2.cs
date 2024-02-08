@@ -38,7 +38,7 @@ public class Launcher2 : MonoBehaviour
     public Text dialogueText;
     public Text statText;
     
-    bool zoom, inFrame;
+    bool zoom;
 
     LineRenderer lastLineRenderer;
 
@@ -52,9 +52,9 @@ public class Launcher2 : MonoBehaviour
     void Update()
     {
         zoom = camswitch.ZoomView;
-        inFrame = check.inFrame;
+        //inFrame = check.inFrame;
 
-        Debug.Log("Zoomed In: " + zoom + " , Deactivated shooting: " + inFrame);
+        Debug.Log("Zoomed In: " + zoom + " , Deactivated shooting: " );
         // Check if it's the player's turn before allowing the launcher to be used
         if (battleSystem.state == BattleState.PLAYERSHOOT)
         {   
@@ -76,7 +76,7 @@ public class Launcher2 : MonoBehaviour
 
         cannon.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f);
 
-        if (zoom && !(inFrame))
+        if (zoom)
         {
             if (Input.GetMouseButtonDown(0))
             {

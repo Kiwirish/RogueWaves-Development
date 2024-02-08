@@ -140,7 +140,7 @@ public class BattleSystem : MonoBehaviour
 
             if (gainedCrewmate != null && !gainedCrewmate.activeSelf)
             {
-
+                Debug.Log("crewmate added");
                 gainedCrewmate.SetActive(true);
                 CrewManager.Instance.GainCrewmate(gainedCrewmate);
 

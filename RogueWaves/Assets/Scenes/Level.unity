@@ -308,7 +308,7 @@ Transform:
   m_GameObject: {fileID: 155713502}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.8, y: -19, z: -5995.966}
+  m_LocalPosition: {x: -40.8, y: -19, z: 1}
   m_LocalScale: {x: 80, y: 80, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0e24632457e2c46359cef1195cb86dcf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3140,7 +3140,7 @@ MonoBehaviour:
   customFont: {fileID: 12800000, guid: b3173b2ae0905e644a8758b6a19e400c, type: 3}
   player: {fileID: 1573576961}
   enemy: {fileID: 2054167781}
-  gainedCrewmate: {fileID: 0}
+  gainedCrewmate: {fileID: 1559001411}
   enemyMove: {fileID: 2054167789}
   enemyShoot: {fileID: 2054167783}
 --- !u!1 &927394298
@@ -4721,7 +4721,7 @@ Transform:
   m_GameObject: {fileID: 1559001411}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.960022, y: -17.639984, z: -5995.966}
+  m_LocalPosition: {x: -60.960022, y: -17.639984, z: 1}
   m_LocalScale: {x: 90, y: 90, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4767,7 +4767,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 854adc581d3584e208f5bd030bf729ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6127,7 +6127,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107574824}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f5693529c223a74d9094af2ba5f4d83, type: 3}
   m_Name: 
