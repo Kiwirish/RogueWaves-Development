@@ -21,7 +21,6 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject gainedCrewmate;
 
-
     Unit playerUnit;
     Unit enemyUnit;
 
@@ -129,7 +128,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.WIN)
         {
-            dialogueText.text = "You Win";
+            dialogueText.text = "";
 
             if (gainedCrewmate != null && !gainedCrewmate.activeSelf)
             {
@@ -139,12 +138,10 @@ public class BattleSystem : MonoBehaviour
 
             }
 
-
-
         }
         else if (state == BattleState.LOSE)
         {
-            dialogueText.text = "You Lose";
+            dialogueText.text = "";
         }
 
         yield return new WaitForSeconds(5f);

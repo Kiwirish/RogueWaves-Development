@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PauseMenuManager : MonoBehaviour {
+public class MenuManager : MonoBehaviour {
    
    
    // Indicates whether the game in paused mode
@@ -12,12 +12,11 @@ public class PauseMenuManager : MonoBehaviour {
    // Use this for initialization
    void Start () {  
       Hide(); 
-      Debug.Log("Hide pause menu");
    }
    
    // Show the pause menu in pause mode (the
    // first option will say "Resume")
-   public void ShowPause() {
+   public void Show() {
       // Pause the game
       pauseGame = true;
 

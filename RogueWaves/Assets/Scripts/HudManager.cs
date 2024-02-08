@@ -5,18 +5,28 @@ using UnityEngine;
 public class HudManager : MonoBehaviour
 {
 
-    // Reference to UI panel that is our pause menu
     public GameObject pauseMenuPanel;
-    // Reference to panel's script object 
-    PauseMenuManager pauseMenu;
+    public GameObject winMenuPanel;
+    public GameObject loseMenuPanel;
+    public BattleSystem battleSystem;
+
+    MenuManager pauseMenu;
+    MenuManager winMenu;
+    MenuManager loseMenu;
     // Start is called before the first frame update
     void Start()
     {
 
         // Initialise the reference to the script object, which is a
         // component of the pause menu panel game object
-        pauseMenu = pauseMenuPanel.GetComponent<PauseMenuManager>();
+        pauseMenu = pauseMenuPanel.GetComponent<MenuManager>();
         pauseMenu.Hide();
+        
+        winMenu = winMenuPanel.GetComponent<MenuManager>();
+        winMenu.Hide();
+
+        loseMenu = loseMenuPanel.GetComponent<MenuManager>();
+        loseMenu.Hide();
 
     }
 
@@ -26,7 +36,17 @@ public class HudManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             // If user presses ESC, show the pause menu in pause mode
-            pauseMenu.ShowPause();
+            pauseMenu.Show();
+        }
+
+        if (battleSystem.state == BattleState.WIN)
+        {
+            winMenu.Show();
+        }
+
+        if (battleSystem.state == BattleState.LOSE)
+        {
+            loseMenu.Show();
         }
 
     }
