@@ -3037,6 +3037,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuPanel: {fileID: 2008370392}
+  winMenuPanel: {fileID: 0}
+  loseMenuPanel: {fileID: 0}
+  battleSystem: {fileID: 0}
 --- !u!1 &844731956
 GameObject:
   m_ObjectHideFlags: 0
@@ -5914,7 +5917,7 @@ MonoBehaviour:
   player: {fileID: 1573576961}
   dialogueText: {fileID: 462766666}
   statText: {fileID: 1457158116}
-  drag: 0
+  drag: 2
   xOffset: 8
   shootSoundEffect: {fileID: 2054167790}
 --- !u!50 &2054167785
