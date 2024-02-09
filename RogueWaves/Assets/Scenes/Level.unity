@@ -5822,7 +5822,7 @@ MonoBehaviour:
   player: {fileID: 1573576961}
   dialogueText: {fileID: 462766666}
   statText: {fileID: 1457158116}
-  drag: 0
+  drag: 2
   xOffset: 8
   shootSoundEffect: {fileID: 2054167790}
 --- !u!50 &2054167785
