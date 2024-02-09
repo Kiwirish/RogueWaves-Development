@@ -40,6 +40,8 @@ public class Launcher2 : MonoBehaviour
     
     bool zoom;
 
+    bool active = true; // for testing
+
     LineRenderer lastLineRenderer;
 
     // Start is called before the first frame update
@@ -56,10 +58,18 @@ public class Launcher2 : MonoBehaviour
 
         //Debug.Log("Zoomed In: " + zoom + " , Deactivated shooting: " );
         // Check if it's the player's turn before allowing the launcher to be used
-        if (battleSystem.state == BattleState.PLAYERSHOOT)
+        if (battleSystem.state == BattleState.PLAYERSHOOT && active)
         {   
             statText.enabled = true;
             HandleLauncherInput();
+        }
+        if (Input.GetKeyDown(KeyCode.Q)){
+            if(active){
+                active = false;
+            }else{
+                active = true;
+            }
+            Debug.Log("Active shooting: " + active);
         }
 
     }

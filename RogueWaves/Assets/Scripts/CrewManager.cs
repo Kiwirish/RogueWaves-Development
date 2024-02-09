@@ -23,6 +23,7 @@ public class CrewManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        GainCrewmate("Crewmate2"); // remove later (for testing)
     }
 
     public void GainCrewmate(string crewmateID)

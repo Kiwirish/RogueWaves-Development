@@ -10,15 +10,15 @@ public class HudManager : MonoBehaviour
     public GameObject pauseMenuPanel;
     public GameObject winMenuPanel;
     public GameObject loseMenuPanel;
-    public GameObject crewmateSelectionPanel;
-    public GameObject crewmateButtonPrefab; 
-    public Transform crewmateListParent; 
+    // public GameObject crewmateSelectionPanel;
+    // public GameObject crewmateButtonPrefab; 
+    // public Transform crewmateListParent; 
     public BattleSystem battleSystem;
 
     MenuManager pauseMenu;
     MenuManager winMenu;
     MenuManager loseMenu;
-    MenuManager crewmateSelectionMenu;
+    // MenuManager crewmateSelectionMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +35,8 @@ public class HudManager : MonoBehaviour
         loseMenu = loseMenuPanel.GetComponent<MenuManager>();
         loseMenu.Hide();
 
-        crewmateSelectionMenu = crewmateSelectionMenu.GetComponent<MenuManager>();
-        crewmateSelectionMenu.Hide();
+        // crewmateSelectionMenu = crewmateSelectionMenu.GetComponent<MenuManager>();
+        // crewmateSelectionMenu.Hide();
 
     }
 
@@ -61,53 +61,53 @@ public class HudManager : MonoBehaviour
 
     }
 
-    public void ShowCrewmateSelectionHUD()
-    {
-        // ClearCrewMateSelectionOptions();
+    // public void ShowCrewmateSelectionHUD()
+    // {
+    //     // ClearCrewMateSelectionOptions();
 
-        foreach (var crewmateID in CrewManager.Instance.crewmatesGained)
-        {
-            CreateCrewmateSelectionButton(crewmateID);
-        }
+    //     foreach (var crewmateID in CrewManager.Instance.crewmatesGained)
+    //     {
+    //         CreateCrewmateSelectionButton(crewmateID);
+    //     }
 
-        crewmateSelectionMenu.Show();
+    //     crewmateSelectionMenu.Show();
 
 
-    }
+    // }
 
-    public void CreateCrewmateSelectionButton(string crewmateID)
-    {
-        GameObject buttonInstance = Instantiate(crewmateButtonPrefab, crewmateListParent);
+    // public void CreateCrewmateSelectionButton(string crewmateID)
+    // {
+    //     GameObject buttonInstance = Instantiate(crewmateButtonPrefab, crewmateListParent);
 
-        Text buttonText = buttonInstance.GetComponentInChildren<Text>();
-        if (buttonText != null)
-        {
-            buttonText.text = crewmateID; 
-        }
+    //     Text buttonText = buttonInstance.GetComponentInChildren<Text>();
+    //     if (buttonText != null)
+    //     {
+    //         buttonText.text = crewmateID; 
+    //     }
 
-        UnityEngine.UI.Button button = buttonInstance.GetComponent<UnityEngine.UI.Button>();
-        if (button != null)
-        {
-            button.onClick.AddListener(() => OnCrewmateSelected(crewmateID));
-        }
-    }
+    //     UnityEngine.UI.Button button = buttonInstance.GetComponent<UnityEngine.UI.Button>();
+    //     if (button != null)
+    //     {
+    //         button.onClick.AddListener(() => OnCrewmateSelected(crewmateID));
+    //     }
+    // }
 
-    public void OnCrewmateSelected(string crewmateID)
-    {
-        Debug.Log("Crewmate selected: " + crewmateID);
+    // public void OnCrewmateSelected(string crewmateID)
+    // {
+    //     Debug.Log("Crewmate selected: " + crewmateID);
         
-        //CrewManager.Instance.ActivateCrewmatePowerUp(crewmateID);
+    //     //CrewManager.Instance.ActivateCrewmatePowerUp(crewmateID);
 
-        crewmateSelectionMenu.Hide();
-    }
+    //     crewmateSelectionMenu.Hide();
+    // }
 
-    public void ClearCrewmateSelectionOptions()
-    {
-        foreach (Transform child in crewmateListParent)
-        {
-            Destroy(child.gameObject);
-        }
-    }
+    // public void ClearCrewmateSelectionOptions()
+    // {
+    //     foreach (Transform child in crewmateListParent)
+    //     {
+    //         Destroy(child.gameObject);
+    //     }
+    // }
 
 
 }
