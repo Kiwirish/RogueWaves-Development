@@ -1,51 +1,60 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] private GameObject main_menu;
+    [SerializeField] private GameObject start_menu;
+    [SerializeField] private GameObject help_menu;
+    [SerializeField] private GameObject settings_menu;
 
-    [SerializeField] public GameObject main_menu;
-    [SerializeField] public GameObject start_menu;
-    [SerializeField] public GameObject help_menu;
-    [SerializeField] public GameObject settings_menu;
+    [SerializeField] private Dropdown map;
+    [SerializeField] private Dropdown difficulty;
+    [SerializeField] private Toggle powerups;
 
-    [SerializeField] public Dropdown map;
-    [SerializeField] public Dropdown difficulty;
-    [SerializeField] public Dropdown powerups;
+    [SerializeField] private LevelBuilder levelBuilder;
 
-    void Start(){
+    private void Start()
+    {
         ActivateMain();
     }
 
-    public void StartGame(){
-        ActivateStart();    
+    public void StartGame()
+    {
+        ActivateStart();
     }
 
-    public void CampaignGame(){
+    public void CampaignGame()
+    {
         // Load the "Level" scene
         SceneManager.LoadScene("LevelSelect");
     }
 
-    public void CustomPVC(){
+    public void CustomPVC()
+    {
         // Load the "PVC" scene
+        SceneManager.LoadScene("PVC");
     }
 
-    public void CustomPVP(){
+    public void CustomPVP()
+    {
         // Load the "PVP" scene
         SceneManager.LoadScene("PVP");
     }
 
-    public void Back(){
+    public void Back()
+    {
         ActivateMain();
     }
 
-    public void Help(){
+    public void Help()
+    {
         ActivateHelp();
     }
 
-    public void Settings(){
+    public void Settings()
+    {
         ActivateSettings();
     }
 
@@ -55,42 +64,47 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    void ActivateMain(){
+    private void ActivateMain()
+    {
         main_menu.SetActive(true);
         start_menu.SetActive(false);
         help_menu.SetActive(false);
         settings_menu.SetActive(false);
     }
 
-    void ActivateStart(){
+    private void ActivateStart()
+    {
         main_menu.SetActive(false);
         start_menu.SetActive(true);
         help_menu.SetActive(false);
         settings_menu.SetActive(false);
     }
 
-    void ActivateHelp(){
+    private void ActivateHelp()
+    {
         main_menu.SetActive(false);
         start_menu.SetActive(false);
         help_menu.SetActive(true);
         settings_menu.SetActive(false);
     }
 
-    void ActivateSettings(){
+    private void ActivateSettings()
+    {
         main_menu.SetActive(false);
         start_menu.SetActive(false);
         help_menu.SetActive(false);
         settings_menu.SetActive(true);
     }
 
-    public void PVCSettings(){
+    public void ConfirmSettings()
+    {
         PlayerPrefs.SetInt("Map", map.value);
         PlayerPrefs.SetInt("Difficulty", difficulty.value);
-        PlayerPrefs.SetInt("Powerups", powerups.value);
-        PlayerPrefs.Save();
+        PlayerPrefs.SetInt("Powerups", powerups.isOn ? 1 : 0);
 
-        Debug.Log(map.value);
-        Debug.Log(difficulty.value);
-        Debug.Log(powerups.value);
+        Debug.Log("MAIN - Map: " + map.value + ", Difficulty: " + difficulty.value + ", Powerups: " + powerups.isOn);
+
+        // Load the "PVC" scene
+        SceneManager.LoadScene("PVC");
     }
 }
