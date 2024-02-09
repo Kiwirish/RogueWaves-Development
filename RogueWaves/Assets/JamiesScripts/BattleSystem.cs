@@ -19,8 +19,9 @@ public class BattleSystem : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
 
-    //public GameObject gainedCrewmate;
+    public int turnvalue = 1;
 
+    //public GameObject gainedCrewmate;
 
     Unit playerUnit;
     Unit enemyUnit;
@@ -93,7 +94,6 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PlAYERMOVE;
 
         yield return new WaitForSeconds(3f);
-
         StartCoroutine(EnemyTurn());
     }
 
@@ -119,6 +119,7 @@ public class BattleSystem : MonoBehaviour
         }else{
             dialogueText.text = "Enemy Moves";
             yield return StartCoroutine(enemyMove.EnemyMove());
+            turnvalue++;
             playerShoot();
         }
     }
