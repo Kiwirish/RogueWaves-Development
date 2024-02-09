@@ -728,9 +728,13 @@ MonoBehaviour:
   crewmateObjects:
   - {fileID: 1559001411}
   - {fileID: 155713502}
+  buttonObjects:
+  - {fileID: 179302147}
+  - {fileID: 474618578}
   crewmateIDs:
   - Crewmate1
   - Crewmate2
+  sprite: {fileID: 21300000, guid: 968896500c3b44987af368754b4d4e09, type: 3}
 --- !u!1 &202701853
 GameObject:
   m_ObjectHideFlags: 0
