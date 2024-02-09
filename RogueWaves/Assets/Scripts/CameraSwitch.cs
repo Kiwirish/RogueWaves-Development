@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class CameraSwitch : MonoBehaviour
 {
-    
+    public BattleSystem battlesystem;
+
     public GameObject FollowCamera;
     public GameObject MainCamera;
 
@@ -39,6 +40,10 @@ public class CameraSwitch : MonoBehaviour
 
     void Update(){
         ManageCamera();
+
+        main_dialogue.text = "Turn " + battlesystem.turnvalue;
+        main_enemyHealth.value = follow_enemyHealth.value;
+        main_playerHealth.value = follow_playerHealth.value;
     }
 
     void ManageCamera(){
@@ -52,11 +57,8 @@ public class CameraSwitch : MonoBehaviour
     }
 
     public void ActivateMainCamera(){
-
-        main_dialogue.text = follow_dialogue.text;
-        main_enemyHealth.value = follow_enemyHealth.value;
-        main_playerHealth.value = follow_playerHealth.value;
-        Debug.Log("MAIN");
+        
+        //Debug.Log("MAIN");
         
         main_zoom.enabled = true;
         follow_zoom.enabled = false;
@@ -72,7 +74,7 @@ public class CameraSwitch : MonoBehaviour
         main_zoom.enabled = false;
         follow_zoom.enabled = true;
 
-        Debug.Log("Follow");
+        //Debug.Log("Follow");
 
         FollowCamera.SetActive(true);
         MainCamera.SetActive(false);
