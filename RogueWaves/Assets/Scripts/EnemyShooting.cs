@@ -26,20 +26,6 @@ public class EnemyShooting : MonoBehaviour
     bool randomise = true;
 
     [SerializeField] private AudioSource shootSoundEffect; 
-    
-
-    // Update is called once per frame
-    void Update()
-    {   
-        if(Input.GetKeyDown(KeyCode.R)){
-            randomise = true;
-            Debug.Log("Randomised");
-        }
-        if(Input.GetKeyDown(KeyCode.T)){
-            randomise = false;
-            Debug.Log("Not randomised");
-        }
-    }
 
     public IEnumerator EnemyShoot(){
         statText.enabled = false;
@@ -98,14 +84,14 @@ public class EnemyShooting : MonoBehaviour
         if(randomise){
             float randomXOffset = Random.Range(-xOffset, xOffset);
             targetPos.x += randomXOffset;
-
-            int random = Random.Range(3, 10);
-            y_vertex = (float)random;
         }
+        int random = Random.Range(3, 10);
+        y_vertex = (float)random;
 
         float x_vertex = (startPos.x + targetPos.x) / 2; // the value of x at the vertex
 
-        int arcSmoothness = Mathf.RoundToInt(Mathf.Max((Mathf.Abs(startPos.x - targetPos.x)), y_vertex) * drag);
+        //int arcSmoothness = Mathf.RoundToInt(Mathf.Max((Mathf.Abs(startPos.x - targetPos.x)), y_vertex) * drag);
+        int arcSmoothness = Mathf.RoundToInt(Vector2.Distance(targetPos, new Vector2(x_vertex, y_vertex)) * 2 * drag);
         trajectoryPoints = new Vector3[arcSmoothness];
 
         for (int i = 0; i < arcSmoothness; i++){
