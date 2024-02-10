@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Crewmate1 : MonoBehaviour {   
 
     public BattleSystem battlesystem;
+    public CrewManager crewmanager;
+    public Text crewInfo;
 
     public string name;
     public string description; 
@@ -14,21 +16,20 @@ public class Crewmate1 : MonoBehaviour {
     int turnWhenInitiallyUsed = 0;
 
     public bool used = false;
-    bool powerupUsedThisTurn;
 
     public int heal = 1; // specific components for powerup
     public Slider slider;
 
-
-    // void FixedUpdate(){
-    //     powerupUsedThisTurn = used || GameObject.Find("Crewmate2").GetComponent<Crewmate2>().used;
-        
-    //     Debug.Log("Powerups used this turn: " + powerupUsedThisTurn);
-    // }
+    void Update(){
+        crewmanager.usedInTurn[0] = used;
+    }
 
     public void ApplyPowerup(GameObject target){
         
-        if(!(powerupUsedThisTurn) && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown == battlesystem.turnvalue)){
+        if(crewmanager.checkUsedCase()){
+            
+            
+            if(battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown == battlesystem.turnvalue)){
             
             turnWhenInitiallyUsed = battlesystem.turnvalue;
 
@@ -51,6 +52,18 @@ public class Crewmate1 : MonoBehaviour {
         }else{
             Debug.Log("ON CD, Current turn: " + battlesystem.turnvalue + " ,Turn needed: " + (turnWhenInitiallyUsed + cooldown));
         }
+
+        }else{
+            Debug.Log("Already used one powerup this turn");
+        }
        
+    }
+
+    void OnMouseOver(){
+        crewInfo.text = $"Name: {name}\nDescription: {description}\nCooldown: {cooldown} seconds";
+    }
+
+    void OnMouseExit(){
+        crewInfo.text = "";
     }
 }
