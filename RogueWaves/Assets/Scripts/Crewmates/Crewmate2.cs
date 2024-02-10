@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Crewmate2 : MonoBehaviour {   
     
     public BattleSystem battlesystem;
+    public CrewManager crewmanager;
+    public Text crewInfo;
 
     public string name;
     public string description; 
@@ -14,19 +16,20 @@ public class Crewmate2 : MonoBehaviour {
     int turnWhenInitiallyUsed = 0;
 
     public bool used = false;
-    bool powerupUsedThisTurn;
 
     // specific components for powerup
 
 
-    // void Update(){
-    //     powerupUsedThisTurn = used || GameObject.Find("Crewmate1").GetComponent<Crewmate1>().used;
-        
-    // }
+    void Update(){
+        crewmanager.usedInTurn[1] = used;
+    }
 
     public void ApplyPowerup(GameObject target){
         
-        if((turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown == battlesystem.turnvalue)){
+        if(crewmanager.checkUsedCase()){
+            
+
+            if(battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown == battlesystem.turnvalue)){
             
             turnWhenInitiallyUsed = battlesystem.turnvalue;
 
@@ -41,7 +44,19 @@ public class Crewmate2 : MonoBehaviour {
         }else{
             Debug.Log("ON CD, Current turn: " + battlesystem.turnvalue + " ,Turn needed: " + (turnWhenInitiallyUsed + cooldown));
         }
+
+        }else{
+            Debug.Log("Already used one powerup this turn");
+        }
        
+    }
+
+    void OnMouseOver(){
+        crewInfo.text = $"Name: {name}\nDescription: {description}\nCooldown: {cooldown} seconds";
+    }
+
+    void OnMouseExit(){
+        crewInfo.text = "";
     }
 
 }

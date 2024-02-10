@@ -11,6 +11,8 @@ public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYTURN,  WIN, LOSE,
 public class BattleSystem : MonoBehaviour
 {
 
+    public CrewManager crewmanager;
+
     public BattleState state;
 
     public Text dialogueText;
@@ -51,6 +53,7 @@ public class BattleSystem : MonoBehaviour
 
         GameObject enemyGO = enemy;
         enemyUnit = enemyGO.GetComponent<Unit>();
+
         //dialogueText.font = customFont;
         dialogueText.text = "Battle Begins!";
 
@@ -89,7 +92,7 @@ public class BattleSystem : MonoBehaviour
     }
 
     IEnumerator playerMove()
-    {
+    {   
         dialogueText.text = "Player Move";
         state = BattleState.PlAYERMOVE;
 
@@ -120,6 +123,7 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = "Enemy Moves";
             yield return StartCoroutine(enemyMove.EnemyMove());
             turnvalue++;
+            crewmanager.resetPowerupsForNextTurn();
             playerShoot();
         }
     }
