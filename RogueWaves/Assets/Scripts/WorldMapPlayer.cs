@@ -1,8 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class WorldMapPlayer : MonoBehaviour
 {
     public float speed = 5f;
+
+    [SerializeField] private GameObject level1;
+    [SerializeField] private GameObject level2;
+    [SerializeField] private GameObject level3;
+    [SerializeField] private GameObject level4;
+    [SerializeField] private GameObject level5;
 
     void Update()
     {
@@ -20,5 +30,21 @@ public class WorldMapPlayer : MonoBehaviour
         }
         transform.Translate(new Vector3(Time.deltaTime * speed * xMove, Time.deltaTime * speed * yMove, 0), Space.World);
     
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject == level1) {
+            SceneManager.LoadScene("Level");
+        }else if (other.gameObject == level2) {
+            SceneManager.LoadScene("Level2");
+        } else if (other.gameObject == level3) {
+            SceneManager.LoadScene("Level3");
+        } else if (other.gameObject == level4) {
+            SceneManager.LoadScene("Level4");
+        } else if (other.gameObject == level5) {
+            SceneManager.LoadScene("Level5");
+        } else {
+            Debug.Log("Rock");
+        }
     }
 }
