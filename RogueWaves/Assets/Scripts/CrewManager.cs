@@ -84,4 +84,24 @@ public class CrewManager : MonoBehaviour
         }
         return true;
     }
+
+    public void UpdateButtonColor(string crewmateID, Color color)
+    {
+        if (crewmateID == "Crewmate1")
+        {
+            buttons[0].GetComponent<Image>().color = color;
+        }
+        else if (crewmateID == "Crewmate2")
+        {
+            buttons[1].GetComponent<Image>().color = color;
+        }
+        else if (crewmateID == "Crewmate3")
+        {
+            buttons[2].GetComponent<Image>().color = color;
+        }
+        else if (crewmateID == "Crewmate4")
+        {
+            buttons[3].GetComponent<Image>().color = color;
+        }
+    }
 }

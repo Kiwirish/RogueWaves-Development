@@ -17,14 +17,44 @@ public class Crewmate1 : MonoBehaviour {
 
     public bool used = false;
 
+    //private bool powerupJustActivated;
+
     public float heal = 1; // specific components for powerup
     public Slider slider;
 
-    void Update(){
+    void Update()
+    {
         crewmanager.usedInTurn[0] = used;
+
+        // if (used)
+        // {
+        //    int turnsLeftOnCooldown = (turnWhenInitiallyUsed + cooldown) - battlesystem.turnvalue;
+
+        //   if(turnsLeftOnCooldown > 0)
+        //    {
+        //       crewmanager.UpdateButtonColor("Crewmate1", Color.red);
+        //   }
+        //   else
+        //   {
+        //      crewmanager.UpdateButtonColor("Crewmate1", Color.white);
+        //      used = false;
+
+        //   }
+
+
+
+        if (!crewmanager.checkUsedCase() && !used && turnWhenInitiallyUsed+cooldown>=0)
+        {
+            crewmanager.UpdateButtonColor("Crewmate1", Color.red);
+        }
+        if (crewmanager.checkUsedCase() && turnWhenInitiallyUsed + cooldown >= battlesystem.turnvalue) 
+        {
+            crewmanager.UpdateButtonColor("Crewmate1", Color.white);
+        }
+
     }
 
-    public void ApplyPowerup(GameObject target){
+        public void ApplyPowerup(GameObject target){
         
         if(crewmanager.checkUsedCase()){
             
@@ -32,6 +62,9 @@ public class Crewmate1 : MonoBehaviour {
             if(battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown <= battlesystem.turnvalue)){
             
             turnWhenInitiallyUsed = battlesystem.turnvalue;
+
+            //powerupJustActivated = true;
+            //used = true;
 
             float current = target.GetComponent<Unit>().currentHP;
             float max = target.GetComponent<Unit>().maxHP;
@@ -46,6 +79,9 @@ public class Crewmate1 : MonoBehaviour {
             slider.value = (float)current/max; // add to slider
 
             used = true;
+
+            crewmanager.UpdateButtonColor("Crewmate1", Color.green);
+
 
             Debug.Log("Healed 1HP");
 
