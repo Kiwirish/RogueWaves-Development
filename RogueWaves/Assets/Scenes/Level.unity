@@ -747,6 +747,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0e24632457e2c46359cef1195cb86dcf, type: 3}
   - {fileID: 21300000, guid: 1d770835407a74da9b5fc445b70ea5d4, type: 3}
   - {fileID: 21300000, guid: 2247a9b01085e476e9dd73b451600734, type: 3}
+  - {fileID: 21300000, guid: 5fa3bed8e3ac24a68b6ef4db0400600e, type: 3}
 --- !u!1 &202701853
 GameObject:
   m_ObjectHideFlags: 0
@@ -6869,8 +6870,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  maxHP: 10
-  currentHP: 10
+  maxHP: 5
+  currentHP: 5
   triggered: 0
   playerHealth: {fileID: 446102200}
   player: {fileID: 1573576961}

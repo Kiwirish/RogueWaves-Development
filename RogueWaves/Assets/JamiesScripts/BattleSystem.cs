@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
+
 public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYTURN,  WIN, LOSE, IDLE }
 
 
@@ -14,6 +15,8 @@ public class BattleSystem : MonoBehaviour
     public CrewManager crewmanager;
 
     public BattleState state;
+
+    public WorldMapPlayer worldmap;
 
     public Text dialogueText;
     public Font customFont; 
@@ -142,18 +145,27 @@ public class BattleSystem : MonoBehaviour
             if (sceneName == "Level"){
 
                 CrewManager.Instance.GainCrewmate("Crewmate1");
+                //worldmap.level1.SetActive(false);
 
             }else if (sceneName == "Level2") {
 
                 CrewManager.Instance.GainCrewmate("Crewmate2");
+                //worldmap.level2.SetActive(false);
 
-            }else if (sceneName == "Level3"){
+
+            }
+            else if (sceneName == "Level3"){
 
                 CrewManager.Instance.GainCrewmate("crewmate3");
+                //worldmap.level3.SetActive(false);
 
-            }else if (sceneName == "Level4"){
+
+            }
+            else if (sceneName == "Level4"){
 
                 CrewManager.Instance.GainCrewmate("crewmate4");
+                //worldmap.level4.SetActive(false);
+
             }
 
 

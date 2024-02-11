@@ -8,14 +8,15 @@ public class WorldMapPlayer : MonoBehaviour
 {
     public float speed = 5f;
 
-    [SerializeField] private GameObject level1;
-    [SerializeField] private GameObject level2;
-    [SerializeField] private GameObject level3;
-    [SerializeField] private GameObject level4;
-    [SerializeField] private GameObject level5;
+    [SerializeField] public GameObject level1;
+    [SerializeField] public GameObject level2;
+    [SerializeField] public GameObject level3;
+    [SerializeField] public GameObject level4;
+    [SerializeField] public GameObject level5;
 
     void Update()
     {
+        Debug.Log("can move");
         float xMove = Input.GetAxis("Horizontal");
         float yMove = Input.GetAxis("Vertical");
         if (xMove < 0){

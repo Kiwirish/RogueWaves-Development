@@ -28,7 +28,7 @@ public class MainMenuManager : MonoBehaviour
     public void CampaignGame()
     {
         // Load the "Level" scene
-        SceneManager.LoadScene("WorldMap");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void CustomPVC()

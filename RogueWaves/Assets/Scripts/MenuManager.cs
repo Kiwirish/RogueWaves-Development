@@ -39,7 +39,7 @@ public class MenuManager : MonoBehaviour {
    }
 
       public void Quit() {
-        SceneManager.LoadScene("LevelSelect");
+        SceneManager.LoadScene("WorldMap");
    }
    
    // Update is called once per frame
