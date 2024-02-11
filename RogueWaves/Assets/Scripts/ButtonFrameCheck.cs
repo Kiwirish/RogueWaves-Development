@@ -5,8 +5,8 @@ using UnityEngine;
 public class ButtonFrameCheck : MonoBehaviour
 {
 
-    private Collider2D collider;
-    private Canvas canvas;
+   // private Collider2D collider;
+   // private Canvas canvas;
 
     public bool inFrame = false;
     

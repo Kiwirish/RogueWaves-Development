@@ -494,7 +494,7 @@ MonoBehaviour:
   battlesystem: {fileID: 868000274}
   crewmanager: {fileID: 265336274}
   crewInfo: {fileID: 1684987926}
-  name: Double Damage Dan
+  crewName: 
   description: Doubles the damage of your next shot
   cooldown: 4
   used: 0
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   battlesystem: {fileID: 868000274}
   crewmanager: {fileID: 265336274}
   crewInfo: {fileID: 0}
-  name: Protecting Pete
+  crewName: 
   description: '''Protects Player'' - decreases enemy damage'
   cooldown: 2
   used: 0
@@ -4004,6 +4004,7 @@ RectTransform:
   - {fileID: 197753469}
   - {fileID: 1562350608}
   - {fileID: 446102199}
+  - {fileID: 1338585635}
   - {fileID: 1219482459}
   - {fileID: 1457158115}
   - {fileID: 898132527}
@@ -5675,7 +5676,7 @@ MonoBehaviour:
   battlesystem: {fileID: 868000274}
   crewmanager: {fileID: 265336274}
   crewInfo: {fileID: 0}
-  name: Confusing Cody
+  crewName: 
   description: '''Confuses enemy'' - enemy accuracy decrease '
   cooldown: 3
   used: 0
@@ -5694,7 +5695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1219482459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5707,7 +5708,6 @@ RectTransform:
   m_LocalScale: {x: 1.000051, y: 1.000051, z: 1.000051}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1338585635}
   - {fileID: 1567761718}
   m_Father: {fileID: 809103961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6003,16 +6003,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338585634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4010.8162}
-  m_LocalScale: {x: 0.9999489, y: 0.9999489, z: 0.9999489}
+  m_LocalPosition: {x: 0, y: 0, z: -4011.0205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 481698562}
-  m_Father: {fileID: 1219482459}
+  m_Father: {fileID: 809103961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49.998, y: 0.0017929}
+  m_AnchoredPosition: {x: 350.0005, y: -174.99815}
   m_SizeDelta: {x: 59.999, y: 59.999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338585636
@@ -6436,7 +6436,7 @@ MonoBehaviour:
   battlesystem: {fileID: 868000274}
   crewmanager: {fileID: 265336274}
   crewInfo: {fileID: 1684987926}
-  name: Healing Henry
+  crewName: 
   description: Heals 1HP to your ship
   cooldown: 2
   used: 0

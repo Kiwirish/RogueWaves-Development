@@ -9,7 +9,7 @@ public class Crewmate1 : MonoBehaviour {
     public CrewManager crewmanager;
     public Text crewInfo;
 
-    public string name;
+    public string crewName;
     public string description; 
     public int cooldown;
 
