@@ -7,6 +7,7 @@ public class LevelBuilder : MonoBehaviour
 
     [SerializeField] public EnemyShooting enemyShooting;
     [SerializeField] public Launcher2 playerShooting;
+    [SerializeField] public CrewManager crewmanager;
 
     [SerializeField] public int numberOfMaps = 8;
 
@@ -35,6 +36,7 @@ public class LevelBuilder : MonoBehaviour
         ResetMaps();
         ApplyMap();
         ApplyDifficulty();
+        ApplyPowerups();
     }
 
     void ApplyMap(){
@@ -55,6 +57,23 @@ public class LevelBuilder : MonoBehaviour
                 break;
             case 3:
                 enemyShooting.xOffset = 1f;
+                break;
+            default:
+                break;
+        }
+    }
+
+    void ApplyPowerups(){
+        switch (powerups){
+            case 0:
+                // do nothing
+                break;
+            case 1:
+                Debug.Log("Done");
+                crewmanager.GainCrewmate("Crewmate1"); // remove later (for testing)
+                crewmanager.GainCrewmate("Crewmate2"); // remove later (for testing)
+                crewmanager.GainCrewmate("Crewmate3"); // remove later (for testing)
+                crewmanager.GainCrewmate("Crewmate4"); // remove later (for testing)
                 break;
             default:
                 break;

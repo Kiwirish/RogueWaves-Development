@@ -17,12 +17,6 @@ public class Unit : MonoBehaviour
 
     public GameObject cannonball;
 
-    void Update(){
-        if(!player.CompareTag("Player")){
-            Debug.Log(damage);     
-        }
-    }
-
 
     void OnTriggerEnter2D(Collider2D other){
 
