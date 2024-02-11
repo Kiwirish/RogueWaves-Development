@@ -730,13 +730,23 @@ MonoBehaviour:
   crewmateObjects:
   - {fileID: 1559001411}
   - {fileID: 155713502}
+  - {fileID: 1181377675}
+  - {fileID: 788462455}
   buttonObjects:
   - {fileID: 179302147}
   - {fileID: 474618578}
+  - {fileID: 743052954}
+  - {fileID: 63060327}
   crewmateIDs:
   - Crewmate1
   - Crewmate2
-  sprite: {fileID: 21300000, guid: 968896500c3b44987af368754b4d4e09, type: 3}
+  - Crewmate3
+  - Crewmate4
+  sprites:
+  - {fileID: 21300000, guid: 854adc581d3584e208f5bd030bf729ad, type: 3}
+  - {fileID: 21300000, guid: 0e24632457e2c46359cef1195cb86dcf, type: 3}
+  - {fileID: 21300000, guid: 1d770835407a74da9b5fc445b70ea5d4, type: 3}
+  - {fileID: 21300000, guid: 2247a9b01085e476e9dd73b451600734, type: 3}
 --- !u!1 &202701853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,8 +1033,8 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 854adc581d3584e208f5bd030bf729ad, type: 3}
   - {fileID: 21300000, guid: 0e24632457e2c46359cef1195cb86dcf, type: 3}
-  - {fileID: 21300000, guid: 854adc581d3584e208f5bd030bf729ad, type: 3}
-  - {fileID: 21300000, guid: 0e24632457e2c46359cef1195cb86dcf, type: 3}
+  - {fileID: 21300000, guid: 1d770835407a74da9b5fc445b70ea5d4, type: 3}
+  - {fileID: 21300000, guid: 2247a9b01085e476e9dd73b451600734, type: 3}
   buttons:
   - {fileID: 179302147}
   - {fileID: 474618578}
