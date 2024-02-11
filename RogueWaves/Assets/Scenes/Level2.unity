@@ -8997,7 +8997,7 @@ MonoBehaviour:
   dialogueText: {fileID: 462766666}
   statText: {fileID: 1457158116}
   drag: 3
-  xOffset: 1
+  xOffset: 8
   shootSoundEffect: {fileID: 2054167790}
 --- !u!50 &2054167785
 Rigidbody2D:

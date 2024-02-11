@@ -4887,8 +4887,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  maxHP: 3
-  currentHP: 3
+  maxHP: 5
+  currentHP: 5
   triggered: 0
   playerHealth: {fileID: 1522029793}
   player: {fileID: 1249533920}
@@ -4915,7 +4915,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1464003966}
   statText: {fileID: 1109755145}
   drag: 3
-  xOffset: 1
+  xOffset: 10
   shootSoundEffect: {fileID: 1249533922}
 --- !u!50 &1249533926
 Rigidbody2D:
