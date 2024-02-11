@@ -13,7 +13,7 @@ public class Crewmate4 : MonoBehaviour {
     public string description; 
     public int cooldown;
 
-    int turnWhenInitiallyUsed = 0;
+    int turnWhenInitiallyUsed = -10;
 
     public bool used = false;
 
@@ -21,7 +21,18 @@ public class Crewmate4 : MonoBehaviour {
 
 
     void Update(){
+
         crewmanager.usedInTurn[3] = used;
+
+        if (!crewmanager.checkUsedCase() && (!used && (turnWhenInitiallyUsed + cooldown) >= battlesystem.turnvalue) || battlesystem.turnvalue == turnWhenInitiallyUsed + 1)
+        {
+
+            crewmanager.UpdateButtonColor("Crewmate4", Color.red);
+        }
+        else if (crewmanager.checkUsedCase() && (turnWhenInitiallyUsed + cooldown) <= battlesystem.turnvalue)
+        {
+            crewmanager.UpdateButtonColor("Crewmate4", Color.white);
+        }
     }
 
     public void ApplyPowerup(GameObject target){
@@ -38,9 +49,14 @@ public class Crewmate4 : MonoBehaviour {
             target.GetComponent<Unit>().damage = new_DMG;
             Debug.Log("Changed enemy damage to: " + target.GetComponent<Unit>().damage);
             
-            used = true; 
+            used = true;
 
-            }else{
+            crewmanager.UpdateButtonColor("Crewmate4", Color.green);
+
+
+            }
+            else
+            {
                 Debug.Log("ON CD, Current turn: " + battlesystem.turnvalue + " ,Turn needed: " + (turnWhenInitiallyUsed + cooldown));
             }
 

@@ -13,7 +13,7 @@ public class Crewmate1 : MonoBehaviour {
     public string description; 
     public int cooldown;
 
-    int turnWhenInitiallyUsed = 0;
+    int turnWhenInitiallyUsed = -10;
 
     public bool used = false;
 
@@ -25,6 +25,18 @@ public class Crewmate1 : MonoBehaviour {
     void Update()
     {
         crewmanager.usedInTurn[0] = used;
+
+        if (!crewmanager.checkUsedCase() && (!used && (turnWhenInitiallyUsed + cooldown) >= battlesystem.turnvalue) || battlesystem.turnvalue == turnWhenInitiallyUsed+1)
+        {
+            
+            crewmanager.UpdateButtonColor("Crewmate1", Color.red);
+        }
+        else if (crewmanager.checkUsedCase() && (turnWhenInitiallyUsed + cooldown) <= battlesystem.turnvalue)
+        {
+            crewmanager.UpdateButtonColor("Crewmate1", Color.white);
+        }
+        //and change turnWhenInitiallyUsed to like - 10
+
 
         // if (used)
         // {
@@ -43,14 +55,14 @@ public class Crewmate1 : MonoBehaviour {
 
 
 
-        if (!crewmanager.checkUsedCase() && !used && turnWhenInitiallyUsed+cooldown>=0)
-        {
-            crewmanager.UpdateButtonColor("Crewmate1", Color.red);
-        }
-        if (crewmanager.checkUsedCase() && turnWhenInitiallyUsed + cooldown >= battlesystem.turnvalue) 
-        {
-            crewmanager.UpdateButtonColor("Crewmate1", Color.white);
-        }
+        //if (!crewmanager.checkUsedCase() && !used && turnWhenInitiallyUsed+cooldown>=0)
+        //{
+        //    crewmanager.UpdateButtonColor("Crewmate1", Color.red);
+        //}
+        //if (crewmanager.checkUsedCase() && turnWhenInitiallyUsed + cooldown >= battlesystem.turnvalue) 
+        //{
+        //    crewmanager.UpdateButtonColor("Crewmate1", Color.white);
+        //}
 
     }
 
@@ -59,7 +71,7 @@ public class Crewmate1 : MonoBehaviour {
         if(crewmanager.checkUsedCase()){
             
             
-            if(battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown <= battlesystem.turnvalue)){
+            if(battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == -10 || turnWhenInitiallyUsed + cooldown <= battlesystem.turnvalue)){
             
             turnWhenInitiallyUsed = battlesystem.turnvalue;
 

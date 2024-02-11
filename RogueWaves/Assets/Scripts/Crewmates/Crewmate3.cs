@@ -14,7 +14,7 @@ public class Crewmate3 : MonoBehaviour
     public string description;
     public int cooldown;
 
-    int turnWhenInitiallyUsed = 0;
+    int turnWhenInitiallyUsed = -10;
 
     public bool used = false;
 
@@ -23,7 +23,16 @@ public class Crewmate3 : MonoBehaviour
 
     void Update()
     {
-        crewmanager.usedInTurn[1] = used;
+        crewmanager.usedInTurn[2] = used;
+        if (!crewmanager.checkUsedCase() && (!used && (turnWhenInitiallyUsed + cooldown) >= battlesystem.turnvalue) || battlesystem.turnvalue == turnWhenInitiallyUsed + 1)
+        {
+
+            crewmanager.UpdateButtonColor("Crewmate3", Color.red);
+        }
+        else if (crewmanager.checkUsedCase() && (turnWhenInitiallyUsed + cooldown) <= battlesystem.turnvalue)
+        {
+            crewmanager.UpdateButtonColor("Crewmate3", Color.white);
+        }
     }
 
     public void ApplyPowerup(GameObject target){
@@ -43,8 +52,12 @@ public class Crewmate3 : MonoBehaviour
                 }
 
                 used = true;
+                crewmanager.UpdateButtonColor("Crewmate3", Color.green);
 
-            }else{
+
+            }
+            else
+            {
                 Debug.Log("ON CD, Current turn: " + battlesystem.turnvalue + " ,Turn needed: " + (turnWhenInitiallyUsed + cooldown));
             }
 
