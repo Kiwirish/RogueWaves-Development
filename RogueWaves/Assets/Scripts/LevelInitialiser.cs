@@ -40,7 +40,7 @@ public class LevelInitialiser : MonoBehaviour
 
                 }else if (crewmateIDs[i] == "Crewmate4")
                 {
-                    buttonObjects[3].GetComponent<Image>().sprite = sprites[2];
+                    buttonObjects[3].GetComponent<Image>().sprite = sprites[3];
 
                 }
 
