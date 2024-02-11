@@ -205,12 +205,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Crewmate2, Assembly-CSharp
+      - m_Target: {fileID: 788462457}
+        m_TargetAssemblyTypeName: Crewmate4, Assembly-CSharp
         m_MethodName: ApplyPowerup
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1573576961}
+          m_ObjectArgument: {fileID: 2054167781}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -230,14 +230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 0e24632457e2c46359cef1195cb86dcf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -494,9 +494,9 @@ MonoBehaviour:
   battlesystem: {fileID: 868000274}
   crewmanager: {fileID: 265336274}
   crewInfo: {fileID: 1684987926}
-  name: Double ' Damage' Dan
+  name: Double Damage Dan
   description: Doubles the damage of your next shot
-  cooldown: 3
+  cooldown: 4
   used: 0
 --- !u!1 &179302145
 GameObject:
@@ -1023,8 +1023,8 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 854adc581d3584e208f5bd030bf729ad, type: 3}
   - {fileID: 21300000, guid: 0e24632457e2c46359cef1195cb86dcf, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 854adc581d3584e208f5bd030bf729ad, type: 3}
+  - {fileID: 21300000, guid: 0e24632457e2c46359cef1195cb86dcf, type: 3}
   buttons:
   - {fileID: 179302147}
   - {fileID: 474618578}
@@ -1033,6 +1033,7 @@ MonoBehaviour:
   crew1: {fileID: 1559001413}
   crew2: {fileID: 155713504}
   crew3: {fileID: 1181377677}
+  crew4: {fileID: 788462457}
   usedInTurn: 00000000
 --- !u!4 &265336275
 Transform:
@@ -3775,7 +3776,7 @@ MonoBehaviour:
         m_MethodName: ApplyPowerup
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1573576961}
+          m_ObjectArgument: {fileID: 2054167781}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3795,14 +3796,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 968896500c3b44987af368754b4d4e09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 854adc581d3584e208f5bd030bf729ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3860,6 +3861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 788462456}
+  - component: {fileID: 788462457}
   m_Layer: 0
   m_Name: Crewmate4
   m_TagString: Untagged
@@ -3883,6 +3885,25 @@ Transform:
   - {fileID: 63060326}
   m_Father: {fileID: 197753469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &788462457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788462455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef42f7f24f4f98c4b889e230c927fc4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battlesystem: {fileID: 868000274}
+  crewmanager: {fileID: 265336274}
+  crewInfo: {fileID: 0}
+  name: Protecting Pete
+  description: '''Protects Player'' - decreases enemy damage'
+  cooldown: 2
+  used: 0
 --- !u!1 &809103957
 GameObject:
   m_ObjectHideFlags: 0
@@ -6376,6 +6397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1559001412}
   - component: {fileID: 1559001413}
+  - component: {fileID: 1559001414}
   m_Layer: 0
   m_Name: Crewmate1
   m_TagString: Untagged
@@ -6420,6 +6442,58 @@ MonoBehaviour:
   used: 0
   heal: 1
   slider: {fileID: 446102200}
+--- !u!212 &1559001414
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559001411}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 854adc581d3584e208f5bd030bf729ad, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.32, y: 0.32}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1562350607
 GameObject:
   m_ObjectHideFlags: 0
@@ -6837,8 +6911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  maxHP: 3
-  currentHP: 3
+  maxHP: 10
+  currentHP: 10
   triggered: 0
   playerHealth: {fileID: 446102200}
   player: {fileID: 1573576961}
@@ -8186,10 +8260,11 @@ MonoBehaviour:
   cannonballPrefab: {fileID: 4986913319016615003, guid: 1c1136c7b58d34777a2a06f7cdbbe375, type: 3}
   cam: {fileID: 321254472}
   player: {fileID: 1573576961}
+  enemy: {fileID: 2054167781}
   dialogueText: {fileID: 462766666}
   statText: {fileID: 1457158116}
   drag: 3
-  xOffset: 6
+  xOffset: 1
   shootSoundEffect: {fileID: 2054167790}
 --- !u!50 &2054167785
 Rigidbody2D:

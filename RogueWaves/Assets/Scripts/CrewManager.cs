@@ -16,7 +16,7 @@ public class CrewManager : MonoBehaviour
     public Crewmate1 crew1;
     public Crewmate2 crew2;
     public Crewmate3 crew3;
-    // public Crewmate4 crew1;
+    public Crewmate4 crew4;
 
     public bool[] usedInTurn = new bool[4];
 
@@ -32,10 +32,11 @@ public class CrewManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         resetPowerupsForNextTurn();
+
         GainCrewmate("Crewmate1"); // remove later (for testing)
         GainCrewmate("Crewmate2"); // remove later (for testing)
         GainCrewmate("Crewmate3"); // remove later (for testing)
-    
+        GainCrewmate("Crewmate4"); // remove later (for testing)
     }
 
     public void GainCrewmate(string crewmateID)
@@ -56,10 +57,9 @@ public class CrewManager : MonoBehaviour
             else if (crewmateID == "Crewmate3")
             {
                 buttons[2].GetComponent<Image>().sprite = sprites[2];
-                // }else{
-                //     crewmates[3].enabled = true;
-                // }
-
+            }
+            else if (crewmateID == "Crewmate4"){
+                buttons[3].GetComponent<Image>().sprite = sprites[3];
             }
         }
      }
@@ -73,8 +73,9 @@ public class CrewManager : MonoBehaviour
         crew1.used = false;
         crew2.used = false;
         crew3.used = false;
-        // Crewmate4.used = false;
+        crew4.used = false;
     }
+
     public bool checkUsedCase(){
         for(int i = 0; i < 4; i++){
             if(usedInTurn[i]){

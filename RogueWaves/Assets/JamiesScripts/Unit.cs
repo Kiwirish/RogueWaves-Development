@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {   
-    public int damage;
-    public int maxHP;
-    public int currentHP;
+    public float damage;
+    public float maxHP;
+    public float currentHP;
 
     public bool triggered = false;
 
@@ -16,6 +16,13 @@ public class Unit : MonoBehaviour
     public GameObject player;
 
     public GameObject cannonball;
+
+    void Update(){
+        if(!player.CompareTag("Player")){
+            Debug.Log(damage);     
+        }
+    }
+
 
     void OnTriggerEnter2D(Collider2D other){
 
@@ -33,11 +40,13 @@ public class Unit : MonoBehaviour
         }
     } 
 
-    public bool TakeDamage(int dmg){
+    public bool TakeDamage(float dmg){
         
         if(triggered){
             currentHP -= dmg;
-            playerHealth.value = (float)currentHP / maxHP;
+            playerHealth.value = currentHP / maxHP;
+            Debug.Log(currentHP + " " + maxHP + " " + dmg);
+            Debug.Log(playerHealth.value);
 
             if(currentHP <= 0){
                 Destroy(player);

@@ -12,6 +12,7 @@ public class EnemyShooting : MonoBehaviour
     public GameObject cannonballPrefab; // Reference to the bullet prefab
     public CinemachineVirtualCamera cam;
     public GameObject player;
+    [SerializeField] public GameObject enemy;
     public Text dialogueText;
     public Text statText;
 
@@ -31,6 +32,7 @@ public class EnemyShooting : MonoBehaviour
         statText.enabled = false;
         DrawArc();
         yield return StartCoroutine(Shoot());
+        enemy.GetComponent<Unit>().damage = 1;
     }
 
     IEnumerator Shoot()
@@ -70,6 +72,8 @@ public class EnemyShooting : MonoBehaviour
         if(player != null){
             cam.Follow = player.transform;
         }
+
+        xOffset = 8f; // just for that one crewmate (hard coded right now)
     
     }
 

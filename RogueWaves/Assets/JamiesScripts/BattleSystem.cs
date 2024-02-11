@@ -74,7 +74,6 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator endPlayerShoot()
     {
-
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
         yield return new WaitForSeconds(1f);
 
@@ -125,6 +124,7 @@ public class BattleSystem : MonoBehaviour
             turnvalue++;
             crewmanager.resetPowerupsForNextTurn();
             playerShoot();
+            enemy.GetComponent<Unit>().damage = 1;
         }
     }
 

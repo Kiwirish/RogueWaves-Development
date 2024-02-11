@@ -26,40 +26,29 @@ public class Crewmate3 : MonoBehaviour
         crewmanager.usedInTurn[1] = used;
     }
 
-    public void ApplyPowerup(GameObject target)
-    {
+    public void ApplyPowerup(GameObject target){
 
-        if (crewmanager.checkUsedCase())
-        {
+        if (crewmanager.checkUsedCase()){
 
-
-            if (battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown == battlesystem.turnvalue))
-            {
+            if (battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown <= battlesystem.turnvalue)){
 
                 turnWhenInitiallyUsed = battlesystem.turnvalue;
-
-
                 EnemyShooting enemyShooting = target.GetComponent<EnemyShooting>();
 
-                if (enemyShooting != null)
-                {
-                    enemyShooting.xOffset = 15f;
-                    Debug.Log("Enemy confused");
-
+                if (enemyShooting != null){
+                    enemyShooting.xOffset = 30f;
+                    //enemyShooting.y1Offset = 20f;
+                    //enemyShooting.y2Offset = 40f;
+                    Debug.Log("Enemy is confused");
                 }
-
 
                 used = true;
 
-            }
-            else
-            {
+            }else{
                 Debug.Log("ON CD, Current turn: " + battlesystem.turnvalue + " ,Turn needed: " + (turnWhenInitiallyUsed + cooldown));
             }
 
-        }
-        else
-        {
+        }else{
             Debug.Log("Already used one powerup this turn");
         }
 

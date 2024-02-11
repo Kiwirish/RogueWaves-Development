@@ -17,7 +17,7 @@ public class Crewmate1 : MonoBehaviour {
 
     public bool used = false;
 
-    public int heal = 1; // specific components for powerup
+    public float heal = 1; // specific components for powerup
     public Slider slider;
 
     void Update(){
@@ -29,12 +29,12 @@ public class Crewmate1 : MonoBehaviour {
         if(crewmanager.checkUsedCase()){
             
             
-            if(battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown == battlesystem.turnvalue)){
+            if(battlesystem.state == BattleState.PLAYERSHOOT && (turnWhenInitiallyUsed == 0 || turnWhenInitiallyUsed + cooldown <= battlesystem.turnvalue)){
             
             turnWhenInitiallyUsed = battlesystem.turnvalue;
 
-            int current = target.GetComponent<Unit>().currentHP;
-            int max = target.GetComponent<Unit>().maxHP;
+            float current = target.GetComponent<Unit>().currentHP;
+            float max = target.GetComponent<Unit>().maxHP;
 
             if (current + heal > max){
                 current = max; // if heal will go above max health, heal to only max
@@ -47,7 +47,7 @@ public class Crewmate1 : MonoBehaviour {
 
             used = true;
 
-            Debug.Log("Used poweup on turn " + turnWhenInitiallyUsed);
+            Debug.Log("Healed 1HP");
 
         }else{
             Debug.Log("ON CD, Current turn: " + battlesystem.turnvalue + " ,Turn needed: " + (turnWhenInitiallyUsed + cooldown));
