@@ -156,14 +156,14 @@ public class BattleSystem : MonoBehaviour
             }
             else if (sceneName == "Level3"){
 
-                CrewManager.Instance.GainCrewmate("crewmate3");
+                CrewManager.Instance.GainCrewmate("Crewmate3");
                 //worldmap.level3.SetActive(false);
 
 
             }
             else if (sceneName == "Level4"){
 
-                CrewManager.Instance.GainCrewmate("crewmate4");
+                CrewManager.Instance.GainCrewmate("Crewmate4");
                 //worldmap.level4.SetActive(false);
 
             }
