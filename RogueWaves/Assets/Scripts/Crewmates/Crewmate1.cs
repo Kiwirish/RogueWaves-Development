@@ -30,6 +30,8 @@ public class Crewmate1 : MonoBehaviour {
         {
             
             crewmanager.UpdateButtonColor("Crewmate1", Color.red);
+            crewmanager.UpdateCrewmateInfo("Healy Henry", "Instant heal", 2, false);
+
         }
         else if (crewmanager.checkUsedCase() && (turnWhenInitiallyUsed + cooldown) <= battlesystem.turnvalue)
         {
@@ -94,8 +96,11 @@ public class Crewmate1 : MonoBehaviour {
 
             crewmanager.UpdateButtonColor("Crewmate1", Color.green);
 
+            crewmanager.UpdateCrewmateInfo("Healy Henry", "Instant heal", 2, true);
 
-            Debug.Log("Healed 1HP");
+
+
+                Debug.Log("Healed 1HP");
 
         }else{
             Debug.Log("ON CD, Current turn: " + battlesystem.turnvalue + " ,Turn needed: " + (turnWhenInitiallyUsed + cooldown));
@@ -114,4 +119,6 @@ public class Crewmate1 : MonoBehaviour {
     void OnMouseExit(){
         crewInfo.text = "";
     }
+
+
 }

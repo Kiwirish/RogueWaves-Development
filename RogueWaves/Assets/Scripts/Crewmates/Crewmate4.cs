@@ -28,6 +28,9 @@ public class Crewmate4 : MonoBehaviour {
         {
 
             crewmanager.UpdateButtonColor("Crewmate4", Color.red);
+            crewmanager.UpdateCrewmateInfo("Protective Pete", "'protected' for half damage", 2, false);
+
+
         }
         else if (crewmanager.checkUsedCase() && (turnWhenInitiallyUsed + cooldown) <= battlesystem.turnvalue)
         {
@@ -52,6 +55,8 @@ public class Crewmate4 : MonoBehaviour {
             used = true;
 
             crewmanager.UpdateButtonColor("Crewmate4", Color.green);
+            crewmanager.UpdateCrewmateInfo("Protective Pete", "'protected' for half damage", 2, true);
+
 
 
             }

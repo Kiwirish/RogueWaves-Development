@@ -1044,6 +1044,7 @@ MonoBehaviour:
   crew2: {fileID: 155713504}
   crew3: {fileID: 1181377677}
   crew4: {fileID: 788462457}
+  crewmateInfoText: {fileID: 1684987926}
   usedInTurn: 00000000
 --- !u!4 &265336275
 Transform:
@@ -7327,7 +7328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1684987925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7371,7 +7372,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
@@ -7380,7 +7381,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Name: ... \nDescription: ... \nCooldown: ...'
+  m_Text: 
 --- !u!222 &1684987927
 CanvasRenderer:
   m_ObjectHideFlags: 0

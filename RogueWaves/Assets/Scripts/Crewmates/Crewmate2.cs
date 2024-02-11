@@ -27,6 +27,8 @@ public class Crewmate2 : MonoBehaviour {
         {
 
             crewmanager.UpdateButtonColor("Crewmate2", Color.red);
+            crewmanager.UpdateCrewmateInfo("Double Damage Dan", "2x Player Damage", 4, false);
+
         }
         else if (crewmanager.checkUsedCase() && (turnWhenInitiallyUsed + cooldown) <= battlesystem.turnvalue)
         {
@@ -52,6 +54,8 @@ public class Crewmate2 : MonoBehaviour {
             used = true;
 
             crewmanager.UpdateButtonColor("Crewmate2", Color.green);
+
+            crewmanager.UpdateCrewmateInfo("Double Damage Dan", "2x Player Damage", 4, true);
 
 
             }

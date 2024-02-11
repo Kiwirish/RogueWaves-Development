@@ -18,6 +18,8 @@ public class CrewManager : MonoBehaviour
     public Crewmate3 crew3;
     public Crewmate4 crew4;
 
+    public Text crewmateInfoText;
+
     public bool[] usedInTurn = new bool[4];
 
     void Awake()
@@ -103,5 +105,23 @@ public class CrewManager : MonoBehaviour
         {
             buttons[3].GetComponent<Image>().color = color;
         }
+    }
+
+    
+    public void UpdateCrewmateInfo(string name, string description, int cooldown, bool isActive)
+    {
+        // access Text in crewmateInfo and change it in this method,
+        // called in 'ApplyPowerup' method for 5 seconds maybe
+        if (isActive){
+
+            crewmateInfoText.text = $"Name: {name}\nDescription: {description}\nCooldown: {cooldown} turns";
+            crewmateInfoText.gameObject.SetActive(true);
+
+        }else {
+
+            crewmateInfoText.gameObject.SetActive(false);
+
+        }
+
     }
 }

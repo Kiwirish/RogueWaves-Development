@@ -28,6 +28,8 @@ public class Crewmate3 : MonoBehaviour
         {
 
             crewmanager.UpdateButtonColor("Crewmate3", Color.red);
+            crewmanager.UpdateCrewmateInfo("Confusion Carl", "'Confuses' enemy shot", 3, false);
+
         }
         else if (crewmanager.checkUsedCase() && (turnWhenInitiallyUsed + cooldown) <= battlesystem.turnvalue)
         {
@@ -53,6 +55,8 @@ public class Crewmate3 : MonoBehaviour
 
                 used = true;
                 crewmanager.UpdateButtonColor("Crewmate3", Color.green);
+                crewmanager.UpdateCrewmateInfo("Confusion Carl", "'Confuses' enemy shot", 3, true);
+
 
 
             }
