@@ -13,8 +13,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Dropdown difficulty;
     [SerializeField] private Toggle powerups;
 
-    [SerializeField] private LevelBuilder levelBuilder;
-
     private void Start()
     {
         ActivateMain();
@@ -29,6 +27,10 @@ public class MainMenuManager : MonoBehaviour
     {
         // Load the "Level" scene
         SceneManager.LoadScene("LevelSelect");
+    }
+
+    public void ProtoCampaign(){
+        SceneManager.LoadScene("WorldMap");  
     }
 
     public void CustomPVC()
