@@ -13,6 +13,8 @@ public class LevelBuilder : MonoBehaviour
 
     private int map, difficulty, powerups;
     private GameObject[] backgrounds;
+
+    public bool isPVP;
     
 
     void Start(){
@@ -35,8 +37,11 @@ public class LevelBuilder : MonoBehaviour
 
         ResetMaps();
         ApplyMap();
-        ApplyDifficulty();
-        ApplyPowerups();
+        if(!isPVP){
+            ApplyDifficulty();
+            ApplyPowerups();
+        }
+        
     }
 
     void ApplyMap(){

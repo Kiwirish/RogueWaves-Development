@@ -28,17 +28,24 @@ public class PlayerLauncher : MonoBehaviour
     [SerializeField] public int playerNumber;
     public GameObject cannon;
     GameObject player;
-    bool yourTurn;
+    public bool yourTurn;
     Rigidbody2D rb;
 
     public float power;
     public float angle;
 
     // Scripts
-    [SerializeField] public PVPBattleSystem system;
+    [SerializeField] public PVPBattleSystem battleSystem;
     [SerializeField] public PVPMovement move;
+    public CameraSwitch camswitch;
 
     [SerializeField] public Text statText;
+
+    bool zoom; 
+
+    bool active = true; // for testing
+
+    LineRenderer lastLineRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -58,39 +65,70 @@ public class PlayerLauncher : MonoBehaviour
     void Update()
     {
 
+        zoom = camswitch.ZoomView;
+
         if(yourTurn){
 
-            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 lookDir = mousePos - rb.position;
-            angle = (Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f + 180f) % 360f;
+            if (battleSystem.state == PVPState.PLAYER1SHOOT && active){   
+                statText.enabled = true;
+                HandleLauncherInput();
+            }else if(battleSystem.state == PVPState.PLAYER2SHOOT && active){   
+                statText.enabled = true;
+                HandleLauncherInput();
+            }   
+        }
+    }
 
-            cannon.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f);
+    void HandleLauncherInput(){
+        // Ensure cinemachine is not null before accessing its components
+    if (cinemachine != null)
+    {
+        // Added mouse aiming 
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 lookDir = mousePos - rb.position;
+        angle = (Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f + 90f) % 360f;
 
+        cannon.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f);
+
+        if (zoom)
+        {
             if (Input.GetMouseButtonDown(0))
             {
-                startMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                startMousePosition = cannon.transform.position;
             }
             if (Input.GetMouseButton(0))
             {   
                 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                 velocity = (startMousePosition - currentMousePosition) * launchForce;
+                velocity = (startMousePosition - currentMousePosition) * launchForce;
                 power = Mathf.Round(velocity.magnitude * 10f) / 10f; 
                 DrawTrajectory();
                 //Debug.Log(Mathf.RoundToInt(angle) + " " + power);
 
-                statText.text = "[ " + Mathf.RoundToInt(angle) + "° , " + power + "ₘₛ⁻¹ ]";
-            }   
+                statText.text = "[ " + Mathf.RoundToInt(angle) + "° , " + power + "m/s ]";
+            }
 
             if (Input.GetMouseButtonUp(0))
             {
                 shootSoundEffect.Play();
                 StartCoroutine(ShootProjectile());
                 //shootSoundEffect.Play();
+                NewLineRenderer();
                 ClearTrajectory();
             }
+            
+        }else{
+            ClearTrajectory();
         }
     }
+    else
+        {
+            // Handle the case where cinemachine is null (optional, based on your requirements)
+            Debug.LogError("Cinemachine is not assigned.");
+        }
+    }
+    
+
 
     void DrawTrajectory()
     {
@@ -111,14 +149,33 @@ public class PlayerLauncher : MonoBehaviour
 
     }
 
+    void NewLineRenderer(){
+        if(lineRenderer != null){
+    
+            if(lastLineRenderer != null){
+                Destroy(lastLineRenderer.gameObject);
+            }
+
+            GameObject newLineObject = new GameObject("LastLineRenderer");
+            lastLineRenderer = newLineObject.AddComponent<LineRenderer>();
+
+            Vector3[] positions = new Vector3[lineRenderer.positionCount];
+            lineRenderer.GetPositions(positions);
+            lastLineRenderer.positionCount = positions.Length;
+            lastLineRenderer.SetPositions(positions);
+
+            lastLineRenderer.startWidth = 0.2f;
+            lastLineRenderer.endWidth = 0.1f;
+
+            lastLineRenderer.startColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            lastLineRenderer.endColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            lastLineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+
+        }
+    }
+
     IEnumerator ShootProjectile()
     {
-
-        if(playerNumber == 1){
-            system.player1Attacks();
-        }else if(playerNumber == 2){
-            system.player2Attacks();
-        }
 
         // create projectile prefab at spawnpoint 
         Transform projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
@@ -143,15 +200,24 @@ public class PlayerLauncher : MonoBehaviour
             // Change turn to Player 2
             yourTurn = false;
             players[1].GetComponent<PlayerLauncher>().yourTurn = true;
+            cinemachine.Follow = players[0].GetComponent<PlayerLauncher>().players[0].transform;
+            StartCoroutine(battleSystem.endPlayer1Turn());
+            yield return new WaitForSeconds(3f);
             cinemachine.Follow = players[1].GetComponent<PlayerLauncher>().players[1].transform;
-            StartCoroutine(system.endPlayer1Turn());
+
         }else if (playerNumber == 2 && yourTurn){
-             // Change turn to Player 1
+            // Change turn to Player 1
             yourTurn = false;
             players[0].GetComponent<PlayerLauncher>().yourTurn = true;
+            cinemachine.Follow = players[1].GetComponent<PlayerLauncher>().players[1].transform;
+            StartCoroutine(battleSystem.endPlayer2Turn());
+            yield return new WaitForSeconds(3f);
             cinemachine.Follow = players[0].GetComponent<PlayerLauncher>().players[0].transform;
-            StartCoroutine(system.endPlayer2Turn());
+
         }
         //Debug.Log("Player turn passed");
+        players[0].GetComponent<Unit>().damage = 1; // just for that one crewmate (hard coded right now)
+        players[1].GetComponent<Unit>().damage = 1; // just for that one crewmate (hard coded right now)
+
     }
 }

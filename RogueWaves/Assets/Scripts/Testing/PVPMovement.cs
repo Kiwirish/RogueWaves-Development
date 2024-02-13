@@ -11,7 +11,10 @@ public class PVPMovement : MonoBehaviour
     public bool yourTurn;
     Rigidbody2D rb;
 
-    float speed = 2;
+    float speed = 3;
+
+    public PVPBattleSystem battlesystem;
+    public PlayerLauncher launcher;
 
     void Start(){
         if(playerNumber == 1){
@@ -26,13 +29,28 @@ public class PVPMovement : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
-        if(yourTurn){
+    {   
+        yourTurn = launcher.yourTurn;
+        if(!yourTurn){
+            HandleMovementInput();
+        }
+    }
+
+    void HandleMovementInput(){
+        if(battlesystem.state == PVPState.PLAYER1MOVE){
+            // Player movement from input (it's a variable between -1 and 1) for
+            // degree of left or right movement
+            float movementInput = Input.GetAxis("Horizontal");
+            // Move the player object
+            transform.Translate(new Vector3(Time.deltaTime * speed * movementInput, 0, 0), Space.World);
+        
+        }else if(battlesystem.state == PVPState.PLAYER2MOVE){
             // Player movement from input (it's a variable between -1 and 1) for
             // degree of left or right movement
             float movementInput = Input.GetAxis("Horizontal");
             // Move the player object
             transform.Translate(new Vector3(Time.deltaTime * speed * movementInput, 0, 0), Space.World);
         }
+        
     }
 }
