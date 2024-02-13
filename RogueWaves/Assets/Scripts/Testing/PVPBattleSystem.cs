@@ -4,18 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum PVPState { START, PLAYER1TURN, PLAYER2TURN, WIN, LOSE, IDLE }
+public enum PVPState { START, PLAYER1SHOOT, PLAYER1MOVE, PLAYER2MOVE, PLAYER2SHOOT, WIN, LOSE, IDLE }
 
 
 public class PVPBattleSystem : MonoBehaviour
 {
 
+    public CrewManager crewmanager;
+
     public PVPState state;
+
+    // public WorldMapPlayer worldmap; 
 
     public Text dialogueText;
     public Font customFont;
+
     public GameObject player1;
     public GameObject player2;
+
+    public CameraSwitch cam;
+
+    public int turnvalue = 1; 
 
     Unit player1Unit;
     Unit player2Unit;
@@ -34,7 +43,13 @@ public class PVPBattleSystem : MonoBehaviour
     }
 
     IEnumerator SetupBattle()
-    {
+    {   
+
+        cam.ActivateMainCamera();
+        yield return new WaitForSeconds(3f);
+
+        cam.ActivateFollowCamera();
+
         GameObject player1GO = player1;
         player1Unit = player1GO.GetComponent<Unit>();
 
@@ -44,33 +59,19 @@ public class PVPBattleSystem : MonoBehaviour
         dialogueText.text = "Battle Begins!";
 
         yield return new WaitForSeconds(3f);
-        player1Turn();
+        Player1Shoot();
     }
 
-    void player1Turn()
+    public void gameIdle()
     {
-        dialogueText.text = "Player 1s Turn";
-        state = PVPState.PLAYER1TURN;
-        player1.GetComponent<PVPMovement>().yourTurn = true;
+        state = PVPState.IDLE;
     }
 
-    void player2Turn()
+    void Player1Shoot()
     {
-        dialogueText.text = "Player 2s Turn";
-        state = PVPState.PLAYER2TURN;
-        player2.GetComponent<PVPMovement>().yourTurn = true;
+        dialogueText.text = "Player 1 Shoot";
+        state = PVPState.PLAYER1SHOOT;
     }
-
-    public void player1Attacks(){
-        dialogueText.text = "Player 1 Fires";
-        player1.GetComponent<PVPMovement>().yourTurn = false;
-    }
-
-    public void player2Attacks(){
-        dialogueText.text = "Player 2 Fires";
-        player2.GetComponent<PVPMovement>().yourTurn = false;
-    }
-
 
     public IEnumerator endPlayer1Turn()
     {
@@ -85,33 +86,53 @@ public class PVPBattleSystem : MonoBehaviour
         }
         else
         {
-            //enemyTurn
-            state = PVPState.PLAYER2TURN;
-            player2Turn();
+            //Player1Turn
+            StartCoroutine(player1Move());
         }
 
     }
 
-    public IEnumerator endPlayer2Turn()
+    IEnumerator player1Move()
     {   
+        dialogueText.text = "Player 1s Move";
+        state = PVPState.PLAYER1MOVE;
 
+        yield return new WaitForSeconds(3f);
+        Player2Shoot();
+    }
+
+    void Player2Shoot()
+    {
+        dialogueText.text = "Player 2 Shoot";
+        state = PVPState.PLAYER2SHOOT;
+    }
+
+    public IEnumerator endPlayer2Turn()
+    {
         bool isDead = player1Unit.TakeDamage(player2Unit.damage);
-
         yield return new WaitForSeconds(1f);
 
         if (isDead)
         {
-            //lose
+            //win
             state = PVPState.LOSE;
             StartCoroutine(EndBattle());
         }
         else
         {
-            //enemyTurn
-            state = PVPState.PLAYER1TURN;
-            player1Turn();
+            //Player1Turn
+            StartCoroutine(player2Move());
         }
 
+    }
+
+    IEnumerator player2Move()
+    {   
+        dialogueText.text = "Player 2s Move";
+        state = PVPState.PLAYER2MOVE;
+
+        yield return new WaitForSeconds(3f);
+        Player1Shoot();
     }
 
     public IEnumerator EndBattle()

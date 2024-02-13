@@ -7,11 +7,14 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject main_menu;
     [SerializeField] private GameObject start_menu;
     [SerializeField] private GameObject help_menu;
-    [SerializeField] private GameObject settings_menu;
+    [SerializeField] private GameObject pvp_menu;
+    [SerializeField] private GameObject pvc_menu;
 
     [SerializeField] private Dropdown map;
     [SerializeField] private Dropdown difficulty;
     [SerializeField] private Toggle powerups;
+
+    [SerializeField] private Dropdown pvp_map;
 
     private void Start()
     {
@@ -33,18 +36,6 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("WorldMap");  
     }
 
-    public void CustomPVC()
-    {
-        // Load the "PVC" scene
-        SceneManager.LoadScene("PVC");
-    }
-
-    public void CustomPVP()
-    {
-        // Load the "PVP" scene
-        SceneManager.LoadScene("PVP");
-    }
-
     public void Back()
     {
         ActivateMain();
@@ -55,15 +46,18 @@ public class MainMenuManager : MonoBehaviour
         ActivateHelp();
     }
 
-    public void Settings()
-    {
-        ActivateSettings();
-    }
-
     public void QuitGame()
     {
         // Quit the application
         Application.Quit();
+    }
+
+    public void PVC(){
+        ActivatePVC();
+    }
+
+    public void PVP(){
+        ActivatePVP();
     }
 
     private void ActivateMain()
@@ -71,7 +65,8 @@ public class MainMenuManager : MonoBehaviour
         main_menu.SetActive(true);
         start_menu.SetActive(false);
         help_menu.SetActive(false);
-        settings_menu.SetActive(false);
+        pvp_menu.SetActive(false);
+        pvc_menu.SetActive(false);
     }
 
     private void ActivateStart()
@@ -79,7 +74,8 @@ public class MainMenuManager : MonoBehaviour
         main_menu.SetActive(false);
         start_menu.SetActive(true);
         help_menu.SetActive(false);
-        settings_menu.SetActive(false);
+        pvp_menu.SetActive(false);
+        pvc_menu.SetActive(false);
     }
 
     private void ActivateHelp()
@@ -87,18 +83,29 @@ public class MainMenuManager : MonoBehaviour
         main_menu.SetActive(false);
         start_menu.SetActive(false);
         help_menu.SetActive(true);
-        settings_menu.SetActive(false);
+        pvp_menu.SetActive(false);
+        pvc_menu.SetActive(false);
     }
 
-    private void ActivateSettings()
+    private void ActivatePVP()
     {
         main_menu.SetActive(false);
         start_menu.SetActive(false);
         help_menu.SetActive(false);
-        settings_menu.SetActive(true);
+        pvp_menu.SetActive(true);
+        pvc_menu.SetActive(false);
     }
 
-    public void ConfirmSettings()
+    private void ActivatePVC()
+    {
+        main_menu.SetActive(false);
+        start_menu.SetActive(false);
+        help_menu.SetActive(false);
+        pvp_menu.SetActive(false);
+        pvc_menu.SetActive(true);
+    }
+
+    public void ConfirmPVC()
     {
         PlayerPrefs.SetInt("Map", map.value);
         PlayerPrefs.SetInt("Difficulty", difficulty.value);
@@ -108,5 +115,13 @@ public class MainMenuManager : MonoBehaviour
 
         // Load the "PVC" scene
         SceneManager.LoadScene("PVC");
+    }
+
+    public void ConfirmPVP()
+    {
+        PlayerPrefs.SetInt("Map", pvp_map.value);
+
+        // Load the "PVP" scene
+        SceneManager.LoadScene("PVP");
     }
 }

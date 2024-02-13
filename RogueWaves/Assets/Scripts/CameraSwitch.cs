@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class CameraSwitch : MonoBehaviour
 {
     public BattleSystem battlesystem;
+    public PVPBattleSystem pvpsystem;
+
+    public bool campaign;
 
     public GameObject FollowCamera;
     public GameObject MainCamera;
@@ -40,8 +43,13 @@ public class CameraSwitch : MonoBehaviour
 
     void Update(){
         ManageCamera();
+        
+        if(battlesystem != null){
+            main_dialogue.text = "Turn " + battlesystem.turnvalue;
+        }else{
+            main_dialogue.text = "Turn " + pvpsystem.turnvalue;
+        }
 
-        main_dialogue.text = "Turn " + battlesystem.turnvalue;
         main_enemyHealth.value = follow_enemyHealth.value;
         main_playerHealth.value = follow_playerHealth.value;
     }
