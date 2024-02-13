@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 
 
-public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYTURN,  WIN, LOSE, IDLE }
+public enum BattleState { START, PLAYERSHOOT, PlAYERMOVE, ENEMYTURN, WIN, LOSE, IDLE }
 
 
 public class BattleSystem : MonoBehaviour
@@ -19,12 +19,16 @@ public class BattleSystem : MonoBehaviour
     public WorldMapPlayer worldmap;
 
     public Text dialogueText;
-    public Font customFont; 
+    public Text movementTimeText;
+    public Font customFont;
 
     public GameObject player;
     public GameObject enemy;
 
     public CameraSwitch cam;
+
+    public GameObject leftArrow;
+    public GameObject rightArrow;
 
     public int turnvalue = 1;
 
@@ -41,7 +45,7 @@ public class BattleSystem : MonoBehaviour
     {
         // checking if the font is assigned &
         // if so, set future text pop ups to that font 
-        if(customFont != null)
+        if (customFont != null)
         {
             dialogueText.font = customFont;
         }
@@ -67,6 +71,7 @@ public class BattleSystem : MonoBehaviour
 
         //dialogueText.font = customFont;
         dialogueText.text = "Battle Begins!";
+        movementTimeText.enabled = false;
 
         yield return new WaitForSeconds(1f);
         playerShoot();
@@ -102,11 +107,31 @@ public class BattleSystem : MonoBehaviour
     }
 
     IEnumerator playerMove()
-    {   
+    {
         dialogueText.text = "Player Move";
+        yield return new WaitForSeconds(1f);
+        leftArrow.SetActive(true);
+        rightArrow.SetActive(true);
+        movementTimeText.enabled = true;
+        
+
         state = BattleState.PlAYERMOVE;
 
-        yield return new WaitForSeconds(3f);
+        //movementTimeText.transform.position = player.transform.position + new Vector3(0, -100, 1); // Adjust the offset as needed
+
+        int movementTime = 3;
+        while (movementTime > 0)
+        {
+            movementTimeText.text = "Time Left:";
+            movementTimeText.text = $"Time Left: {movementTime}";
+            yield return new WaitForSeconds(1f);
+            movementTime -= 1;
+        }
+
+        movementTimeText.text = "";
+        leftArrow.SetActive(false);
+        rightArrow.SetActive(false);
+        movementTimeText.enabled = false;
         StartCoroutine(EnemyTurn());
     }
 
@@ -114,7 +139,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-      
+
         // enemyMove = enemy.GetComponent<EnemyMovement>();
         // enemyShoot = enemy.GetComponent<EnemyShooting>();
 
@@ -129,7 +154,9 @@ public class BattleSystem : MonoBehaviour
             //lose
             state = BattleState.LOSE;
             yield return StartCoroutine(EndBattle());
-        }else{
+        }
+        else
+        {
             dialogueText.text = "Enemy Moves";
             yield return StartCoroutine(enemyMove.EnemyMove());
             turnvalue++;
@@ -139,38 +166,43 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
- 
+
 
     public IEnumerator EndBattle()
     {
 
         if (state == BattleState.WIN)
         {
-            dialogueText.text = "You Win";
+            dialogueText.text = "";
 
             string sceneName = SceneManager.GetActiveScene().name;
 
-            if (sceneName == "Level"){
+            if (sceneName == "Level")
+            {
 
                 CrewManager.Instance.GainCrewmate("Crewmate1");
                 //LevelSelectManager.ShowTickForLevel(sceneName);
                 //worldmap.level1.SetActive(false);
 
-            }else if (sceneName == "Level2") {
+            }
+            else if (sceneName == "Level2")
+            {
 
                 CrewManager.Instance.GainCrewmate("Crewmate2");
                 //worldmap.level2.SetActive(false);
 
 
             }
-            else if (sceneName == "Level3"){
+            else if (sceneName == "Level3")
+            {
 
                 CrewManager.Instance.GainCrewmate("Crewmate3");
                 //worldmap.level3.SetActive(false);
 
 
             }
-            else if (sceneName == "Level4"){
+            else if (sceneName == "Level4")
+            {
 
                 CrewManager.Instance.GainCrewmate("Crewmate4");
                 //worldmap.level4.SetActive(false);
