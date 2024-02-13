@@ -41,7 +41,7 @@ public class Launcher2 : MonoBehaviour
 
     bool zoom;
 
-    bool active = true; // for testing
+    //bool active = true; // for testing
 
     LineRenderer lastLineRenderer;
 
@@ -59,7 +59,7 @@ public class Launcher2 : MonoBehaviour
 
         //Debug.Log("Zoomed In: " + zoom + " , Deactivated shooting: " );
         // Check if it's the player's turn before allowing the launcher to be used
-        if (battleSystem.state == BattleState.PLAYERSHOOT && active)
+        if (battleSystem.state == BattleState.PLAYERSHOOT)
         {
             statText.enabled = true;
             if (!EventSystem.current.IsPointerOverGameObject())
@@ -67,18 +67,18 @@ public class Launcher2 : MonoBehaviour
                 HandleLauncherInput();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (active)
-            {
-                active = false;
-            }
-            else
-            {
-                active = true;
-            }
-            Debug.Log("Active shooting: " + active);
-        }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     if (active)
+        //     {
+        //         active = false;
+        //     }
+        //     else
+        //     {
+        //         active = true;
+        //     }
+        //     Debug.Log("Active shooting: " + active);
+        // }
 
     }
 

@@ -63,6 +63,7 @@ public class BattleSystem : MonoBehaviour
 
         //dialogueText.font = customFont;
         dialogueText.text = "Battle Begins!";
+        movementTimeText.enabled = false;
 
         yield return new WaitForSeconds(1f);
         playerShoot();
@@ -103,7 +104,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
         leftArrow.SetActive(true);
         rightArrow.SetActive(true);
-        //movementTimeText.SetActive(true);
+        movementTimeText.enabled = true;
         
 
         state = BattleState.PlAYERMOVE;
@@ -122,7 +123,7 @@ public class BattleSystem : MonoBehaviour
         movementTimeText.text = "";
         leftArrow.SetActive(false);
         rightArrow.SetActive(false);
-        //movementTimeText.SetActive(false);
+        movementTimeText.enabled = false;
         StartCoroutine(EnemyTurn());
     }
 
