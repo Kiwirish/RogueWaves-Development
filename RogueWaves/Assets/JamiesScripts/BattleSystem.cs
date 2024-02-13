@@ -16,6 +16,8 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+    public MusicManager musicManager;
+
     public WorldMapPlayer worldmap;
 
     public Text dialogueText;
@@ -59,6 +61,12 @@ public class BattleSystem : MonoBehaviour
     {
 
         cam.ActivateMainCamera();
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName == "Level5") {
+            GameEvents.TriggerMusicChange("bossFight");
+        }
+
         yield return new WaitForSeconds(3f);
 
         cam.ActivateFollowCamera();

@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     private static AudioManager instance = null;
     public static AudioManager Instance
+
     {
         get { return instance; }
     }
@@ -25,4 +26,6 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
+
+
 }
