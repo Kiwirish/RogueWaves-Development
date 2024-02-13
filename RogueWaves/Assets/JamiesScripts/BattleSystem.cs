@@ -100,9 +100,11 @@ public class BattleSystem : MonoBehaviour
     IEnumerator playerMove()
     {
         dialogueText.text = "Player Move";
+        yield return new WaitForSeconds(1f);
         leftArrow.SetActive(true);
         rightArrow.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        //movementTimeText.SetActive(true);
+        
 
         state = BattleState.PlAYERMOVE;
 
@@ -117,9 +119,10 @@ public class BattleSystem : MonoBehaviour
             movementTime -= 1;
         }
 
+        movementTimeText.text = "";
         leftArrow.SetActive(false);
         rightArrow.SetActive(false);
-        movementTimeText.text = "";
+        //movementTimeText.SetActive(false);
         StartCoroutine(EnemyTurn());
     }
 
