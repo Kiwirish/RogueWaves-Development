@@ -25,6 +25,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
 
+    public CameraSwitch cam;
+
     public GameObject leftArrow;
     public GameObject rightArrow;
 
@@ -55,6 +57,12 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
+
+        cam.ActivateMainCamera();
+        yield return new WaitForSeconds(3f);
+
+        cam.ActivateFollowCamera();
+
         GameObject playerGO = player;
         playerUnit = playerGO.GetComponent<Unit>();
 
@@ -173,6 +181,7 @@ public class BattleSystem : MonoBehaviour
             {
 
                 CrewManager.Instance.GainCrewmate("Crewmate1");
+                //LevelSelectManager.ShowTickForLevel(sceneName);
                 //worldmap.level1.SetActive(false);
 
             }
