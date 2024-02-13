@@ -3469,6 +3469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crewmanager: {fileID: 1368167597}
+  lvl: {fileID: 0}
   state: 0
   worldmap: {fileID: 0}
   dialogueText: {fileID: 1464003966}
@@ -3477,6 +3478,7 @@ MonoBehaviour:
   enemy: {fileID: 1249533920}
   cam: {fileID: 1759756790}
   turnvalue: 1
+  tick1: {fileID: 0}
   enemyMove: {fileID: 1249533923}
   enemyShoot: {fileID: 1249533925}
 --- !u!4 &902102996

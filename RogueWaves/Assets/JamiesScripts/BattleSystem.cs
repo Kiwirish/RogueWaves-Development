@@ -14,6 +14,8 @@ public class BattleSystem : MonoBehaviour
 
     public CrewManager crewmanager;
 
+    public LevelSelectManager lvl;
+
     public BattleState state;
 
     public WorldMapPlayer worldmap;
@@ -27,6 +29,10 @@ public class BattleSystem : MonoBehaviour
     public CameraSwitch cam;
 
     public int turnvalue = 1;
+
+    // to be moved to another script for code tidiness, here temporarily for functionality
+
+    public GameObject tick1; 
 
     //public GameObject gainedCrewmate;
 
@@ -151,8 +157,12 @@ public class BattleSystem : MonoBehaviour
             string sceneName = SceneManager.GetActiveScene().name;
 
             if (sceneName == "Level"){
+                //int levelNum = 1;
 
                 CrewManager.Instance.GainCrewmate("Crewmate1");
+                //LevelSelectManager.Instance.MarkLevelComplete(levelNum - 1);
+                //tick1.SetActive(true);
+                //LevelSelectManager.Instance.GainTick("Level");
                 //LevelSelectManager.ShowTickForLevel(sceneName);
                 //worldmap.level1.SetActive(false);
 
