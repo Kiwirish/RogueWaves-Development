@@ -1242,6 +1242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battlesystem: {fileID: 1961274488}
+  pvpsystem: {fileID: 0}
+  campaign: 0
   FollowCamera: {fileID: 1879906084}
   MainCamera: {fileID: 322177330}
   follow: {fileID: 1779419303}
@@ -2663,8 +2665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  maxHP: 7
-  currentHP: 7
+  maxHP: 5
+  currentHP: 5
   triggered: 0
   playerHealth: {fileID: 960012825}
   player: {fileID: 756711246}
@@ -8041,6 +8043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crewmanager: {fileID: 674170307}
   state: 0
+  musicManager: {fileID: 0}
   worldmap: {fileID: 0}
   dialogueText: {fileID: 1214931914}
   movementTimeText: {fileID: 989821094}
