@@ -2791,6 +2791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crewmanager: {fileID: 319691423}
   state: 0
+  musicManager: {fileID: 0}
   worldmap: {fileID: 0}
   dialogueText: {fileID: 353290495}
   movementTimeText: {fileID: 479192909}
@@ -3327,6 +3328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battlesystem: {fileID: 599063856}
+  pvpsystem: {fileID: 0}
+  campaign: 0
   FollowCamera: {fileID: 751016238}
   MainCamera: {fileID: 77201957}
   follow: {fileID: 1692278014}
@@ -3483,6 +3486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1217113031}
+  backgroundMusic: {fileID: 0}
   bossFightMusic: {fileID: 8300000, guid: 7b6e875085d6146b2aefe39d7926bdeb, type: 3}
 --- !u!4 &770971663
 Transform:
@@ -5179,6 +5183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1217113031}
+  backgroundMusic: {fileID: 0}
   bossFightMusic: {fileID: 8300000, guid: 7b6e875085d6146b2aefe39d7926bdeb, type: 3}
 --- !u!1 &1352556463
 GameObject:
@@ -6024,7 +6029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e4dd187cde845b6a4ff27a7663b440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   maxHP: 10
   currentHP: 10
   triggered: 0
@@ -6053,7 +6058,8 @@ MonoBehaviour:
   dialogueText: {fileID: 353290495}
   statText: {fileID: 544467742}
   drag: 3
-  xOffset: 5
+  xOffset: 3
+  boss: 1
   shootSoundEffect: {fileID: 1672208275}
 --- !u!50 &1672208279
 Rigidbody2D:
