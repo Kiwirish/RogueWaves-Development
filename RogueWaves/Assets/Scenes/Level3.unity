@@ -4482,8 +4482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  maxHP: 7
-  currentHP: 7
+  maxHP: 4
+  currentHP: 4
   triggered: 0
   playerHealth: {fileID: 1454197502}
   player: {fileID: 1064800683}
