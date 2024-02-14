@@ -6,7 +6,11 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject main_menu;
     [SerializeField] private GameObject start_menu;
-    [SerializeField] private GameObject help_menu;
+
+    [SerializeField] private GameObject help1_menu;
+    [SerializeField] private GameObject help2_menu;
+    [SerializeField] private GameObject help3_menu;
+
     [SerializeField] private GameObject pvp_menu;
     [SerializeField] private GameObject pvc_menu;
 
@@ -19,6 +23,7 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         ActivateMain();
+        
     }
 
     public void StartGame()
@@ -39,11 +44,10 @@ public class MainMenuManager : MonoBehaviour
     public void Back()
     {
         ActivateMain();
-    }
-
-    public void Help()
-    {
-        ActivateHelp();
+        help1_menu.SetActive(false);
+        help2_menu.SetActive(false);
+        help3_menu.SetActive(false);
+        
     }
 
     public void QuitGame()
@@ -64,7 +68,6 @@ public class MainMenuManager : MonoBehaviour
     {
         main_menu.SetActive(true);
         start_menu.SetActive(false);
-        help_menu.SetActive(false);
         pvp_menu.SetActive(false);
         pvc_menu.SetActive(false);
     }
@@ -73,16 +76,6 @@ public class MainMenuManager : MonoBehaviour
     {
         main_menu.SetActive(false);
         start_menu.SetActive(true);
-        help_menu.SetActive(false);
-        pvp_menu.SetActive(false);
-        pvc_menu.SetActive(false);
-    }
-
-    private void ActivateHelp()
-    {
-        main_menu.SetActive(false);
-        start_menu.SetActive(false);
-        help_menu.SetActive(true);
         pvp_menu.SetActive(false);
         pvc_menu.SetActive(false);
     }
@@ -91,7 +84,6 @@ public class MainMenuManager : MonoBehaviour
     {
         main_menu.SetActive(false);
         start_menu.SetActive(false);
-        help_menu.SetActive(false);
         pvp_menu.SetActive(true);
         pvc_menu.SetActive(false);
     }
@@ -100,9 +92,26 @@ public class MainMenuManager : MonoBehaviour
     {
         main_menu.SetActive(false);
         start_menu.SetActive(false);
-        help_menu.SetActive(false);
         pvp_menu.SetActive(false);
         pvc_menu.SetActive(true);
+    }
+
+    public void Help1()
+    {
+        help1_menu.SetActive(true);
+        help2_menu.SetActive(false);
+        help3_menu.SetActive(false); 
+    }
+
+    public void Help2(){
+        help1_menu.SetActive(false);
+        help2_menu.SetActive(true);
+        help3_menu.SetActive(false); 
+    }
+    public void Help3(){
+        help1_menu.SetActive(false);
+        help2_menu.SetActive(false);
+        help3_menu.SetActive(true); 
     }
 
     public void ConfirmPVC()

@@ -2694,6 +2694,7 @@ MonoBehaviour:
   statText: {fileID: 1202084479}
   drag: 3
   xOffset: 5
+  boss: 0
   shootSoundEffect: {fileID: 756711248}
 --- !u!50 &756711252
 Rigidbody2D:
@@ -2808,7 +2809,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f5eb6f1d1c65afb4cab46d745b152da5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efde8ff5c5e6827458a1e5059a0c6ac9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
