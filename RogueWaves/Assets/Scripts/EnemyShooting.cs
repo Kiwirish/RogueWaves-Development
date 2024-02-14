@@ -26,13 +26,19 @@ public class EnemyShooting : MonoBehaviour
     public float xOffset = 8f;
     bool randomise = true;
 
+    public bool boss = false; 
+
     [SerializeField] private AudioSource shootSoundEffect; 
 
     public IEnumerator EnemyShoot(){
         statText.enabled = false;
         DrawArc();
         yield return StartCoroutine(Shoot());
-        enemy.GetComponent<Unit>().damage = 1;
+        if(boss){
+            enemy.GetComponent<Unit>().damage = 2;
+        }else{
+            enemy.GetComponent<Unit>().damage = 1;
+        }
     }
 
     IEnumerator Shoot()
@@ -73,7 +79,11 @@ public class EnemyShooting : MonoBehaviour
             cam.Follow = player.transform;
         }
 
-        xOffset = 8f; // just for that one crewmate (hard coded right now)
+        if(boss){
+            xOffset = 5f;
+        }else{
+            xOffset = 8f; // just for that one crewmate (hard coded right now)
+        }
     
     }
 
