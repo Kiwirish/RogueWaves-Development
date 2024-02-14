@@ -3612,19 +3612,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crewmanager: {fileID: 1368167597}
-  lvl: {fileID: 0}
   state: 0
+  musicManager: {fileID: 0}
   worldmap: {fileID: 0}
   dialogueText: {fileID: 1464003966}
   movementTimeText: {fileID: 1278199081}
   customFont: {fileID: 12800000, guid: b3173b2ae0905e644a8758b6a19e400c, type: 3}
   player: {fileID: 2040458470}
   enemy: {fileID: 1249533920}
+  cam: {fileID: 1759756790}
   leftArrow: {fileID: 1635433244}
   rightArrow: {fileID: 1624848711}
-  cam: {fileID: 1759756790}
   turnvalue: 1
-  tick1: {fileID: 0}
   enemyMove: {fileID: 1249533923}
   enemyShoot: {fileID: 1249533925}
 --- !u!4 &902102996
@@ -5068,6 +5067,7 @@ MonoBehaviour:
   statText: {fileID: 1109755145}
   drag: 3
   xOffset: 10
+  boss: 0
   shootSoundEffect: {fileID: 1249533922}
 --- !u!50 &1249533926
 Rigidbody2D:
@@ -5182,7 +5182,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f5eb6f1d1c65afb4cab46d745b152da5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d0a435377a4b4e4c8b3cb3a92435155, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7205,6 +7205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battlesystem: {fileID: 902102995}
+  pvpsystem: {fileID: 0}
+  campaign: 0
   FollowCamera: {fileID: 603028787}
   MainCamera: {fileID: 1607881305}
   follow: {fileID: 1013534022}
