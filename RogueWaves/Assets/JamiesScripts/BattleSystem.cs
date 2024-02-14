@@ -189,6 +189,7 @@ public class BattleSystem : MonoBehaviour
             {
 
                 CrewManager.Instance.GainCrewmate("Crewmate1");
+                GameEvents.LevelBeaten(sceneName);
                 //LevelSelectManager.ShowTickForLevel(sceneName);
                 //worldmap.level1.SetActive(false);
 
