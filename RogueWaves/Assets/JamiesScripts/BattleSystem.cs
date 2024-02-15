@@ -185,10 +185,14 @@ public class BattleSystem : MonoBehaviour
 
             string sceneName = SceneManager.GetActiveScene().name;
 
+            GameManager.Instance.MarkLevelCompleted(sceneName);
+
             if (sceneName == "Level")
             {
 
                 CrewManager.Instance.GainCrewmate("Crewmate1");
+                PlayerPrefs.SetInt("Level", 1); PlayerPrefs.Save();
+                // GameEvents.LevelBeaten(sceneName);
                 //LevelSelectManager.ShowTickForLevel(sceneName);
                 //worldmap.level1.SetActive(false);
 
