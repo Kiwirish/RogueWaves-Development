@@ -1542,7 +1542,7 @@ MonoBehaviour:
   enemy: {fileID: 137621133}
   dialogueText: {fileID: 1140420908}
   statText: {fileID: 247673077}
-  drag: 3
+  drag: 0.2
   xOffset: 1
   boss: 0
   shootSoundEffect: {fileID: 137621135}

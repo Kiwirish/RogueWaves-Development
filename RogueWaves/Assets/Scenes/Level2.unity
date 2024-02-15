@@ -9703,7 +9703,7 @@ MonoBehaviour:
   enemy: {fileID: 2054167781}
   dialogueText: {fileID: 462766666}
   statText: {fileID: 1457158116}
-  drag: 3
+  drag: 0.2
   xOffset: 8
   boss: 0
   shootSoundEffect: {fileID: 2054167790}
