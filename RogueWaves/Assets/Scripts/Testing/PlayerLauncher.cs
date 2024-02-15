@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerLauncher : MonoBehaviour
 {
@@ -69,10 +70,10 @@ public class PlayerLauncher : MonoBehaviour
 
         if(yourTurn){
 
-            if (battleSystem.state == PVPState.PLAYER1SHOOT && active){   
+            if (battleSystem.state == PVPState.PLAYER1SHOOT && active && !EventSystem.current.IsPointerOverGameObject()){   
                 statText.enabled = true;
                 HandleLauncherInput();
-            }else if(battleSystem.state == PVPState.PLAYER2SHOOT && active){   
+            }else if(battleSystem.state == PVPState.PLAYER2SHOOT && active && !EventSystem.current.IsPointerOverGameObject()){   
                 statText.enabled = true;
                 HandleLauncherInput();
             }   
@@ -192,7 +193,7 @@ public class PlayerLauncher : MonoBehaviour
             //Debug.Log("Looping"); // loop
             yield return null;  // This is important for the coroutine to yield to the next frame
         }
-        yield return new WaitForSeconds(2f);
+       yield return new WaitForSeconds(1f);
 
         //Debug.Log("Object destroyed");
 
@@ -202,7 +203,7 @@ public class PlayerLauncher : MonoBehaviour
             players[1].GetComponent<PlayerLauncher>().yourTurn = true;
             cinemachine.Follow = players[0].GetComponent<PlayerLauncher>().players[0].transform;
             StartCoroutine(battleSystem.endPlayer1Turn());
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
             cinemachine.Follow = players[1].GetComponent<PlayerLauncher>().players[1].transform;
 
         }else if (playerNumber == 2 && yourTurn){
@@ -211,7 +212,7 @@ public class PlayerLauncher : MonoBehaviour
             players[0].GetComponent<PlayerLauncher>().yourTurn = true;
             cinemachine.Follow = players[1].GetComponent<PlayerLauncher>().players[1].transform;
             StartCoroutine(battleSystem.endPlayer2Turn());
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
             cinemachine.Follow = players[0].GetComponent<PlayerLauncher>().players[0].transform;
 
         }
