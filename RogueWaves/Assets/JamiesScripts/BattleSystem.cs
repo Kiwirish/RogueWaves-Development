@@ -139,7 +139,7 @@ public class BattleSystem : MonoBehaviour
             movementTime -= 1;
         }
 
-        movementTimeText.text = "";
+        //movementTimeText.text = "";
         leftArrow.SetActive(false);
         rightArrow.SetActive(false);
         movementTimeText.enabled = false;

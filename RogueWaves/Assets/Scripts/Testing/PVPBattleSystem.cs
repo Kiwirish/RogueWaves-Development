@@ -17,16 +17,18 @@ public class PVPBattleSystem : MonoBehaviour
     // public WorldMapPlayer worldmap; 
 
     public Text dialogueText;
+    public Text movementTimeText;
     public Font customFont;
-
-    public AudioSource moveSoundEffect;
 
     public GameObject player1;
     public GameObject player2;
 
+    public GameObject leftArrow;
+    public GameObject rightArrow;
+
     public CameraSwitch cam;
 
-    public int turnvalue = 1; 
+    public int turnvalue = 1;
 
     Unit player1Unit;
     Unit player2Unit;
@@ -45,10 +47,10 @@ public class PVPBattleSystem : MonoBehaviour
     }
 
     IEnumerator SetupBattle()
-    {   
+    {
 
         cam.ActivateMainCamera();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         cam.ActivateFollowCamera();
 
@@ -95,18 +97,34 @@ public class PVPBattleSystem : MonoBehaviour
     }
 
     IEnumerator player1Move()
-    {   
+    {
         dialogueText.text = "Player 1s Move";
-        //moveSoundEffect.Play();
+        leftArrow.SetActive(true);
+        rightArrow.SetActive(true);
+        movementTimeText.enabled = true;
         state = PVPState.PLAYER1MOVE;
 
-        yield return new WaitForSeconds(3f);
-        Player2Shoot();
+        int movementTime = 3;
+        while (movementTime > 0)
+        {
+            movementTimeText.text = "Time Left:";
+            movementTimeText.text = $"Time Left: {movementTime}";
+            yield return new WaitForSeconds(1f);
+            movementTime -= 1;
+        }
+
+        movementTimeText.text = "";
+        leftArrow.SetActive(false);
+        rightArrow.SetActive(false);
+        movementTimeText.enabled = false;
+
+        StartCoroutine(Player2Shoot());
     }
 
-    void Player2Shoot()
+    IEnumerator  Player2Shoot()
     {
         dialogueText.text = "Player 2 Shoot";
+        yield return new WaitForSeconds(1f);
         state = PVPState.PLAYER2SHOOT;
     }
 
@@ -130,21 +148,37 @@ public class PVPBattleSystem : MonoBehaviour
     }
 
     IEnumerator player2Move()
-    {   
+    {
         dialogueText.text = "Player 2s Move";
-        //moveSoundEffect.Play();
-
+        leftArrow.SetActive(true);
+        rightArrow.SetActive(true);
+        movementTimeText.enabled = true;
         state = PVPState.PLAYER2MOVE;
 
-        yield return new WaitForSeconds(3f);
+        int movementTime = 3;
+        while (movementTime > 0)
+        {
+            movementTimeText.text = "Time Left:";
+            movementTimeText.text = $"Time Left: {movementTime}";
+            yield return new WaitForSeconds(1f);
+            movementTime -= 1;
+        }
+
+        movementTimeText.text = "";
+        leftArrow.SetActive(false);
+        rightArrow.SetActive(false);
+        movementTimeText.enabled = false;
         Player1Shoot();
     }
 
     public IEnumerator EndBattle()
     {
-        if (state == PVPState.WIN){
+        if (state == PVPState.WIN)
+        {
             dialogueText.text = "Player 1 Wins";
-        }else if(state == PVPState.LOSE){
+        }
+        else if (state == PVPState.LOSE)
+        {
             dialogueText.text = "Player 2 Wins";
         }
 

@@ -16,7 +16,7 @@ public class EnemyShooting : MonoBehaviour
     public Text dialogueText;
     public Text statText;
 
-    public float drag;
+    public float drag = 0.02f;
 
     private Vector3[] trajectoryPoints;
 
@@ -58,14 +58,22 @@ public class EnemyShooting : MonoBehaviour
         Rigidbody2D rb = cannonball.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
 
-        for (int i = 0; i < trajectoryPoints.Length; i++)
-        {
-            if(rb != null){
-                rb.position = trajectoryPoints[i];
+        float elapsedTime = 0f;
+        int currentIndex = 0;
+
+        while (currentIndex < trajectoryPoints.Length - 1) {
+            if (rb != null) {
+                rb.position = Vector3.Lerp(trajectoryPoints[currentIndex], trajectoryPoints[currentIndex + 1], elapsedTime / drag);
+            }
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= drag) {
+                currentIndex++;
+                elapsedTime = 0f;
             }
             yield return null;
         }
-        if(rb != null){
+
+        if (rb != null) {
             rb.gravityScale = 10;
         }
 
