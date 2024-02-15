@@ -12,6 +12,9 @@ public class EnemyMovement : MonoBehaviour
 
     public CinemachineVirtualCamera cam;
 
+    //public AudioSource moveSoundEffect;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,8 +25,10 @@ public class EnemyMovement : MonoBehaviour
     }
 
     IEnumerator EnemyMovementPhase()
-    {   
-        
+    {
+
+        //moveSoundEffect.Play();
+
         cam.Follow = rb.transform;
 
         float random = Random.Range(-movementValue, movementValue);

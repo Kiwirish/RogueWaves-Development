@@ -169,9 +169,13 @@ public class BattleSystem : MonoBehaviour
         else
         {
             dialogueText.text = "Enemy Moves";
-            moveSoundEffect.Play();
+            //moveSoundEffect.Play();
+            //yield return new WaitForSeconds(3f);
 
             yield return StartCoroutine(enemyMove.EnemyMove());
+            //yield return new WaitForSeconds(3f);
+
+
             turnvalue++;
             crewmanager.resetPowerupsForNextTurn();
             playerShoot();
