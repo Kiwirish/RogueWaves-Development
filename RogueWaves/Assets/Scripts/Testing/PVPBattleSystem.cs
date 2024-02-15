@@ -19,6 +19,8 @@ public class PVPBattleSystem : MonoBehaviour
     public Text dialogueText;
     public Font customFont;
 
+    public AudioSource moveSoundEffect;
+
     public GameObject player1;
     public GameObject player2;
 
@@ -95,6 +97,7 @@ public class PVPBattleSystem : MonoBehaviour
     IEnumerator player1Move()
     {   
         dialogueText.text = "Player 1s Move";
+        //moveSoundEffect.Play();
         state = PVPState.PLAYER1MOVE;
 
         yield return new WaitForSeconds(3f);
@@ -129,6 +132,8 @@ public class PVPBattleSystem : MonoBehaviour
     IEnumerator player2Move()
     {   
         dialogueText.text = "Player 2s Move";
+        //moveSoundEffect.Play();
+
         state = PVPState.PLAYER2MOVE;
 
         yield return new WaitForSeconds(3f);

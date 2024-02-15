@@ -18,6 +18,8 @@ public class BattleSystem : MonoBehaviour
 
     public MusicManager musicManager;
 
+    public AudioSource moveSoundEffect;
+
     public WorldMapPlayer worldmap;
 
     public Text dialogueText;
@@ -117,6 +119,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator playerMove()
     {
         dialogueText.text = "Player Move";
+        moveSoundEffect.Play();
         yield return new WaitForSeconds(1f);
         leftArrow.SetActive(true);
         rightArrow.SetActive(true);
@@ -166,6 +169,8 @@ public class BattleSystem : MonoBehaviour
         else
         {
             dialogueText.text = "Enemy Moves";
+            moveSoundEffect.Play();
+
             yield return StartCoroutine(enemyMove.EnemyMove());
             turnvalue++;
             crewmanager.resetPowerupsForNextTurn();
@@ -191,7 +196,7 @@ public class BattleSystem : MonoBehaviour
             {
 
                 CrewManager.Instance.GainCrewmate("Crewmate1");
-                PlayerPrefs.SetInt("Level", 1); PlayerPrefs.Save();
+                //PlayerPrefs.SetInt("Level", 1); PlayerPrefs.Save();
                 // GameEvents.LevelBeaten(sceneName);
                 //LevelSelectManager.ShowTickForLevel(sceneName);
                 //worldmap.level1.SetActive(false);
