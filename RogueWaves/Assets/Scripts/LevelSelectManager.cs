@@ -6,7 +6,46 @@ using UnityEngine.UI;
 public class LevelSelectManager : MonoBehaviour
 {
 
-    public static LevelSelectManager Instance { get; private set; }
+    public GameObject level1Tick, level2Tick, level3Tick, level4Tick, bossLevelTick;
+
+    void Start()
+    {
+        CheckCompletedLevels();
+    }
+
+    void CheckCompletedLevels()
+    {
+        level1Tick.SetActive(GameManager.Instance.IsLevelCompleted("Level"));
+        level2Tick.SetActive(GameManager.Instance.IsLevelCompleted("Level2"));
+        level3Tick.SetActive(GameManager.Instance.IsLevelCompleted("Level3"));
+        level4Tick.SetActive(GameManager.Instance.IsLevelCompleted("Level4"));
+        bossLevelTick.SetActive(GameManager.Instance.IsLevelCompleted("Level5"));
+
+
+    }
+    // public static LevelSelectManager Instance { get; private set; }
+
+
+    //public GameObject[] levelTicks; 
+
+    //private void OnEnable()
+    //{
+    //    GameEvents.OnLevelBeaten += HandleLevelBeaten;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    GameEvents.OnLevelBeaten -= HandleLevelBeaten;
+    //}
+
+    //private void HandleLevelBeaten(string levelName)
+    //{
+    //    levelTicks[0].SetActive(true);
+    //}
+
+
+
+
 
     //public GameObject tickLevel1; 
     //public GameObject tickLevel2; 
@@ -21,7 +60,7 @@ public class LevelSelectManager : MonoBehaviour
     //public GameObject tick4;
     //public GameObject tick5;
 
-    [SerializeField] private GameObject[] levelTicks; // Assign these in the Inspector
+    //[SerializeField] private GameObject[] levelTicks; 
 
 
     //public void GainTick(string level) {
@@ -41,13 +80,13 @@ public class LevelSelectManager : MonoBehaviour
     //}
 
 
-    public void MarkLevelComplete(int levelNumber)
-    {
-        if (levelNumber >= 0 && levelNumber < levelTicks.Length)
-        {
-            levelTicks[levelNumber].SetActive(true); 
-        }
-    }
+    //public void MarkLevelComplete(int levelNumber)
+    //{
+    //    if (levelNumber >= 0 && levelNumber < levelTicks.Length)
+    //    {
+    //        levelTicks[levelNumber].SetActive(true); 
+    //    }
+    //}
 
 
 
