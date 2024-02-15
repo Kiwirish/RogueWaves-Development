@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour
 
     public GameObject cannonball;
 
+    [SerializeField] private AudioSource hitSoundEffect;
 
     void OnTriggerEnter2D(Collider2D other){
 
@@ -24,11 +25,14 @@ public class Unit : MonoBehaviour
         bool isPlayer = player.CompareTag("Player");
 
         if(isPlayerProjectile && !(isPlayer)){
+            hitSoundEffect.Play();
             triggered = true;
             Destroy(other.gameObject);
-            Debug.Log("ENEMY WAS HIT BY A PLAYER CANNONBALL");   
+            Debug.Log("ENEMY WAS HIT BY A PLAYER CANNONBALL"); 
+
         }else if(!(isPlayerProjectile) && isPlayer){
             triggered = true;
+            hitSoundEffect.Play();
             Destroy(other.gameObject); 
             Debug.Log("PLAYER WAS HIT BY A ENEMY CANNONBALL");  
         }
