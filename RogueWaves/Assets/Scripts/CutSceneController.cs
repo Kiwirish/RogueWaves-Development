@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CutSceneController : MonoBehaviour
 {
-    public float cutsceneDuration = 30;
+    public float cutsceneDuration = 25;
 
     void Start()
     {

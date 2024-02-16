@@ -477,6 +477,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &689687501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689687503}
+  - component: {fileID: 689687502}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &689687502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689687501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bcbf5ff5e64a42c4a1e687237701ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCursor: {fileID: 2800000, guid: 664726ccb531943219605e26497526ef, type: 3}
+  clickCursor: {fileID: 2800000, guid: 8daa3e74007a240018397c6ae586b602, type: 3}
+--- !u!4 &689687503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689687501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1197793, y: -0.55877984, z: -0.25069308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977339917
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +821,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1.2561989, y: -10.498848}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_SizeDelta: {x: 800, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1295052672
 MonoBehaviour:
@@ -799,7 +845,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b3173b2ae0905e644a8758b6a19e400c, type: 3}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -811,11 +857,11 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "After years of sailing the seven seas, your swashbuckling pirate crew
-    encounters an outbreak of rogue waves. \n\nA fateful night saw your vessel torn
-    and your family of the sea scattered far and wide. \n\nIn the midst of the chaos,
-    enemy pirates descended, taking your scattered crew captive.\n\nAs captain, it
-    is your job to embark on a journey to defeat rival pirates and reuinite your
-    crew."
+    encounters an outbreak of rogue waves. \n\n\nA fateful night saw your vessel
+    torn and your family of the sea scattered far and wide. \n\n\nIn the midst of
+    the chaos, enemy pirates descended, taking your scattered crew captive.\n\n\nAs
+    captain, it is your job to embark on a journey to defeat rival pirates and reuinite
+    your crew."
 --- !u!222 &1295052673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -890,3 +936,4 @@ SceneRoots:
   - {fileID: 375462140}
   - {fileID: 427988457}
   - {fileID: 977339919}
+  - {fileID: 689687503}
