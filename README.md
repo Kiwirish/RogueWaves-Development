@@ -1,6 +1,6 @@
-*Rogue Waves - Team Minotaur *
+**Rogue Waves - Team Minotaur:**
 
-*Game Description: *
+**Game Description:**
 
 _RogueWaves: A Swashbuckling Turn-Based Adventure_
 
