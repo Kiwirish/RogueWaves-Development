@@ -1,26 +1,33 @@
-**Rogue Waves - Team Minotaur **
+*Rogue Waves - Team Minotaur *
 
-**Game Description: **
+*Game Description: *
 
 _RogueWaves: A Swashbuckling Turn-Based Adventure_
+
 Set sail on a thrilling journey across the high seas in RogueWaves, a captivating 2D pirate-themed game. Command your very own pirate ship and engage in exhilarating turn-based combat against rival vessels. With projectile shooting and ship movement phases, each battle promises a strategic and immersive experience.
 
 _Main Goal:_
+
 Your mission is to defeat enemy ships at each level and rescue lost crewmates. With every crewmember added, your ship gains powerful upgrades, enhancing your abilities to face the fiercest challenges on the high seas. But beware, the dreaded final boss of the seven seas awaits!
 
 _Gameplay Mechanics:_
+
 RogueWaves features a unique turn-based combat system, with both player and enemy having distinct shooting and movement phases. The battle system is designed to change the game's state, allowing or executing specific code based on the current phase. Players have limited time to move their ship and must strategically plan their shots to emerge victorious.
 
 _Crewmates and Power Ups:_
+
 Rescuing crewmates is at the heart of RogueWaves. Each crewmate brings a unique powerup, such as healing abilities, doubling damage, reducing received damage, or making the enemy AI less accurate. These powerups are integral to your strategy as you progress through increasingly difficult levels.
 
 _Shooting Mechanics:_
+
 Inspired by games like Angry Birds and Raft Wars, the shooting mechanic is intuitive yet challenging. Players can aim and fire their cannon using the mouse, with a dynamic trajectory arc showing the shot's path. Enemy AI uses randomness and calculated shots to keep the battles fair and unpredictable.
 
 _Art, Story, and Sound:_
+
 RogueWaves features charming pixel art, a light-hearted story, and upbeat music to create a positive atmosphere. The game's art style is designed to be accessible to all ages, with varied backgrounds and a unique font that complements the pirate theme.
 
 _Multiplayer Modes:_
+
 Experience the thrill of competition in PVP and PVC game modes, where you can test your skills against other players or the computer.
 
 Embark on a swashbuckling adventure in RogueWaves, where strategy, skill, and a bit of luck are your keys to triumph on the high seas!
